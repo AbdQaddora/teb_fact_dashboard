@@ -12,7 +12,12 @@ interface IColors {
         main: string,
         contrast: string,
         dark: string,
-        light: string
+        light: string,
+        states: {
+            p8: string,
+            p50: string,
+            p130: string,
+        }
     },
     secondary: {
         main: string,

@@ -6,7 +6,12 @@ const defaultTheme: DefaultTheme = {
             main: "#5048E5",
             contrast: "#FFFFFF",
             dark: "#3832A0",
-            light: "#828DF8"
+            light: "#828DF8",
+            states: {
+                p130: "#36309c",
+                p50: "rgba(80, 72, 229 , 0.5)",
+                p8: "rgba(80, 72, 229, 0.08)",
+            }
         },
         text: {
             primary: "#111827",
@@ -17,7 +22,7 @@ const defaultTheme: DefaultTheme = {
             main: "#10B981",
             contrast: "#FFFFFF",
             states: {
-                p130: "rgba(16, 185, 129 , 0.7)",
+                p130: "#0c825b",
                 p50: "rgba(16, 185, 129 , 0.5)",
                 p8: "rgba(16, 185, 129 , 0.08)",
             },
