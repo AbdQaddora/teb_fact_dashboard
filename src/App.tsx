@@ -1,7 +1,10 @@
+// routing
+import { Routes } from 'react-router-dom';
+import Router from './router';
 const App = () => {
   return (
     <div className="App">
-      Hello
+      <Router />
     </div>
   )
 }
