@@ -1,6 +1,6 @@
 import styled, { DefaultTheme } from "styled-components";
 type colors = "primary/main" | "primary/contrast" | "primary/dark" | "primary/light" | "primary/states/130" | "primary/states/50" | "primary/states/8" |
-    "text/primary" | "text/secondary" | "text/disabled" |
+    "text/primary" | "text/secondary" | "text/disabled" | "text/error" |
     "secondary/main" | "secondary/contrast" | "secondary/states/130" | "secondary/states/50" | "secondary/states/8" |
     "action/active" | "action/disabled" | "action/disabledBackground" |
     "other/divider" | "background/paper" | "background/default" |
@@ -27,6 +27,7 @@ const getColorsFromTheme = (color: colors, theme: DefaultTheme) => {
     if (color === "text/primary") return theme.colors.text.primary
     if (color === "text/secondary") return theme.colors.text.secondary
     if (color === "text/disabled") return theme.colors.text.disabled
+    if (color === "text/error") return theme.colors.text.error
 
     if (color === "secondary/main") return theme.colors.secondary.main
     if (color === "secondary/contrast") return theme.colors.secondary.contrast

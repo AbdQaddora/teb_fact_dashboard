@@ -16,7 +16,8 @@ const defaultTheme: DefaultTheme = {
         text: {
             primary: "#111827",
             secondary: "#6B7280",
-            disabled: "rgba(55, 65, 81 , 0.5)"
+            disabled: "rgba(55, 65, 81 , 0.5)",
+            error: "#dc3545"
         },
         secondary: {
             main: "#10B981",
@@ -40,7 +41,8 @@ const defaultTheme: DefaultTheme = {
             default: "#F9FAFC"
         },
         components: {
-            outlinedBorder: "#D1D5DB"
+            outlinedBorder: "#D1D5DB",
+            errorBorder:"#dc3545"
         },
         neutral: {
             n900: "#111827",

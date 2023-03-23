@@ -7,6 +7,7 @@ interface IColors {
         primary: string,
         secondary: string,
         disabled: string,
+        error: string
     },
     primary: {
         main: string,
@@ -42,6 +43,7 @@ interface IColors {
     },
     components: {
         outlinedBorder: string,
+        errorBorder: string
     },
     neutral: {
         n900: string,
