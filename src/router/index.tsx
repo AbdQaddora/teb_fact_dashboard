@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import DashboardLayout from '../layouts/DashboardLayout';
 export const PATHS = {
     ADD_NEW_ARTICLE: "/new-article",
     ARTICLE: "/article",
@@ -35,17 +36,39 @@ const Router = () => {
             </Suspense>
             } />
 
-            <Route path={PATHS.HOME} element={<Home />} />
-            <Route path={PATHS.ADD_NEW_ARTICLE} element={<AddNewArticle />} />
-            <Route path={PATHS.ARTICLE + "/:id"} element={<Article />} />
-            <Route path={PATHS.ARTICLES} element={<Articles />} />
-            <Route path={PATHS.CONSULTATIONS} element={<Consultations />} />
-            <Route path={PATHS.DOCTOR + "/:id"} element={<Doctor />} />
-            <Route path={PATHS.DOCTORS} element={<Doctors />} />
-            <Route path={PATHS.REPORT + "/:id"} element={<Report />} />
-            <Route path={PATHS.REPORTS} element={<Reports />} />
-            <Route path={PATHS.SETTINGS} element={<Settings />} />
-            <Route path={"/*"} element={<NotFound />} />
+            <Route path={PATHS.HOME} element={<DashboardLayout>
+                <Home />
+            </DashboardLayout>} />
+            <Route path={PATHS.ADD_NEW_ARTICLE} element={<DashboardLayout>
+                <AddNewArticle />
+            </DashboardLayout>} />
+            <Route path={PATHS.ARTICLE + "/:id"} element={<DashboardLayout>
+                <Article />
+            </DashboardLayout>} />
+            <Route path={PATHS.ARTICLES} element={<DashboardLayout>
+                <Articles />
+            </DashboardLayout>} />
+            <Route path={PATHS.CONSULTATIONS} element={<DashboardLayout>
+                <Consultations />
+            </DashboardLayout>} />
+            <Route path={PATHS.DOCTOR + "/:id"} element={<DashboardLayout>
+                <Doctor />
+            </DashboardLayout>} />
+            <Route path={PATHS.DOCTORS } element={<DashboardLayout>
+                <Doctors />
+            </DashboardLayout>} />
+            <Route path={PATHS.REPORT + "/:id"} element={<DashboardLayout>
+                <Report />
+            </DashboardLayout>} />
+            <Route path={PATHS.REPORTS} element={<DashboardLayout>
+                <Reports />
+            </DashboardLayout>} />
+            <Route path={PATHS.SETTINGS} element={<DashboardLayout>
+                <Settings />
+            </DashboardLayout>} />
+            <Route path={"/*"} element={<DashboardLayout>
+                <NotFound />
+            </DashboardLayout>} />
         </Routes>
     )
 }

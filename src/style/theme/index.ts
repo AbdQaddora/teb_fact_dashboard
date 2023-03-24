@@ -38,11 +38,13 @@ const defaultTheme: DefaultTheme = {
         },
         background: {
             paper: "#FFFFFF",
-            default: "#F9FAFC"
+            default: "#F9FAFC",
+            dark: "#111827",
+            dark2: "rgba(255, 255, 255, 0.08);",
         },
         components: {
             outlinedBorder: "#D1D5DB",
-            errorBorder:"#dc3545"
+            errorBorder: "#dc3545"
         },
         neutral: {
             n900: "#111827",

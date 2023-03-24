@@ -5,5 +5,12 @@
         "label1": "Email Address",
         "label2": "Password",
         "btn": "Login"
+    },
+    "sideMenu":{
+        "dashboard":"Dashboard",
+        "consultations":"Consultations",
+        "doctors":"Doctors",
+        "tickets":"Tickets",
+        "settings":"General settings"
     }
 }

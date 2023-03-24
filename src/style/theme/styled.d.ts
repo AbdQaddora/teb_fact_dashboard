@@ -40,6 +40,8 @@ interface IColors {
     background: {
         paper: string,
         default: string,
+        dark: string,
+        dark2: string,
     },
     components: {
         outlinedBorder: string,
