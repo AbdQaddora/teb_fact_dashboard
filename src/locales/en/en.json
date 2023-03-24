@@ -1,0 +1,9 @@
+{
+    "login": {
+        "title": "Welcome",
+        "subTitle": "login into tebfact internal platform",
+        "label1": "Email Address",
+        "label2": "Password",
+        "btn": "Login"
+    }
+}

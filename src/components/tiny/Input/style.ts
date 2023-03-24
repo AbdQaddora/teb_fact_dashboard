@@ -9,7 +9,9 @@ interface IProps {
 const Style = styled.div<IProps>`
     position: relative;
     height: 3rem;
-    width: fit-content;
+    width:${props => props.fullWidth ? "100%" : "fit-content"};
+
+
     ${props => props.margin ? "margin: " + props.margin + ";" : ""}
     label{
         text-transform: capitalize;

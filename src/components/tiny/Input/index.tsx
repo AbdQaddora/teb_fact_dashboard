@@ -1,16 +1,15 @@
 import React, { useId, useState, useEffect } from 'react'
 import Style from './style'
 
-interface IProps extends React.HTMLAttributes<HTMLInputElement> {
+interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     placeholder?: string,
     error?: boolean,
     fullWidth?: boolean,
     margin?: string
 }
 
-const Input = ({ placeholder, error = false, value, onChange, fullWidth, margin, ...rest }: IProps) => {
+const Input = ({ placeholder, error = false, value, fullWidth, margin, ...rest }: IProps) => {
     const id = useId();
     const [isEmpty, setIsEmpty] = useState(true);
 
@@ -25,7 +24,7 @@ const Input = ({ placeholder, error = false, value, onChange, fullWidth, margin,
 
     return (
         <Style className={!isEmpty ? "not_empty" : ""} fullWidth={fullWidth} margin={margin} error={error}>
-            <input value={value} id={id} {...rest} onChange={onChange} />
+            <input value={value} id={id} {...rest} />
             <label htmlFor={id}>{placeholder}</label>
         </Style>
     )
