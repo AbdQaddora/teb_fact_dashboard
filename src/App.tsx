@@ -5,13 +5,16 @@ import Router from './router';
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from './style/theme';
 import GlobalStyle from './style';
+import LanguageContextProvider from './context/LanguageContext';
 
 const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
-        <Router />
+        <LanguageContextProvider>
+          <GlobalStyle />
+          <Router />
+        </LanguageContextProvider>
       </ThemeProvider>
     </div>
   )

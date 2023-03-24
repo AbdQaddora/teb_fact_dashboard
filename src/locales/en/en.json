@@ -11,6 +11,7 @@
         "consultations":"Consultations",
         "doctors":"Doctors",
         "tickets":"Tickets",
-        "settings":"General settings"
+        "settings":"General settings",
+        "language":"Language"
     }
 }
