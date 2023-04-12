@@ -11,11 +11,17 @@ import { FaUserNurse } from 'react-icons/fa';
 // Translation
 import { useTranslation } from 'react-i18next';
 import LanguageController from '../LanguageController';
-const SideMenu = () => {
+import { useLang } from '../../../../context/LanguageContext';
+interface IProps {
+    isMobileMenuOpen: boolean
+}
+
+const SideMenu = ({ isMobileMenuOpen }: IProps) => {
     const { t } = useTranslation('', { keyPrefix: "sideMenu" });
+    const { lang } = useLang();
     return (
-        <Style>
-            <Logo width='80%' margin="1rem 0 1.5rem" />
+        <Style isMobileMenuOpen={isMobileMenuOpen} dir={lang.direction}>
+            <Logo width='80%' margin="1rem 0 1.5rem" className='large_screen_logo' />
             <SideMenuLink
                 icon={<MdDashboard />}
                 text={t("dashboard")}
@@ -41,7 +47,7 @@ const SideMenu = () => {
                 text={t("settings")}
                 to='SETTINGS'
             />
-            
+
             <LanguageController />
         </Style>
     )

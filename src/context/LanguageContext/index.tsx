@@ -42,7 +42,7 @@ const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
     return (
         <LanguageContext.Provider value={{
             changeLang,
-            lang
+            lang,
         }}>
             <Style className={lang.direction}>
                 {children}

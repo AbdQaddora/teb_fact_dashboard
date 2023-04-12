@@ -1,8 +1,23 @@
 import styled from "styled-components";
+const SIDE_MENU_WIDTH = '250px';
+interface IProps {
+    isMobileMenuOpen: boolean,
+    dir: "ltr" | "rtl"
+}
 
-const Style = styled.div`
-    --side-menu-width:250px;
+const Style = styled.div<IProps>`
+    --side-menu-width:${SIDE_MENU_WIDTH};
     padding-inline-start: var(--side-menu-width);
+
+    @media (max-width:920px){
+        padding-inline-start:0;
+        .content{
+            transition: 0.3s all ease-in-out;
+            ${props => props.isMobileMenuOpen ?
+        props.dir === 'rtl' ? `transform: translateX(-${SIDE_MENU_WIDTH});` : `transform: translateX(${SIDE_MENU_WIDTH});`
+        : "transform: translateX(0);"}
+        }
+    }
 `
 
 export default Style;
