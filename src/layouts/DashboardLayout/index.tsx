@@ -2,7 +2,7 @@ import React, { ReactNode, Suspense, useState } from 'react';
 // components
 import SideMenu from './components/SideMenu';
 import Style from './style';
-import Loading from '../../components/Loading';
+import Loading from '../../components/tiny/Loading';
 import MobileMenuHeader from './components/MobileMenuHeader';
 import { useLang } from '../../context/LanguageContext';
 

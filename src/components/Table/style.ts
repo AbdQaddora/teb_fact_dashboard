@@ -5,15 +5,15 @@ const Style = styled.table`
     border-collapse: collapse;
 
     .table_header{
-        background-color: ${props => props.theme.colors.neutral.n100};
+        background-color: ${props => props.theme.colors.text.primary};
         th{
             padding: 10px 16px;
             text-align: start;
             line-height: 30px;
-            text-transform: uppercase;
+            text-transform: capitalize;
             font-weight: 500;
-            color: ${props => props.theme.colors.text.primary};
-
+            color: ${props => props.theme.colors.neutral.n100};
+            user-select: none;
             .order_icon{
                 margin-inline-end: 5px;
             }

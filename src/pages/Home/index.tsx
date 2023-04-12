@@ -1,10 +1,10 @@
 import React from 'react'
-import Table from '../../components/Table'
+import LatestConsultations from './components/LatestConsultations'
 
 const Home = () => {
   return (
     <div>
-      <Table />
+      <LatestConsultations />
     </div>
   )
 }
