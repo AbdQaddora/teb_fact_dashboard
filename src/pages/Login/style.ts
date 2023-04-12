@@ -18,6 +18,17 @@ const Style = styled.div`
     .left{
         background: radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%);
     }
+
+    @media (max-width:920px) {
+        grid-template-columns: 1fr;
+        .form_container{
+            width: 90%;
+        }
+        .left{
+            display: none;
+        }
+        
+    }
 `
 
 export default Style;
