@@ -11,7 +11,6 @@ const Style = styled.div<IProps>`
 
     @media (max-width:920px){
         padding-inline-start:0;
-        overflow-y: hidden;
         .content{
             transition: 0.3s all ease-in-out;
             ${props => props.isMobileMenuOpen ?

@@ -6,6 +6,13 @@ const Style = styled.div`
     justify-content: flex-end;
     gap: 2rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
+
+    @media (max-width:920px){
+        align-content:center;
+        justify-content: center;
+    }
+    
     .rows_pre_page{
         display: flex;
         align-items: center;
