@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Privacy from './sections/Privacy';
+import AboutUs from './sections/AboutUs';
+import DoctorContract from './sections/DoctorContract';
 
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <div>
+      <DoctorContract />
+      <Privacy />
+      <AboutUs />
+    </div>
   )
 }
 

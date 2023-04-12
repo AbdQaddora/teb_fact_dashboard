@@ -50,8 +50,9 @@ interface IColors {
     neutral: {
         n900: string,
         n500: string,
-        n300: string,
         n400: string,
+        n300: string,
+        n100: string,
     }
 }
 

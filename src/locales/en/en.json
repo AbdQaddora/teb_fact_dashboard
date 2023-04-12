@@ -6,12 +6,26 @@
         "label2": "Password",
         "btn": "Login"
     },
-    "sideMenu":{
-        "dashboard":"Dashboard",
-        "consultations":"Consultations",
-        "doctors":"Doctors",
-        "tickets":"Tickets",
-        "settings":"General settings",
-        "language":"Language"
+    "sideMenu": {
+        "dashboard": "Dashboard",
+        "consultations": "Consultations",
+        "doctors": "Doctors",
+        "tickets": "Tickets",
+        "settings": "General settings",
+        "language": "Language"
+    },
+    "settings": {
+        "privacy": {
+            "title": "Privacy policy",
+            "btn": "Update Privacy policy"
+        },
+        "doctorContract": {
+            "title": "Doctors registration contract",
+            "btn": "Update Doctors Registration Contract"
+        },
+        "aboutUs": {
+            "title": "About us",
+            "btn": "Update About Us"
+        }
     }
 }

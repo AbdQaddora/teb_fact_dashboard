@@ -51,6 +51,7 @@ const defaultTheme: DefaultTheme = {
             n500: "#D1D5DB",
             n400: "#D1D5DB",
             n300: "#9CA3AF",
+            n100: "#F3F4F6",
         }
     },
     typography: {
