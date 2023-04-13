@@ -8,7 +8,11 @@ import { useLang } from '../../../../context/LanguageContext';
 import { useTranslation } from 'react-i18next';
 // icons
 import { BiWorld } from 'react-icons/bi';
-const LanguageController = () => {
+interface IProps {
+    closeMobileMenu: () => void,
+}
+
+const LanguageController = ({ closeMobileMenu }: IProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { changeLang, lang } = useLang();
     const { t } = useTranslation('', { keyPrefix: "sideMenu" })
@@ -21,13 +25,19 @@ const LanguageController = () => {
             <div className={`lang_menu_body${isMenuOpen ? " open" : ""}`}>
                 <Subtitle1
                     color='neutral/n300'
-                    onClick={() => { changeLang('en') }}
+                    onClick={() => {
+                        closeMobileMenu();
+                        changeLang('en')
+                    }}
                     className={`lang_menu_item ${lang.langName === 'en' ? "active" : ""}`}>
                     English
                 </Subtitle1>
                 <Subtitle1
                     color='neutral/n300'
-                    onClick={() => { changeLang('ar') }}
+                    onClick={() => {
+                        closeMobileMenu();
+                        changeLang('ar');
+                    }}
                     className={`lang_menu_item ${lang.langName === 'ar' ? "active" : ""}`}>
                     العربية
                 </Subtitle1>

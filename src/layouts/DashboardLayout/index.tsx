@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: IProps) => {
     const { lang } = useLang();
     return (
         <Style isMobileMenuOpen={isMobileMenuOpen} dir={lang.direction}>
-            <SideMenu isMobileMenuOpen={isMobileMenuOpen} />
+            <SideMenu isMobileMenuOpen={isMobileMenuOpen} closeMobileMenu={() => setIsMobileMenuOpen(false)} />
             <MobileMenuHeader
                 toggleMenu={() => setIsMobileMenuOpen(prev => !prev)}
                 isMobileMenuOpen={isMobileMenuOpen}

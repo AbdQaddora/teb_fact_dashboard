@@ -7,11 +7,12 @@ interface IProps {
     children: ReactNode;
     to: keyof typeof PATHS;
     className?: string
+    onClick?: () => void
 }
 
-const CustomLink = ({ children, to, className = '' }: IProps) => {
+const CustomLink = ({ children, to, className = '', onClick }: IProps) => {
     return (
-        <Style className={className}>
+        <Style className={className} onClick={onClick ? onClick : () => { }}>
             <Link to={PATHS[to]}>
                 {children}
             </Link>
