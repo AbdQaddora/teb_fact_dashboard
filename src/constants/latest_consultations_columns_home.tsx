@@ -11,19 +11,19 @@ export interface IDataLatestConsultationHome {
 
 const LATEST_CONSULTATIONS_COLUMNS_HOME: Column<IDataLatestConsultationHome>[] = [
     {
-        Header: () => <Translate TranslateKey='home.latest_consultations_columns_home.order_id' />,
+        Header: () => <Translate TranslateKey='tables.latest_consultations_columns_home.order_id' />,
         accessor: "order_id",
     },
     {
-        Header: () => <Translate TranslateKey='home.latest_consultations_columns_home.patient' />,
+        Header: () => <Translate TranslateKey='tables.latest_consultations_columns_home.patient' />,
         accessor: "patient"
     },
     {
-        Header: () => <Translate TranslateKey='home.latest_consultations_columns_home.date' />,
+        Header: () => <Translate TranslateKey='tables.latest_consultations_columns_home.date' />,
         accessor: "date"
     },
     {
-        Header: () => <Translate TranslateKey='home.latest_consultations_columns_home.status' />,
+        Header: () => <Translate TranslateKey='tables.latest_consultations_columns_home.status' />,
         accessor: "status",
         Cell: ({ cell: { value } }: CellProps<any>) => {
             return <ConsultationTypeBadge type={value} />

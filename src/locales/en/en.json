@@ -10,14 +10,15 @@
             "closed": "Closed"
         }
     },
-    "login": {
-        "title": "Welcome",
-        "subTitle": "login into tebfact internal platform",
-        "label1": "Email Address",
-        "label2": "Password",
-        "btn": "Login"
+    "sideMenu": {
+        "dashboard": "Dashboard",
+        "consultations": "Consultations",
+        "doctors": "Doctors",
+        "tickets": "Tickets",
+        "settings": "General settings",
+        "language": "Language"
     },
-    "home": {
+    "tables": {
         "latest_consultations_columns_home": {
             "order_id": "Order id",
             "patient": "Patient",
@@ -30,15 +31,25 @@
             "consultation": "Consultation",
             "state": "State",
             "date": "Date"
+        },
+        "tickets": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "message": "Message",
+            "actions": "Actions",
+            "response": "Response"
         }
     },
-    "sideMenu": {
-        "dashboard": "Dashboard",
-        "consultations": "Consultations",
-        "doctors": "Doctors",
-        "tickets": "Tickets",
-        "settings": "General settings",
-        "language": "Language"
+    "login": {
+        "title": "Welcome",
+        "subTitle": "login into tebfact internal platform",
+        "label1": "Email Address",
+        "label2": "Password",
+        "btn": "Login"
+    },
+    "home": {
+        "latest_consultations": "Latest consultations"
     },
     "settings": {
         "privacy": {
@@ -57,5 +68,9 @@
     "latest_consultations": {
         "title": "Consultations",
         "subTitle": "Latest Consultations"
+    },
+    "tickets": {
+        "title": "Tickets",
+        "subTitle": "All Tickets"
     }
 }

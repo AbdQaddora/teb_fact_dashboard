@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import DashboardLayout from '../layouts/DashboardLayout';
+
 export const PATHS = {
     ADD_NEW_ARTICLE: "/new-article",
     ARTICLE: "/article",
@@ -10,8 +11,8 @@ export const PATHS = {
     DOCTORS: "/doctors",
     HOME: "/",
     LOGIN: "/login",
-    REPORT: "/report",
-    REPORTS: "/reports",
+    TICKET: "/ticket",
+    TICKETS: "/tickets",
     SETTINGS: "/settings"
 }
 
@@ -24,8 +25,8 @@ const Consultations = lazy(() => import('../pages/Consultations'));
 const Doctor = lazy(() => import('../pages/Doctor'));
 const Doctors = lazy(() => import('../pages/Doctors'));
 const NotFound = lazy(() => import('../pages/NotFound'));
-const Report = lazy(() => import('../pages/Report'));
-const Reports = lazy(() => import('../pages/Reports'));
+const Ticket = lazy(() => import('../pages/Ticket'));
+const Tickets = lazy(() => import('../pages/Tickets'));
 const Settings = lazy(() => import('../pages/Settings'));
 
 const Router = () => {
@@ -54,14 +55,14 @@ const Router = () => {
             <Route path={PATHS.DOCTOR + "/:id"} element={<DashboardLayout>
                 <Doctor />
             </DashboardLayout>} />
-            <Route path={PATHS.DOCTORS } element={<DashboardLayout>
+            <Route path={PATHS.DOCTORS} element={<DashboardLayout>
                 <Doctors />
             </DashboardLayout>} />
-            <Route path={PATHS.REPORT + "/:id"} element={<DashboardLayout>
-                <Report />
+            <Route path={PATHS.TICKET + "/:id"} element={<DashboardLayout>
+                <Ticket />
             </DashboardLayout>} />
-            <Route path={PATHS.REPORTS} element={<DashboardLayout>
-                <Reports />
+            <Route path={PATHS.TICKETS} element={<DashboardLayout>
+                <Tickets />
             </DashboardLayout>} />
             <Route path={PATHS.SETTINGS} element={<DashboardLayout>
                 <Settings />

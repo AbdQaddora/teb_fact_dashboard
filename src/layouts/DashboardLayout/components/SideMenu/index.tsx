@@ -45,7 +45,7 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
                 onClick={closeMobileMenu}
                 icon={<HiDocumentReport />}
                 text={t("tickets")}
-                to='REPORTS'
+                to='TICKETS'
             />
             <SideMenuLink
                 onClick={closeMobileMenu}
