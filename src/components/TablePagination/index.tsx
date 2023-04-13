@@ -1,12 +1,12 @@
 import React from 'react'
-import { Body1, Body2 } from '../../tiny/Typography/style'
+import { Body1, Body2 } from '../tiny/Typography/style'
 import Select from 'react-select';
 import Style from './style';
 
 // icons
 import { GrNext, GrPrevious } from 'react-icons/gr'
 import { useTranslation } from 'react-i18next';
-import { useLang } from '../../../context/LanguageContext';
+import { useLang } from '../../context/LanguageContext';
 interface IProps {
     pageIndex: number,
     pageSize: number,
@@ -23,7 +23,7 @@ const pageSizeOptions = [
     { value: 20, label: 20 },
 ];
 
-const Pagination = ({ pageIndex, pageCount, pageSize, nextPage, previousPage, setPageSize }: IProps) => {
+const TablePagination = ({ pageIndex, pageCount, pageSize, nextPage, previousPage, setPageSize }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "components.table_pagination" })
     const { lang: { direction } } = useLang();
     return (
@@ -61,4 +61,4 @@ const Pagination = ({ pageIndex, pageCount, pageSize, nextPage, previousPage, se
     )
 }
 
-export default Pagination
+export default TablePagination

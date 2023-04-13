@@ -16,6 +16,7 @@ const Style = styled.div<IProps>`
             .ql-editor {
                 min-height: 250px;
                 max-height: 480px;
+                background-color: ${props => props.theme.colors.background.paper};
                 >*{
                     ${props => props.lang === 'en' ? `
                     font-family: 'Inter', sans-serif !important;

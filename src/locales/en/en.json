@@ -72,5 +72,10 @@
     "tickets": {
         "title": "Tickets",
         "subTitle": "All Tickets"
+    },
+    "doctors": {
+        "title": "Doctors",
+        "subTitle": "All Doctors",
+        "search": "Search doctors"
     }
 }

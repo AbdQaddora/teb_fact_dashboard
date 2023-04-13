@@ -35,10 +35,21 @@
         "tickets": {
             "name": "الاسم",
             "email": "البريد الالكتروني",
-            "phone": "رقم الموبايل",
+            "phone": "رقم الهاتف",
             "message": "الرسالة",
             "actions": "افعال",
             "response": "رد"
+        },
+        "doctors": {
+            "name": "الاسم",
+            "email": "البريد الالكتروني",
+            "phone": "رقم الهاتف",
+            "consulting_count": "عدد الاستشارات",
+            "last_consultation_date": "تاريخ اخر استشارة",
+            "rating": "التقييم",
+            "actions": "افعال",
+            "edit": "تعديل",
+            "remove": "حذف"
         }
     },
     "login": {
@@ -72,5 +83,10 @@
     "tickets": {
         "title": "المراسلات",
         "subTitle": "كل المراسلات"
+    },
+    "doctors": {
+        "title": "الاطباء",
+        "subTitle": "كل الاطباء",
+        "search": "ابحث عن الأطباء"
     }
 }

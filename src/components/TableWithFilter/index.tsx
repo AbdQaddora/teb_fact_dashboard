@@ -1,22 +1,22 @@
-import React, { useMemo } from 'react'
-import { useTable, useSortBy, usePagination, Column } from 'react-table';
+import React, { useEffect, useMemo } from 'react'
+import { useTable, useSortBy, usePagination, useGlobalFilter, Column } from 'react-table';
 import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
 
 interface IProps<T extends Record<string, any>> {
     data: T[],
-    columns: Column<T>[]
+    columns: Column<T>[],
+    filterValue: string
 }
-const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
+const TableWithFilter = <T extends Record<string, any>,>({ data, columns, filterValue }: IProps<T>) => {
     const columnsAfterMemo = useMemo(() => columns, []) as readonly Column<object>[];
     const dataAfterMemo: T[] = useMemo(() => data, [])
 
     const tableInstance = useTable({
         columns: columnsAfterMemo,
         data: dataAfterMemo as object[]
-    }, useSortBy, usePagination);
-
+    }, useGlobalFilter, useSortBy, usePagination);
     const {
         getTableBodyProps,
         getTableProps,
@@ -27,8 +27,13 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
         nextPage,
         previousPage,
         setPageSize,
+        setGlobalFilter,
         state: { pageIndex, pageSize }
     } = tableInstance;
+
+    useEffect(() => {
+        setGlobalFilter(filterValue)
+    }, [filterValue]);
 
     return (
         <>
@@ -75,4 +80,4 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
     )
 }
 
-export default Table
+export default TableWithFilter
