@@ -1,34 +1,48 @@
 import { CellProps, Column } from 'react-table';
 import ConsultationTypeBadge from '../components/tiny/ConsultationTypeBadge';
-import i18n from "../locales/i18n";
+import Translate from '../components/tiny/Translate';
+import NameAndAvatarCell from '../components/tiny/NameAndAvatarCell';
 
 export interface IDataLatestConsultation {
-    order_id: string;
-    patient: string;
+    id: string,
+    patient_name: string,
+    patient_avatar: string,
+    patient_email: string;
+    consultation: string;
+    state: string;
     date: string;
-    status: string;
 }
 
 const LATEST_CONSULTATIONS_COLUMNS: Column<IDataLatestConsultation>[] = [
     {
-        Header: i18n.t("home.latest_consultations_columns.order_id") || "",
-        accessor: "order_id",
+        Header: () => <Translate TranslateKey='home.latest_consultations_columns.name' />,
+        accessor: "patient_name",
+        Cell: ({ row }) => <NameAndAvatarCell name={row.original.patient_name} avatar={row.original.patient_avatar} />,
+        minWidth: 200
     },
     {
-        Header: i18n.t("home.latest_consultations_columns.patient") || "",
-        accessor: "patient"
+        Header: () => <Translate TranslateKey='home.latest_consultations_columns.email' />,
+        accessor: "patient_email",
+        minWidth: 200
     },
     {
-        Header: i18n.t("home.latest_consultations_columns.date") || "",
-        accessor: "date"
+        Header: () => <Translate TranslateKey='home.latest_consultations_columns.consultation' />,
+        accessor: "consultation",
+        Cell: ({ value }) => <>{value.split(" ").slice(0, 15).join(" ")}...</>,
+        minWidth: 450
     },
     {
-        Header: i18n.t("home.latest_consultations_columns.status") || "",
-        accessor: "status",
+        Header: () => <Translate TranslateKey='home.latest_consultations_columns.state' />,
+        accessor: "state",
         Cell: ({ cell: { value } }: CellProps<any>) => {
             return <ConsultationTypeBadge type={value} />
-        }
-    }
+        },
+        minWidth: 100
+    }, {
+        Header: () => <Translate TranslateKey='home.latest_consultations_columns.date' />,
+        accessor: "date",
+        minWidth: 100
+    },
 ];
 
 export default LATEST_CONSULTATIONS_COLUMNS;

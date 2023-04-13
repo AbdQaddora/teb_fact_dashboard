@@ -7,7 +7,7 @@ const Style = styled.div`
     gap: 2rem;
     margin-top: 1rem;
     flex-wrap: wrap;
-
+    margin-inline-end: 1rem;
     @media (max-width:920px){
         align-content:center;
         justify-content: center;

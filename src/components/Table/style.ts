@@ -36,4 +36,8 @@ const Style = styled.table`
     }
 `
 
+export const TableContainer = styled.div`
+    overflow-y: auto;
+`
+
 export default Style;

@@ -18,11 +18,18 @@
         "btn": "تسجيل الدخول"
     },
     "home": {
-        "latest_consultations_columns": {
+        "latest_consultations_columns_home": {
             "order_id": "معرف الطلب",
             "patient": "المريض",
             "date": "التاريخ",
             "status": "الحالة"
+        },
+        "latest_consultations_columns": {
+            "name": "الاسم",
+            "email": "البريد الالكتروني",
+            "consultation": "الاستشارة",
+            "state": "الحالة",
+            "date": "التاريخ"
         }
     },
     "sideMenu": {
@@ -46,5 +53,9 @@
             "title": "من نحن",
             "btn": "تحديث من نحن"
         }
+    },
+    "latest_consultations": {
+        "title": "الاستشارات",
+        "subTitle": "أحدث الاستشارات"
     }
 }

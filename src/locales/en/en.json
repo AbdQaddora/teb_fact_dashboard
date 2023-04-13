@@ -18,11 +18,18 @@
         "btn": "Login"
     },
     "home": {
-        "latest_consultations_columns": {
+        "latest_consultations_columns_home": {
             "order_id": "Order id",
             "patient": "Patient",
             "date": "Date",
             "status": "Status"
+        },
+        "latest_consultations_columns": {
+            "name": "Name",
+            "email": "Email",
+            "consultation": "Consultation",
+            "state": "State",
+            "date": "Date"
         }
     },
     "sideMenu": {
@@ -46,5 +53,9 @@
             "title": "About us",
             "btn": "Update About Us"
         }
+    },
+    "latest_consultations": {
+        "title": "Consultations",
+        "subTitle": "Latest Consultations"
     }
 }
