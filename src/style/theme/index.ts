@@ -72,7 +72,7 @@ const defaultTheme: DefaultTheme = {
             buttonMedium: "font-size:0.875rem;line-height: 1.5rem;font-weight: 600;",
             buttonSmall: "font-size:0.81rem;line-height: 1.377rem;font-weight: 600;",
             InputValue: "font-family: 'Inter', sans-serif;font-size:1rem;line-height: 1.5rem;font-weight: 400;",
-            InputLabel: "font-size:0.75rem;line-height: 0.75rem;font-weight: 400;",
+            InputLabel: "font-size:1rem;line-height:1rem;font-weight: 400;",
         },
     }
 };

@@ -90,6 +90,10 @@
         "title": "Tickets",
         "subTitle": "All Tickets"
     },
+    "ticket": {
+        "title": "Ticket",
+        "btn": "Send Response"
+    },
     "doctors": {
         "title": "Doctors",
         "subTitle": "All Doctors",

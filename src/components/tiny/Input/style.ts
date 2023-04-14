@@ -17,7 +17,7 @@ const Style = styled.div<IProps>`
         text-transform: capitalize;
         ${props => props.theme.typography.components.InputLabel};
         color:${props => !props.error ? props.theme.colors.text.secondary : props.theme.colors.text.error};
-
+        cursor: text;
         position: absolute;
         inset-inline-start: 12px;
         top: 50%;
