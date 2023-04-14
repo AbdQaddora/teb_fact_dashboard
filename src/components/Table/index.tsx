@@ -43,6 +43,7 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                                             ...head.getSortByToggleProps(),
                                             style: {
                                                 minWidth: head.minWidth ? `${head.minWidth}px` : "unset",
+                                                maxWidth: head.maxWidth ? `${head.minWidth}px` : "unset",
                                                 width: head.width ? `${head.width}px` : "unset",
                                             },
                                         })
@@ -62,6 +63,7 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                                 {row.cells.map(cell => <td {...cell.getCellProps({
                                     style: {
                                         minWidth: cell.column.minWidth ? `${cell.column.minWidth}px` : "unset",
+                                        maxWidth: cell.column.maxWidth ? `${cell.column.maxWidth}px` : "unset",
                                         width: cell.column.width ? `${cell.column.width}px` : "unset",
                                     }
                                 })}>{cell.render("Cell")}</td>)}

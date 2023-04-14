@@ -5,8 +5,8 @@ const Style = styled.div`
     align-items: center;
     gap: 0.5rem;
     .avatar{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
     }
 `

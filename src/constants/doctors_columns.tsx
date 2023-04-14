@@ -24,42 +24,44 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
         Header: () => <Translate TranslateKey='tables.doctors.name' />,
         accessor: "name",
         Cell: ({ row }) => <NameAndAvatarCell name={row.original.name} avatar={row.original.avatar} />,
-        minWidth: 150
+        maxWidth: 200
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.email' />,
         accessor: "email",
-        minWidth: 200
+        maxWidth: 250
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.phone' />,
         accessor: "phone",
         disableGlobalFilter: true,
-        minWidth: 150
+        maxWidth: 120
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.rating' />,
         accessor: "rating",
         disableGlobalFilter: true,
         Cell: ({ value }) => <Rating rating={value} />,
-        minWidth: 150
+        maxWidth: 150
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.consulting_count' />,
         accessor: "consulting_count",
         disableGlobalFilter: true,
-        minWidth: 150
+        maxWidth: 200,
+        minWidth:150
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.last_consultation_date' />,
         accessor: "last_consultation_date",
         disableGlobalFilter: true,
-        minWidth: 150
+        maxWidth: 200,
+        minWidth:150
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.actions' />,
         accessor: "id",
-        minWidth: 200,
+        maxWidth: 200,
         disableGlobalFilter: true,
         disableSortBy: true,
         Cell: ({ row }) => <DoctorsTableActions

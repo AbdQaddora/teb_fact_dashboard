@@ -20,28 +20,29 @@ const TICKETS_COLUMNS: Column<IDataReports>[] = [
         Header: () => <Translate TranslateKey='tables.tickets.name' />,
         accessor: "patient_name",
         Cell: ({ row }) => <NameAndAvatarCell name={row.original.patient_name} avatar={row.original.patient_avatar} />,
-        minWidth: 200
+        maxWidth: 200
     },
     {
         Header: () => <Translate TranslateKey='tables.tickets.email' />,
         accessor: "patient_email",
-        minWidth: 200
+        maxWidth: 250
     },
     {
         Header: () => <Translate TranslateKey='tables.tickets.phone' />,
         accessor: "patient_phone",
-        minWidth: 200
+        maxWidth: 100
     },
     {
         Header: () => <Translate TranslateKey='tables.tickets.message' />,
         accessor: "ticket",
         Cell: ({ value }) => <>{value.split(" ").slice(0, 20).join(" ")}...</>,
-        minWidth: 500
+        maxWidth: 700,
+        minWidth: 450
     },
     {
         Header: () => <Translate TranslateKey='tables.tickets.actions' />,
         accessor: "ticket_id",
-        minWidth: 100,
+        maxWidth: 150,
         disableSortBy: true,
         Cell: ({ value }) => <Link to={PATHS.TICKET + "/" + value}>
             <Button>

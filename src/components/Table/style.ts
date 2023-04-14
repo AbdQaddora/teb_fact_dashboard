@@ -6,8 +6,8 @@ const Style = styled.table`
 
     .table_header{
         background-color: ${props => props.theme.colors.text.primary};
-        th{
-            padding: 10px 16px;
+        th{ 
+            padding: 10px 8px;
             text-align: start;
             line-height: 30px;
             text-transform: capitalize;
@@ -28,10 +28,9 @@ const Style = styled.table`
         }
         
         td{
-            padding: 1rem;
+            padding: 0.5rem;
             color: ${props => props.theme.colors.text.primary};
             ${props => props.theme.typography.body2}
-
         }
     }
 `
