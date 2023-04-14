@@ -1,6 +1,6 @@
 import { Column } from 'react-table';
 import Translate from '../components/tiny/Translate';
-import NameAndAvatarCell from '../components/tiny/NameAndAvatarCell';
+import NameAndAvatarCell from '../components/tiny/NameAndAvatar';
 import Button from '../components/tiny/Button';
 import CustomLink from '../components/tiny/CustomLink';
 import { Link } from 'react-router-dom';

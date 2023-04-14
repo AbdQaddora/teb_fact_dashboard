@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Style from './style'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -11,6 +11,13 @@ interface IProps {
 
 const Modal = ({ children, close }: IProps) => {
     const { lang: { direction } } = useLang();
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [])
 
     return createPortal(
         <Style className={direction}>

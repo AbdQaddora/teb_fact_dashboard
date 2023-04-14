@@ -1,7 +1,7 @@
 import { CellProps, Column } from 'react-table';
 import ConsultationTypeBadge from '../components/tiny/ConsultationTypeBadge';
 import Translate from '../components/tiny/Translate';
-import NameAndAvatarCell from '../components/tiny/NameAndAvatarCell';
+import NameAndAvatarCell from '../components/tiny/NameAndAvatar';
 
 export interface IDataLatestConsultation {
     id: string,

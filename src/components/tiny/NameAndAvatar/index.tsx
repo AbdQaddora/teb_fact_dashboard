@@ -8,7 +8,7 @@ interface IProps {
     name: string,
     avatar: string,
 }
-const NameAndAvatarCell = ({ name, avatar }: IProps) => {
+const NameAndAvatar = ({ name, avatar }: IProps) => {
     return (
         <Style>
             <img
@@ -24,4 +24,4 @@ const NameAndAvatarCell = ({ name, avatar }: IProps) => {
     )
 }
 
-export default NameAndAvatarCell
+export default NameAndAvatar
