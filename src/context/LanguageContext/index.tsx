@@ -1,7 +1,6 @@
 import React, { createContext, ReactNode, useContext } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import i18n from '../../locales/i18n';
-import Style from './style';
 
 type TLangs = 'ar' | "en";
 type TDirection = "ltr" | 'rtl';
@@ -44,9 +43,9 @@ const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
             changeLang,
             lang,
         }}>
-            <Style className={lang.direction}>
+            <div className={lang.direction}>
                 {children}
-            </Style>
+            </div>
         </LanguageContext.Provider>
     )
 }

@@ -5,7 +5,7 @@ import Button from '../components/tiny/Button';
 import CustomLink from '../components/tiny/CustomLink';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../router';
-import DoctorsTableActions from '../components/tiny/DoctorsTableActions';
+import DoctorsTableActions from '../components/DoctorsTableActions';
 import Rating from '../components/tiny/Rating';
 
 export interface IDataReports {
@@ -62,8 +62,10 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
         minWidth: 200,
         disableGlobalFilter: true,
         disableSortBy: true,
-        Cell: ({ value }) => <DoctorsTableActions
-            id={value}
+        Cell: ({ row }) => <DoctorsTableActions
+            id={row.original.id}
+            name={row.original.name}
+            avatar={row.original.avatar}
             editBtnText={"tables.doctors.edit"}
             removeBtnText={"tables.doctors.remove"}
         />

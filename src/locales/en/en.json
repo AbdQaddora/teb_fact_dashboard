@@ -8,6 +8,12 @@
             "new": "New",
             "open": "Open",
             "closed": "Closed"
+        },
+        "remove_doctor_modal": {
+            "question1": "Are you sure you want to delete doctor \"",
+            "question2": "\" account?",
+            "subTitle": "This action is permanently action and you can't go back",
+            "btn": "Delete"
         }
     },
     "sideMenu": {
@@ -39,6 +45,17 @@
             "message": "Message",
             "actions": "Actions",
             "response": "Response"
+        },
+        "doctors": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "consulting_count": "consulting count",
+            "last_consultation_date": "last consulting",
+            "rating": "rating",
+            "actions": "actions",
+            "edit": "edit",
+            "remove": "remove"
         }
     },
     "login": {
