@@ -41,7 +41,7 @@
         "tickets": {
             "name": "الاسم",
             "email": "البريد الالكتروني",
-            "phone": "رقم الهاتف",
+            "phone": "الهاتف",
             "message": "الرسالة",
             "actions": "افعال",
             "response": "رد"
@@ -49,7 +49,7 @@
         "doctors": {
             "name": "الاسم",
             "email": "البريد الالكتروني",
-            "phone": "رقم الهاتف",
+            "phone": "الهاتف",
             "consulting_count": "عدد الاستشارات",
             "last_consultation_date": "تاريخ اخر استشارة",
             "rating": "التقييم",
