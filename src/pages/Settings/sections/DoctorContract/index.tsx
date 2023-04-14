@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import SettingsTextEditorSection from '../../components/SettingsTextEditorSection'
 
 const DoctorContract = () => {
     const [arabicDoctorContract, setArabicDoctorContract] = useState("");
     const [englishDoctorContract, setEnglishDoctorContract] = useState("");
-    const { t } = useTranslation("", { keyPrefix: "settings.doctorContract" })
-
+    const { t } = useTranslation("", { keyPrefix: "settings.doctorContract" });
+    
+    useEffect(() => {
+        console.log(arabicDoctorContract)
+    }, [arabicDoctorContract])
     return (
         <SettingsTextEditorSection
             arabicContent={arabicDoctorContract}

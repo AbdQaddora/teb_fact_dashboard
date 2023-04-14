@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactQuill from 'react-quill';
 import Style from './style';
-import 'react-quill/dist/quill.snow.css';
+import './quill.snow.css';
 
 interface IProps {
     value: string,
@@ -35,4 +35,4 @@ const TextEditor = ({ value, lang, onChange }: IProps) => {
     )
 }
 
-export default TextEditor
+export default TextEditor;
