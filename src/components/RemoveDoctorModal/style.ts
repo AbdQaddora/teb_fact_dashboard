@@ -11,15 +11,6 @@ const Style = styled.div`
             border-radius: 50%;
         }
     }
-
-    .danger{
-        background-color: #DC3545;
-
-        &:hover{
-            background-color: #AB2835;
-        }
-    }
-    
 `
 
 export default Style;

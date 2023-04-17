@@ -14,6 +14,12 @@
             "question2": "\" account?",
             "subTitle": "This action is permanently action and you can't go back",
             "btn": "Delete"
+        },
+        "static_page_section": {
+            "activate": "Activate",
+            "deactivate": "Deactivate",
+            "arabic": "Arabic page content",
+            "english": "English page content"
         }
     },
     "sideMenu": {

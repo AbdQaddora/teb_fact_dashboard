@@ -2,6 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 const defaultTheme: DefaultTheme = {
     colors: {
+        danger: {
+            main: "#dc3545",
+            second: "#8c232d"
+        },
         primary: {
             main: "#5048E5",
             contrast: "#FFFFFF",

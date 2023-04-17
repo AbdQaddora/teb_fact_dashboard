@@ -6,15 +6,18 @@ import './quill.snow.css';
 interface IProps {
     value: string,
     onChange: (str: string) => void,
-    lang?: "en" | "ar"
+    lang?: "en" | "ar",
+    disabled?: boolean
 }
 
-const TextEditor = ({ value, lang, onChange }: IProps) => {
+const TextEditor = ({ value, lang, disabled, onChange }: IProps) => {
+    console.log({ value });
     return (
-        <Style lang={lang || "en"}>
+        <Style disabled={disabled} lang={lang || "en"}>
             <ReactQuill
                 value={value}
-                onChange={onChange}
+                onChange={disabled ? () => { } : onChange}
+                readOnly={disabled}
                 modules={{
                     toolbar: [
                         [{ 'header': '1' },

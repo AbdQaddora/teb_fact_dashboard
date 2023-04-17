@@ -3,18 +3,21 @@ import styled, { css } from "styled-components";
 interface IProps {
     variant?: "contained" | "outlined" | "text",
     size?: "large" | "medium" | "small"
-    color?: "primary" | "secondary",
+    color?: "primary" | "secondary" | "danger",
     fullWidth?: boolean,
     margin?: string
 }
 
 // color styles
 const colorStyle = css<IProps>`
-    --btn-color:${props => props.color === "secondary" ? props.theme.colors.secondary.main : props.theme.colors.primary.main};
+    --btn-color:${props => props.color === "secondary"
+        ? props.theme.colors.secondary.main :
+        props.color === "danger" ? props.theme.colors.danger.main : props.theme.colors.primary.main};
     
     --btn-hover-color:${props => props.variant === "outlined" || props.variant === "text" ?
         props.color === "secondary" ? props.theme.colors.secondary.states.p8 : props.theme.colors.primary.states.p8 :
-        props.color === "secondary" ? props.theme.colors.secondary.states.p130 : props.theme.colors.primary.states.p130};
+        props.color === "secondary" ? props.theme.colors.secondary.states.p130 :
+            props.color === "danger" ? props.theme.colors.danger.second : props.theme.colors.primary.states.p130};
 
     --btn-text-color:${props => props.variant === "outlined" || props.variant === "text" ?
         props.color === "secondary" ? props.theme.colors.secondary.main : props.theme.colors.primary.main :

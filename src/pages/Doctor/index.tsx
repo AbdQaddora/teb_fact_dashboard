@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import TextEditor from '../../components/TextEditor'
 
 const Doctor = () => {
+  const [text, setText] = useState('')
   return (
-    <div>Doctor</div>
+    <TextEditor value={text} onChange={(value) => { setText(value) }} />
   )
 }
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface IProps {
     error?: boolean,
+    disabled?: boolean,
     fullWidth?: boolean,
     margin?: string
 }
@@ -10,14 +11,17 @@ const Style = styled.div<IProps>`
     position: relative;
     height: 3rem;
     width:${props => props.fullWidth ? "100%" : "fit-content"};
-
-
     ${props => props.margin ? "margin: " + props.margin + ";" : ""}
+
+    cursor:${props => props.disabled ? "not-allowed" : "text"};
+    opacity:${props => props.disabled ? 0.7 : 1};
+    >*{
+        cursor:${props => props.disabled ? "not-allowed" : "text"};
+    }
     label{
         text-transform: capitalize;
         ${props => props.theme.typography.components.InputLabel};
         color:${props => !props.error ? props.theme.colors.text.secondary : props.theme.colors.text.error};
-        cursor: text;
         position: absolute;
         inset-inline-start: 12px;
         top: 50%;

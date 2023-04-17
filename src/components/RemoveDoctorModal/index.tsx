@@ -38,9 +38,9 @@ const RemoveDoctorModal = ({ id, name, avatar, close }: IProps) => {
             <H5 align='center' margin='1rem 0 0'>{t("question1")}{name}{t("question2")}</H5>
             <Subtitle1 align='center' margin="0 0 1rem" color='text/secondary'>{t("subTitle")}</Subtitle1>
             <Button
+                color='danger'
                 fullWidth
                 onClick={handelRemove}
-                className='danger'
             >{t("btn")}</Button>
         </Style>
     )

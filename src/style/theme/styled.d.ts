@@ -9,6 +9,10 @@ interface IColors {
         disabled: string,
         error: string
     },
+    danger: {
+        main: string,
+        second: string
+    },
     primary: {
         main: string,
         contrast: string,

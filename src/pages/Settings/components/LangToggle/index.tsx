@@ -8,7 +8,10 @@ interface IProps {
 
 const LangToggle = ({ value, onToggle }: IProps) => {
     return (
-        <Style onClick={onToggle}>
+        <Style onClick={(e) => {
+            onToggle();
+            e.stopPropagation();
+        }}>
             <div className={`lang_toggle_item on${value === "en" ? " active" : ""}`}>en</div>
             <div className={`lang_toggle_item off${value === "ar" ? " active" : ""}`}>ar</div>
         </Style>

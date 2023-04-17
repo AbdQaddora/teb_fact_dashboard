@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -15,7 +19,39 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@ckeditor/ckeditor5-react": [
+        "../node_modules/@ckeditor/ckeditor5-react"
+      ],
+      "@ckeditor/ckeditor5-build-classic": [
+        "../node_modules/@ckeditor/ckeditor5-build-classic"
+      ],
+      "@ckeditor/ckeditor5-alignment": [
+        "../node_modules/@ckeditor/ckeditor5-alignment"
+      ],
+      "@ckeditor/ckeditor5-image": [
+        "../node_modules/@ckeditor/ckeditor5-image"
+      ],
+      "@ckeditor/ckeditor5-link": [
+        "../node_modules/@ckeditor/ckeditor5-link"
+      ],
+      "@ckeditor/ckeditor5-list": [
+        "../node_modules/@ckeditor/ckeditor5-list"
+      ],
+      "@ckeditor/ckeditor5-table": [
+        "../node_modules/@ckeditor/ckeditor5-table"
+      ]
+    }
   },
-  "include": ["src", "react-table-config.d.ts", "react-i18next.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "react-table-config.d.ts",
+    "react-i18next.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

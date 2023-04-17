@@ -5,7 +5,7 @@ const Style = styled.div`
     border-radius: 20px;
     padding: 2px;
     width: 80px;
-    height: 35px;
+    height: 41px;
     background-color:${props => props.theme.colors.primary.main};
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -23,9 +23,9 @@ const Style = styled.div`
     &::before{
         content: "";
         position: absolute;
-        inset-inline-start:3px;
+        inset-inline-start:5px;
         z-index: 2;
-        height: calc(100% - 8px);
+        height: calc(100% - 10px);
         width: calc(50% - 5px);
         background-color: #fff;
         border-radius: 8px;
@@ -34,7 +34,7 @@ const Style = styled.div`
 
     &:has(.off.active)::before{
         inset-inline-start:unset;
-        inset-inline-end:3px;
+        inset-inline-end:5px;
     }
 
     .lang_toggle_item{

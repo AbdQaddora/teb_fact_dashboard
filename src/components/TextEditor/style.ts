@@ -1,23 +1,29 @@
 import styled from "styled-components";
 interface IProps {
-    lang: "en" | "ar"
+    lang: "en" | "ar",
+    disabled?: boolean
 }
 
 const Style = styled.div<IProps>`
     .quill{
         border-radius: 8px;
+        cursor:${props => props.disabled ? "not-allowed" : "text"};
+        opacity:${props => props.disabled ? 0.7 : 1};
         .ql-container.ql-snow{
             background-color: #F9FAFC;
             padding-bottom: 0.5rem;
             border-bottom-left-radius:8px;
             border-bottom-right-radius:8px;
-            cursor: text;
+            cursor:${props => props.disabled ? "not-allowed" : "text"};
 
             .ql-editor {
+                cursor:${props => props.disabled ? "not-allowed" : "text"};
+
                 min-height: 250px;
                 max-height: 480px;
                 background-color: ${props => props.theme.colors.background.paper};
                 >*{
+                    cursor:${props => props.disabled ? "not-allowed" : "text"};
                     ${props => props.lang === 'en' ? `
                     font-family: 'Inter', sans-serif !important;
                     direction: ltr !important;
