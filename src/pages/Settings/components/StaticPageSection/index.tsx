@@ -52,26 +52,25 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                 <div className="title">
                     {isSectionOpen ? <RiArrowUpSLine className="toggle_menu" />
                         : <RiArrowDownSLine className="toggle_menu" />}
-                    <H5>{{ ar, en }[lang.langName].title}</H5>
+                    <H5 className='head_title_text'>{{ ar, en }[lang.langName].title}</H5>
                 </div>
                 <div className="buttons">
                     <div className="toggle_button">
-                        <Body1 className='lang_name'>{activeLang === 'ar' ? t("arabic") : t("english")}</Body1>
+                        <Body1 className='lang_name'>
+                            <span className='large_screens'>
+                                {activeLang === 'ar' ?
+                                    t("arabic") : t("english")}
+                            </span>
+                            <span className='small_screens'>
+                                {activeLang === 'ar' ?
+                                    t("arabic_small") : t("english_small")}
+                            </span>
+                        </Body1>
                         <LangToggle
                             onToggle={() => { setActiveLang(prev => prev === 'en' ? "ar" : "en") }}
                             value={activeLang}
                         />
                     </div>
-                    <Button
-                        color={isActivePage ? 'danger' : "secondary"}
-                        className="activation_btn" onClick={(e) => {
-                            setIsActivePage(prev => !prev);
-                            toggleActive();
-                            e.stopPropagation();
-                        }}>
-                        {!isActivePage ? <><BiShow className="icon" /> <span>{t("activate")}</span></> :
-                            <><BiHide className="icon" /> <span>{t("deactivate")}</span></>}
-                    </Button>
                 </div>
             </div>
             <div className={`body ${isSectionOpen ? "open" : "close"}`}>
@@ -126,9 +125,19 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                     <Button margin='0.5rem 0' onClick={saveChanges}>{t('save')}</Button>
                     <Button margin='0.5rem 0' color='danger'>{t('cancel')}</Button>
                     <Button margin='0.5rem 0' color='danger'>{t('delete')}</Button>
+                    <Button
+                        color={isActivePage ? 'danger' : "secondary"}
+                        className="activation_btn" onClick={(e) => {
+                            setIsActivePage(prev => !prev);
+                            toggleActive();
+                            e.stopPropagation();
+                        }}>
+                        {!isActivePage ? <><BiShow className="icon" /> <span>{t("activate")}</span></> :
+                            <><BiHide className="icon" /> <span>{t("deactivate")}</span></>}
+                    </Button>
                 </div>
             </div>
-        </Style>
+        </Style >
     )
 }
 

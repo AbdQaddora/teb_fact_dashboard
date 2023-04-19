@@ -20,9 +20,11 @@
             "deactivate": "Deactivate",
             "arabic": "Arabic page content",
             "english": "English page content",
+            "arabic_small": "Arabic",
+            "english_small": "English",
             "save": "save changes",
             "cancel": "cancel",
-            "delete":"delete page"
+            "delete": "delete page"
         },
         "textEditor": {
             "small": "Small",

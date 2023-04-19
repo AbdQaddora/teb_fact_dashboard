@@ -11,6 +11,23 @@ const Style = styled.div`
         cursor: pointer;
         border-radius: 4px;
         border: 1px solid #ccc;
+        .small_screens{
+            display: none;
+        }
+
+        @media (max-width:920px){
+            .head_title_text{
+                font-size: 1.25rem;
+            }
+
+            .large_screens{
+                display: none;
+            }
+
+            .small_screens{
+                display: unset;
+            }
+        }
     }
 
     .title{
