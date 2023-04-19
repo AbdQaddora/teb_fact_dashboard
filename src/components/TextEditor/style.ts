@@ -1,7 +1,13 @@
 import styled from "styled-components";
 interface IProps {
     lang: "en" | "ar",
-    disabled?: boolean
+    disabled?: boolean,
+    text: {
+        small: string,
+        normal: string,
+        large: string,
+        huge: string
+    }
 }
 
 const Style = styled.div<IProps>`
@@ -61,6 +67,42 @@ const Style = styled.div<IProps>`
         .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
                     right: unset;
                     inset-inline-end: 4px;
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="0.75rem"]::before {
+            content: ${props => `"${props.text.small}"`} !important;
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="1rem"]::before {
+            content:  ${props => `"${props.text.normal}"`};
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="1.5rem"]::before {
+            content:  ${props => `"${props.text.large}"`};
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="2.5rem"]::before {
+            content:  ${props => `"${props.text.huge}"`};
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="0.75rem"]::before {
+            content: ${props => `"${props.text.small}"`};
+            font-size: 0.75rem !important;
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="1rem"]::before {
+            content:  ${props => `"${props.text.normal}"`};
+            font-size: 1rem !important;
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="1.5rem"]::before {
+            content:  ${props => `"${props.text.large}"`};
+            font-size: 1.5rem !important;
+        }
+
+        .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="2.5rem"]::before {
+            content:  ${props => `"${props.text.huge}"`};
+            font-size: 2.5rem !important;
         }
     }
 `

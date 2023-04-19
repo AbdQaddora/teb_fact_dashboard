@@ -19,7 +19,16 @@
             "activate": "Activate",
             "deactivate": "Deactivate",
             "arabic": "Arabic page content",
-            "english": "English page content"
+            "english": "English page content",
+            "save": "save changes",
+            "cancel": "cancel",
+            "delete":"delete page"
+        },
+        "textEditor": {
+            "small": "Small",
+            "normal": "Normal",
+            "large": "Large",
+            "huge": "Huge"
         }
     },
     "sideMenu": {

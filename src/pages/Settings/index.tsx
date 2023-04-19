@@ -7,60 +7,47 @@ import StaticPageSection from './components/StaticPageSection';
 const Settings = () => {
   return (
     <div>
-      {/* <DoctorContract />
-      <Privacy />
-      <AboutUs /> */}
       <StaticPageSection
         ar={{
-          content: "",
+          content: "<h1 style='text-align: center;'>من نحن</h1>",
           title: "من نحن"
         }}
         en={{
-          content: "",
+          content: "<h1 style='text-align: center;'>About us</h1>",
           title: "About us"
         }}
         isActive={true}
         saveChanges={() => { }}
         toggleActive={() => { }}
+        deletePage={() => { }}
       />
       <StaticPageSection
         ar={{
-          content: "",
+          content: "<h1 style='text-align: center;'>سياسة الخصوصية</h1>",
           title: "سياسة الخصوصية"
         }}
         en={{
-          content: "",
-          title: "About us"
+          content: "<h1 style='text-align: center;'>privacy policy</h1>",
+          title: "privacy policy"
         }}
         isActive={true}
         saveChanges={() => { }}
         toggleActive={() => { }}
+        deletePage={() => { }}
       />
       <StaticPageSection
         ar={{
-          content: "",
-          title: "عقد الاطباء"
+          content: "<h1 style='text-align: center;'>الشروط والأحكام</h1>",
+          title: "الشروط والأحكام"
         }}
         en={{
-          content: "",
-          title: "About us"
+          content: "<h1 style='text-align: center;'>Terms and Conditions</h1>",
+          title: "Terms and Conditions"
         }}
         isActive={true}
         saveChanges={() => { }}
         toggleActive={() => { }}
-      />
-      <StaticPageSection
-        ar={{
-          content: "",
-          title: "الشروط والاحكام"
-        }}
-        en={{
-          content: "",
-          title: "About us"
-        }}
-        isActive={true}
-        saveChanges={() => { }}
-        toggleActive={() => { }}
+        deletePage={() => { }}
       />
     </div>
   )

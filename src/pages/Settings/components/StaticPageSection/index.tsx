@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './style'
+// hooks
+import { useLang } from '../../../../context/LanguageContext';
+import { useTranslation } from 'react-i18next';
 // icons
 import { BiHide, BiShow } from 'react-icons/bi';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
@@ -9,7 +12,6 @@ import TextEditor from '../../../../components/TextEditor';
 import Button from '../../../../components/tiny/Button';
 import Input from '../../../../components/tiny/Input';
 import LangToggle from '../LangToggle';
-import { useTranslation } from 'react-i18next';
 
 interface IProps {
     en: {
@@ -23,15 +25,25 @@ interface IProps {
     isActive: boolean,
     toggleActive: () => void,
     saveChanges: () => void,
+    deletePage: () => void,
 }
 
-const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive }: IProps) => {
+const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, deletePage }: IProps) => {
     const [isSectionOpen, setIsSectionOpen] = useState(false);
     const [isActivePage, setIsActivePage] = useState(isActive);
     const [activeLang, setActiveLang] = useState<"en" | "ar">("en");
     // content
     const [arabicContent, setArabicContent] = useState(ar);
     const [englishContent, setEnglishContent] = useState(en);
+
+    const { lang } = useLang();
+    useEffect(() => {
+        if (activeLang === 'ar') {
+            setEnglishContent(prev => ({ ...prev, content: englishContent.content }))
+        } else {
+            setArabicContent(prev => ({ ...prev, content: arabicContent.content }))
+        }
+    }, [activeLang])
 
     const { t } = useTranslation("", { keyPrefix: "components.static_page_section" })
     return (
@@ -40,7 +52,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive }: IPro
                 <div className="title">
                     {isSectionOpen ? <RiArrowUpSLine className="toggle_menu" />
                         : <RiArrowDownSLine className="toggle_menu" />}
-                    <H5>{{ ar: arabicContent, en: englishContent }[activeLang].title}</H5>
+                    <H5>{{ ar, en }[lang.langName].title}</H5>
                 </div>
                 <div className="buttons">
                     <div className="toggle_button">
@@ -54,6 +66,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive }: IPro
                         color={isActivePage ? 'danger' : "secondary"}
                         className="activation_btn" onClick={(e) => {
                             setIsActivePage(prev => !prev);
+                            toggleActive();
                             e.stopPropagation();
                         }}>
                         {!isActivePage ? <><BiShow className="icon" /> <span>{t("activate")}</span></> :
@@ -108,6 +121,12 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive }: IPro
                             }))
                         }} />
                 </>}
+
+                <div className="buttons">
+                    <Button margin='0.5rem 0' onClick={saveChanges}>{t('save')}</Button>
+                    <Button margin='0.5rem 0' color='danger'>{t('cancel')}</Button>
+                    <Button margin='0.5rem 0' color='danger'>{t('delete')}</Button>
+                </div>
             </div>
         </Style>
     )

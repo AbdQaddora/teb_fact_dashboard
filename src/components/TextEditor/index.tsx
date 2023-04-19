@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactQuill, { Quill } from 'react-quill';
-import Style from './style';
+// style
 import './quill.snow.css';
+import Style from './style';
+import { useTranslation } from 'react-i18next';
 
 //Text direction
 Quill.register(Quill.import("attributors/style/direction"), true);
@@ -9,7 +11,7 @@ Quill.register(Quill.import("attributors/style/direction"), true);
 Quill.register(Quill.import("attributors/style/align"), true);
 // Size
 const Size = Quill.import("attributors/style/size");
-Size.whitelist = ["0.75em", "1em", "1.5em", "2.5em"];
+Size.whitelist = ["0.75rem", "1rem", "1.5rem", "2.5rem"];
 Quill.register(Size, true);
 
 // Indent
@@ -30,7 +32,7 @@ class IndentAttributor extends Parchment.Attributor.Style {
 // @ts-ignore
 let IndentStyle = new IndentAttributor("indent", "text-indent", {
     scope: Parchment.Scope.BLOCK,
-    whitelist: ["1em", "2em", "3em", "4em", "5em", "6em", "7em", "8em", "9em"]
+    whitelist: ["1rem", "2rem", "3rem", "4rem", "5rem", "6rem", "7rem", "8rem", "9rem"]
 });
 
 Quill.register(IndentStyle, true);
@@ -42,19 +44,27 @@ interface IProps {
 }
 
 const TextEditor = ({ value, lang, disabled, onChange }: IProps) => {
-    console.log({ value });
+    const { t } = useTranslation("", { keyPrefix: "components.textEditor" })
     return (
-        <Style disabled={disabled} lang={lang || "en"}>
+        <Style
+            disabled={disabled}
+            text={{
+                small: t("small"),
+                normal: t("normal"),
+                large: t("large"),
+                huge: t("huge")
+            }}
+            lang={lang || "en"}>
             <ReactQuill
                 value={value}
-                onChange={disabled ? () => { } : onChange}
+                onChange={onChange}
                 readOnly={disabled}
                 modules={{
                     toolbar: [
                         [{ 'header': '1' },
                         { 'header': '2' }],
                         [{ 'align': [] }],
-                        [{ size: ["0.75em", "1em", "1.5em", "2.5em"] }],
+                        [{ size: ["0.75rem", "1rem", "1.5rem", "2.5rem"] }],
                         ['bold', 'italic', 'underline'],
                         [{ 'list': 'ordered' }, { 'list': 'bullet' },
                         { 'indent': '-1' }, { 'indent': '+1' }],
