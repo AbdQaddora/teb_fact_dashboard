@@ -4,6 +4,11 @@
             "rows_per_page": "Rows per page :",
             "of": "of"
         },
+        "table_actions": {
+            "edit": "edit",
+            "remove": "remove",
+            "response": "Response"
+        },
         "consultation_type_badge": {
             "new": "New",
             "open": "Open",
@@ -12,6 +17,11 @@
         "remove_doctor_modal": {
             "question1": "Are you sure you want to delete doctor \"",
             "question2": "\" account?",
+            "subTitle": "This action is permanently action and you can't go back",
+            "btn": "Delete"
+        },
+        "remove_history_question_modal": {
+            "question": "are you sure you want to delete this question?",
             "subTitle": "This action is permanently action and you can't go back",
             "btn": "Delete"
         },
@@ -24,7 +34,10 @@
             "english_small": "English",
             "save": "save changes",
             "cancel": "cancel",
-            "delete": "delete page"
+            "delete": "delete page",
+            "page_icon": "page icon: ",
+            "title": "Title",
+            "icon": "icon"
         },
         "textEditor": {
             "small": "Small",
@@ -38,7 +51,8 @@
         "consultations": "Consultations",
         "doctors": "Doctors",
         "tickets": "Tickets",
-        "settings": "General settings",
+        "static_pages": "Static pages",
+        "history_questions": "History questions",
         "language": "Language"
     },
     "tables": {
@@ -60,8 +74,7 @@
             "email": "Email",
             "phone": "Phone",
             "message": "Message",
-            "actions": "Actions",
-            "response": "Response"
+            "actions": "Actions"
         },
         "doctors": {
             "name": "Name",
@@ -70,9 +83,11 @@
             "consulting_count": "consulting count",
             "last_consultation_date": "last consulting",
             "rating": "rating",
-            "actions": "actions",
-            "edit": "edit",
-            "remove": "remove"
+            "actions": "actions"
+        },
+        "history_question": {
+            "question": "Question",
+            "actions": "Actions"
         }
     },
     "login": {
@@ -85,19 +100,16 @@
     "home": {
         "latest_consultations": "Latest consultations"
     },
-    "settings": {
-        "privacy": {
-            "title": "Privacy policy",
-            "btn": "Update Privacy policy"
-        },
-        "doctorContract": {
-            "title": "Doctors registration contract",
-            "btn": "Update Doctors Registration Contract"
-        },
-        "aboutUs": {
-            "title": "About us",
-            "btn": "Update About Us"
-        }
+    "static_pages": {
+        "add_new_page": "Add new page"
+    },
+    "new_static_page": {
+        "page_icon": "Page icon",
+        "page_icon_input": "Icon",
+        "english_page": "English page",
+        "english_title_placeholder": "English title",
+        "arabic_page": "Arabic page",
+        "arabic_title_placeholder": "Arabic title"
     },
     "latest_consultations": {
         "title": "Consultations",

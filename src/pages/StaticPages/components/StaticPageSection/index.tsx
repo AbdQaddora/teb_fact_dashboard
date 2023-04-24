@@ -7,11 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 
-import { Body1, H5 } from '../../../../components/tiny/Typography/style';
+import { Body1, H5, H6, Subtitle1 } from '../../../../components/tiny/Typography/style';
 import TextEditor from '../../../../components/TextEditor';
 import Button from '../../../../components/tiny/Button';
 import Input from '../../../../components/tiny/Input';
 import LangToggle from '../LangToggle';
+import ImageInput from '../../../../components/tiny/ImageInput';
 
 interface IProps {
     en: {
@@ -52,7 +53,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                 <div className="title">
                     {isSectionOpen ? <RiArrowUpSLine className="toggle_menu" />
                         : <RiArrowDownSLine className="toggle_menu" />}
-                    <H5 className='head_title_text'>{{ ar, en }[lang.langName].title}</H5>
+                    <H6 className='head_title_text'>{{ ar, en }[lang.langName].title}</H6>
                 </div>
                 <div className="buttons">
                     <div className="toggle_button">
@@ -74,6 +75,15 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                 </div>
             </div>
             <div className={`body ${isSectionOpen ? "open" : "close"}`}>
+                <div className="page_icon">
+                    <Body1>{t("page_icon")}</Body1>
+                    <ImageInput
+                        onChange={() => { }}
+                        width='60px'
+                        height='60px'
+                        text={`${t('icon')}`}
+                    />
+                </div>
                 {activeLang === 'ar' ? <><Input
                     disabled={!isActivePage}
                     fullWidth
@@ -84,7 +94,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                             title: e.target.value
                         }))
                     }}
-                    placeholder='title'
+                    placeholder={t("title") || ""}
                     margin='1rem 0 0.5rem'
                 />
                     <TextEditor
@@ -107,7 +117,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
                                 title: e.target.value
                             }))
                         }}
-                        placeholder='title'
+                        placeholder={t("title") || ""}
                         margin='1rem 0 0.5rem'
                     />
                     <TextEditor
@@ -123,7 +133,7 @@ const StaticPageSection = ({ en, ar, isActive, saveChanges, toggleActive, delete
 
                 <div className="buttons">
                     <Button margin='0.5rem 0' onClick={saveChanges}>{t('save')}</Button>
-                    <Button margin='0.5rem 0' color='danger'>{t('cancel')}</Button>
+                    <Button margin='0.5rem 0'>{t('cancel')}</Button>
                     <Button margin='0.5rem 0' color='danger'>{t('delete')}</Button>
                     <Button
                         color={isActivePage ? 'danger' : "secondary"}

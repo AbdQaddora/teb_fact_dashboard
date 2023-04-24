@@ -4,9 +4,10 @@ import Logo from '../../../../components/tiny/Logo'
 import SideMenuLink from '../SideMenuLink'
 import Style from './style'
 // icons
-import { BsFillPeopleFill } from 'react-icons/bs';
-import { MdSettings, MdDashboard } from 'react-icons/md';
-import { HiDocumentReport } from 'react-icons/hi';
+import { BsFillPeopleFill, BsQuestionCircleFill } from 'react-icons/bs';
+import { MdDashboard } from 'react-icons/md';
+import { AiFillFileText } from 'react-icons/ai';
+import { BiMessageAltEdit } from 'react-icons/bi';
 import { FaUserNurse } from 'react-icons/fa';
 // Translation
 import { useTranslation } from 'react-i18next';
@@ -43,15 +44,21 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
             />
             <SideMenuLink
                 onClick={closeMobileMenu}
-                icon={<HiDocumentReport />}
+                icon={<BiMessageAltEdit />}
                 text={t("tickets")}
                 to='TICKETS'
             />
             <SideMenuLink
                 onClick={closeMobileMenu}
-                icon={<MdSettings />}
-                text={t("settings")}
-                to='SETTINGS'
+                icon={<AiFillFileText />}
+                text={t("static_pages")}
+                to='STATIC_PAGES'
+            />
+            <SideMenuLink
+                onClick={closeMobileMenu}
+                icon={<BsQuestionCircleFill />}
+                text={t("history_questions")}
+                to='HISTORY_QUESTIONS'
             />
 
             <LanguageController closeMobileMenu={closeMobileMenu} />

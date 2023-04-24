@@ -4,6 +4,11 @@
             "rows_per_page": "عدد الصفوف في الصفحة :",
             "of": "من"
         },
+        "table_actions": {
+            "edit": "تعديل",
+            "remove": "حذف",
+            "response": "رد"
+        },
         "consultation_type_badge": {
             "new": "جديد",
             "open": "مفتوح",
@@ -15,6 +20,11 @@
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
             "btn": "أخذف"
         },
+        "remove_history_question_modal": {
+            "question": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
+            "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
+            "btn": "أخذف"
+        },
         "static_page_section": {
             "activate": "تفعيل",
             "deactivate": "تعطيل",
@@ -22,15 +32,18 @@
             "english": "محتوى الصفحة باللغة الانجليزية",
             "arabic_small": "العربية",
             "english_small": "الانجليزية",
-            "save":"حفظ التعديلات",
-            "cancel":"الغاء",
-            "delete":"حذف الصفحة"
+            "save": "حفظ التعديلات",
+            "cancel": "الغاء",
+            "delete": "حذف الصفحة",
+            "page_icon": "أيقونة الصفحة :",
+            "title": "العنوان",
+            "icon": "الأيقونة"
         },
-        "textEditor":{
-            "small":"صغير",
-            "normal":"عادي",
-            "large":"ضخم",
-            "huge":"ضخم جدا"
+        "textEditor": {
+            "small": "صغير",
+            "normal": "عادي",
+            "large": "ضخم",
+            "huge": "ضخم جدا"
         }
     },
     "sideMenu": {
@@ -38,7 +51,8 @@
         "consultations": "الاستشارات",
         "doctors": "الأطباء",
         "tickets": "المراسلات",
-        "settings": "الاعدادات العامة",
+        "static_pages": "الصفحات الثابتة",
+        "history_questions": "أسئلة التاريخ المرضي",
         "language": "اللغة"
     },
     "tables": {
@@ -70,9 +84,11 @@
             "consulting_count": "عدد الاستشارات",
             "last_consultation_date": "تاريخ اخر استشارة",
             "rating": "التقييم",
-            "actions": "افعال",
-            "edit": "تعديل",
-            "remove": "حذف"
+            "actions": "افعال"
+        },
+        "history_question": {
+            "question": "السؤال",
+            "actions": "افعال"
         }
     },
     "login": {
@@ -85,19 +101,16 @@
     "home": {
         "latest_consultations": "أحدث الاستشارات"
     },
-    "settings": {
-        "privacy": {
-            "title": "سياسة الخصوصية",
-            "btn": "تحديث سياسة الخصوصية"
-        },
-        "doctorContract": {
-            "title": "عقد تسجيل الأطباء",
-            "btn": "تحديث عقد تسجيل الأطباء"
-        },
-        "aboutUs": {
-            "title": "من نحن",
-            "btn": "تحديث من نحن"
-        }
+    "static_pages": {
+        "add_new_page": "إضافة صفحة جديدة"
+    },
+    "new_static_page": {
+        "page_icon": "أيقونة الصفحة",
+        "page_icon_input": "الأيقونة",
+        "english_page": "الصفحة باللغة الانجليزية",
+        "english_title_placeholder": "العنوان باللغة الانجليزية",
+        "arabic_page": "الصفحة باللغة العربية",
+        "arabic_title_placeholder": "العنوان باللغة العربية"
     },
     "latest_consultations": {
         "title": "الاستشارات",

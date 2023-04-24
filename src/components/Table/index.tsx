@@ -3,6 +3,7 @@ import { useTable, useSortBy, usePagination, Column } from 'react-table';
 import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
+import { useLang } from '../../context/LanguageContext';
 
 interface IProps<T extends Record<string, any>> {
     data: T[],
@@ -10,7 +11,8 @@ interface IProps<T extends Record<string, any>> {
 }
 const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
     const columnsAfterMemo = useMemo(() => columns, []) as readonly Column<object>[];
-    const dataAfterMemo: T[] = useMemo(() => data, [])
+    const { lang } = useLang();
+    const dataAfterMemo: T[] = useMemo(() => data, [lang.langName])
 
     const tableInstance = useTable({
         columns: columnsAfterMemo,
@@ -42,9 +44,9 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                                         ...head.getHeaderProps({
                                             ...head.getSortByToggleProps(),
                                             style: {
-                                                minWidth: head.minWidth ? `${head.minWidth}px` : "unset",
-                                                maxWidth: head.maxWidth ? `${head.minWidth}px` : "unset",
-                                                width: head.width ? `${head.width}px` : "unset",
+                                                minWidth: head.minWidth ? `${head.minWidth}px` : undefined,
+                                                maxWidth: head.maxWidth ? `${head.minWidth}px` : undefined,
+                                                width: head.width ? head.width as string : undefined,
                                             },
                                         })
                                     }>
@@ -62,9 +64,9 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                             return <tr className='table_body_row'{...row.getRowProps()}>
                                 {row.cells.map(cell => <td {...cell.getCellProps({
                                     style: {
-                                        minWidth: cell.column.minWidth ? `${cell.column.minWidth}px` : "unset",
-                                        maxWidth: cell.column.maxWidth ? `${cell.column.maxWidth}px` : "unset",
-                                        width: cell.column.width ? `${cell.column.width}px` : "unset",
+                                        minWidth: cell.column.minWidth ? `${cell.column.minWidth}px` : undefined,
+                                        maxWidth: cell.column.maxWidth ? `${cell.column.maxWidth}px` : undefined,
+                                        width: cell.column.width ? cell.column.width as string : undefined,
                                     }
                                 })}>{cell.render("Cell")}</td>)}
                             </tr>

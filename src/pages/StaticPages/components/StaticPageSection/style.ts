@@ -77,6 +77,13 @@ const Style = styled.div`
         &.open{
             max-height: 100vh;
         }
+
+        .page_icon{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 1rem 0;
+        }
     }
 `
 

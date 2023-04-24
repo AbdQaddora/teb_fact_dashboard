@@ -1,11 +1,10 @@
-import React from 'react'
 import Style from './style';
-import { H5, Subtitle1 } from '../tiny/Typography/style';
-import Button from '../tiny/Button';
+import { H5, Subtitle1 } from '../../tiny/Typography/style';
+import Button from '../../tiny/Button';
 import { useTranslation } from 'react-i18next';
 
 // image
-import noAvatar from '../../assets/images/no_avatar.webp';
+import noAvatar from '../../../assets/images/no_avatar.webp';
 interface IProps {
     id: string;
     name: string;

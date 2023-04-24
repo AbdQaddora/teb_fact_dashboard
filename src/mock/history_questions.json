@@ -1,0 +1,212 @@
+[
+    {
+        "question_id": "3d1d0ec2-8db1-499c-9f5c-9fdfabc79bca",
+        "type": 0,
+        "ar": {
+            "question": "هل لديك حساسية لأي مواد أو أدوية؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Do you have any allergies to any substances or medications?"
+        }
+    },
+    {
+        "question_id": "664287a9-47d0-46e3-92b4-a160903ffb5a",
+        "type": 3,
+        "ar": {
+            "question": "هل تعاني من أي حالات صحية أو مرضية حالياً؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Do you have any current health conditions or illnesses?"
+        }
+    },
+    {
+        "question_id": "34170abd-cd8d-416e-9060-4193e792e476",
+        "type": 1,
+        "ar": {
+            "question": "هل تتناول أي أدوية حالياً؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Are you currently taking any medications?"
+        }
+    },
+    {
+        "question_id": "325ebb3f-44ad-4ff3-b47d-94292e47859b",
+        "type": 1,
+        "ar": {
+            "question": "هل تعاني من حب الشباب أو أي أمراض جلدية أخرى؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Do you have acne or any other skin conditions?"
+        }
+    },
+    {
+        "question_id": "8c8a4b5c-2eeb-411d-9a87-390dcc0f8604",
+        "type": 2,
+        "ar": {
+            "question": "هل لديك تاريخ عائلي من الأمراض الجلدية؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Do you have a family history of skin conditions?"
+        }
+    },
+    {
+        "question_id": "811b212d-a4b5-46b0-9b54-986d21e49aa9",
+        "type": 0,
+        "ar": {
+            "question": "هل تستخدم أي منتجات للعناية بالبشرة حالياً؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Are you currently using any skincare products?"
+        }
+    },
+    {
+        "question_id": "19845816-4867-4071-8ffb-e303ecf38410",
+        "type": 2,
+        "ar": {
+            "question": "هل تعرضت للشمس بشكل كبير في الأشهر الأخيرة؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Have you had significant sun exposure in recent months?"
+        }
+    },
+    {
+        "question_id": "c810e3ae-6bfd-48b8-8bf1-6ccf58114fcd",
+        "type": 1,
+        "ar": {
+            "question": "هل تعرضت لأي إصابات أو تعرضت لضربة على بشرتك مؤخراً؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Have you had any injuries or been hit on your skin recently?"
+        }
+    },
+    {
+        "question_id": "36f112ac-f53b-4f80-bc15-07cd1bac392a",
+        "type": 1,
+        "ar": {
+            "question": "هل أجريت أي عمليات جراحية أو إجراءات طبية تشمل جلدك مؤخراً؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Have you had any surgeries or medical procedures involving your skin recently?"
+        }
+    },
+    {
+        "question_id": "7fdb99a0-9831-4c3f-a61b-163e5738ac23",
+        "type": 1,
+        "ar": {
+            "question": "هل تدخن أو كنت تدخن في السابق؟",
+            "options": [
+                "years",
+                "months",
+                "days"
+            ]
+        },
+        "en": {
+            "options": [
+                "years",
+                "months",
+                "days",
+                "hours"
+            ],
+            "question": "Do you smoke or have you ever smoked in the past?"
+        }
+    }
+]

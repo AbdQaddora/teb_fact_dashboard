@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
-import Privacy from './sections/Privacy';
-import AboutUs from './sections/AboutUs';
-import DoctorContract from './sections/DoctorContract';
 import StaticPageSection from './components/StaticPageSection';
+import Style from './style';
+import Button from '../../components/tiny/Button';
+import { useTranslation } from 'react-i18next';
+import CustomLink from '../../components/tiny/CustomLink';
 
 const Settings = () => {
+  const { t } = useTranslation("", { keyPrefix: "static_pages" })
   return (
-    <div>
+    <Style>
+      <CustomLink to='NEW_STATIC_PAGES'>
+        <Button size='large'>
+          {t("add_new_page")}
+        </Button>
+      </CustomLink>
       <StaticPageSection
         ar={{
           content: "<h1 style='text-align: center;'>من نحن</h1>",
@@ -49,7 +56,7 @@ const Settings = () => {
         toggleActive={() => { }}
         deletePage={() => { }}
       />
-    </div>
+    </Style >
   )
 }
 

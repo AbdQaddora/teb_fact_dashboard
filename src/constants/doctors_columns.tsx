@@ -1,11 +1,7 @@
 import { Column } from 'react-table';
 import Translate from '../components/tiny/Translate';
 import NameAndAvatarCell from '../components/tiny/NameAndAvatar';
-import Button from '../components/tiny/Button';
-import CustomLink from '../components/tiny/CustomLink';
-import { Link } from 'react-router-dom';
-import { PATHS } from '../router';
-import DoctorsTableActions from '../components/DoctorsTableActions';
+import DoctorsTableActions from '../components/tables_actions/DoctorsTableActions';
 import Rating from '../components/tiny/Rating';
 
 export interface IDataReports {
@@ -49,14 +45,14 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
         accessor: "consulting_count",
         disableGlobalFilter: true,
         maxWidth: 200,
-        minWidth:150
+        minWidth: 150
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.last_consultation_date' />,
         accessor: "last_consultation_date",
         disableGlobalFilter: true,
         maxWidth: 200,
-        minWidth:150
+        minWidth: 150
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.actions' />,
@@ -68,8 +64,8 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
             id={row.original.id}
             name={row.original.name}
             avatar={row.original.avatar}
-            editBtnText={"tables.doctors.edit"}
-            removeBtnText={"tables.doctors.remove"}
+            editBtnText={"components.table_actions.edit"}
+            removeBtnText={"components.table_actions.remove"}
         />
         ,
     }

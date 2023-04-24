@@ -46,7 +46,7 @@ const TICKETS_COLUMNS: Column<IDataReports>[] = [
         disableSortBy: true,
         Cell: ({ value }) => <Link to={PATHS.TICKET + "/" + value}>
             <Button>
-                <Translate TranslateKey='tables.tickets.response' />
+                <Translate TranslateKey='components.table_actions.response' />
             </Button>
         </Link>
         ,
