@@ -19,6 +19,7 @@ const HISTORY_QUESTIONS_COLUMNS: Column<IDataLatestConsultation>[] = [
         Header: () => <Translate TranslateKey='tables.history_question.question' />,
         accessor: "question",
         maxWidth: 700,
+        minWidth: 450,
         width: "calc(100% - 170px)",
         Cell: ({ value }) => {
             return <Body1 weight={500}>{value}</Body1>
