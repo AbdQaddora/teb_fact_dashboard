@@ -13,7 +13,7 @@ interface IProps {
 
 const RemoveDoctorModal = ({ id, close }: IProps) => {
 
-    const { t } = useTranslation("", { keyPrefix: "components.remove_history_question_modal" });
+    const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
         // !todo call api
         console.log({ id })

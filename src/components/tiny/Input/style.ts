@@ -5,11 +5,12 @@ interface IProps {
     disabled?: boolean,
     fullWidth?: boolean,
     margin?: string
+    height?: "small" | "large"
 }
 
 const Style = styled.div<IProps>`
     position: relative;
-    height: 3rem;
+    height: ${props => props.height === "small" ? "2.5rem" : "3rem"};
     width:${props => props.fullWidth ? "100%" : "fit-content"};
     ${props => props.margin ? "margin: " + props.margin + ";" : ""}
 

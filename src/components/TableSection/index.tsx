@@ -4,17 +4,26 @@ import { H5 } from '../tiny/Typography/style'
 import { Column } from 'react-table'
 import Table from '../Table'
 import TableWithFilter from '../TableWithFilter'
+import Button from '../tiny/Button'
+import { GrAdd } from 'react-icons/gr'
 
 interface IProps<T extends Record<string, any>> {
     title: string,
     columns: Column<T>[],
     data: T[],
-    filterValue?: string
+    filterValue?: string,
+    addNew?: () => void
 }
-const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue }: IProps<T>) => {
+
+const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew }: IProps<T>) => {
     return (
         <Style>
-            <H5 margin='0 1rem 1rem'>{title}</H5>
+            <div className="section_head">
+                <H5>{title}</H5>
+                {addNew && <Button className='add_btn' onClick={addNew}>
+                    +
+                </Button>}
+            </div>
             {filterValue ? <TableWithFilter
                 filterValue={filterValue}
                 columns={columns}

@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
-const Select = styled.select`
+interface IProps {
+  fullWidth?: boolean
+}
+
+const Select = styled.select<IProps>`
   font-size: 16px;
   border: none;
   outline: none;
 
   border-radius: 4px;
   padding: 4px 24px 4px 12px;
-  width: fit-content;
-  max-width: 200px;
+  ${props => props.fullWidth ? "width:100%;" : "width: fit-content;max-width: 200px;"}
+
   
   cursor: pointer;
   appearance: none;
