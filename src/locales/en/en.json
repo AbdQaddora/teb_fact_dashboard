@@ -58,12 +58,17 @@
             "answer_options_in_arabic": "Answer options in arabic",
             "answer_options_in_english": "Answer options in english",
             "add_btn": "Add question",
+            "success_msg": "Question added successfully",
             "errors": {
                 "english_question_is_required": "The English translation of the question required",
                 "arabic_question_is_required": "The Arabic translation of the question required",
                 "english_options_is_required": "Options answer in English are required ",
                 "arabic_options_is_required": "Options answer in Arabic are required",
-                "options_must_have_same_length": "Arabic and English answer options must have the same number of options"
+                "options_must_have_same_length": "Arabic and English answer options must have the same number of options",
+                "english_options_min": "the minimum number of answer options in english is 2",
+                "english_options_max": "the maximum number of answer options in english is 7",
+                "arabic_options_min": "the minimum number of answer options in arabic is 2",
+                "arabic_options_max": "the maximum number of answer options in arabic is 7"
             }
         }
     },

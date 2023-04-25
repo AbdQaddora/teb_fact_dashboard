@@ -58,12 +58,17 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
             }
         }
 
-        console.log(data);
-        questionSchema.validate(data, { abortEarly: false })
+        questionSchema.validate({
+            type: data.type,
+            en_question: data.en.question,
+            ar_question: data.ar.question,
+            en_options: data.en.options,
+            ar_options: data.ar.options,
+        }, { abortEarly: false })
             .then(() => {
                 // TODO: send api call
                 close();
-                toast.success("question added successfully");
+                toast.success(t("success_msg"));
             })
             .catch(({ errors }) => {
                 errors.map((error: string) => {
