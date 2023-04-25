@@ -8,6 +8,7 @@ import GlobalStyle from './style';
 import LanguageContextProvider from './context/LanguageContext';
 // tostas
 import NotificationsContainer from './components/NotificationsContainer';
+
 const App = () => {
   return (
     <div className="App">
