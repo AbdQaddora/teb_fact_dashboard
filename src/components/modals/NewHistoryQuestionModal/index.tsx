@@ -9,7 +9,10 @@ import Button from '../../tiny/Button';
 import { useTranslation } from 'react-i18next';
 // style
 import Style from './style'
-
+// tostas
+import { toast } from 'react-toastify';
+// validation
+import questionSchema from '../../../validation/history_question';
 interface IProps {
     close: () => void
 }
@@ -41,6 +44,33 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
     const handelQuestionInputs = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setQuestion(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }, [])
+
+    const handelAdd = () => {
+        const data = {
+            type: questionType,
+            en: {
+                question: question.en,
+                options: options.en.map(el => el.value)
+            },
+            ar: {
+                question: question.ar,
+                options: options.ar.map(el => el.value)
+            }
+        }
+
+        console.log(data);
+        questionSchema.validate(data, { abortEarly: false })
+            .then(() => {
+                // TODO: send api call
+                close();
+                toast.success("question added successfully");
+            })
+            .catch(({ errors }) => {
+                errors.map((error: string) => {
+                    toast.error(t(error));
+                })
+            })
+    }
 
 
     return (
@@ -126,7 +156,7 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
                         })}
                     />
                 </>}
-            <Button margin='0.5rem 0' fullWidth>اضافة السؤال</Button>
+            <Button margin='0.5rem 0' fullWidth onClick={handelAdd}>{t("add_btn")}</Button>
         </Style>
     )
 }

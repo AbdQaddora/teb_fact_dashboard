@@ -56,7 +56,15 @@
             "question_text_in_arabic": "نص السؤال باللغة العربية",
             "question_text_in_english": "نص السؤال باللعة الانجليزية",
             "answer_options_in_arabic": "خيارات الاجابة باللغة العربية",
-            "answer_options_in_english": "خيارات الاجابة باللغة الانجليزية"
+            "answer_options_in_english": "خيارات الاجابة باللغة الانجليزية",
+            "add_btn": "اضافة السؤال",
+            "errors": {
+                "english_question_is_required": "الترجمة الإنجليزية للسؤال مطلوبة",
+                "arabic_question_is_required": "الترجمة العربية للسؤال مطلوبة",
+                "english_options_is_required": "خيارات الإجابة باللغة الإنجليزية مطلوبة",
+                "arabic_options_is_required": "خيارات الإجابة باللغة العربية مطلوبة",
+                "options_must_have_same_length": "يجب أن تحتوي خيارات الإجابة باللغتين العربية والإنجليزية على نفس عدد الخيارات"
+            }
         }
     },
     "sideMenu": {

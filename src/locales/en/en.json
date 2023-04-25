@@ -56,7 +56,15 @@
             "question_text_in_arabic": "Question text in arabic",
             "question_text_in_english": "Question text in english",
             "answer_options_in_arabic": "Answer options in arabic",
-            "answer_options_in_english": "Answer options in english"
+            "answer_options_in_english": "Answer options in english",
+            "add_btn": "Add question",
+            "errors": {
+                "english_question_is_required": "The English translation of the question required",
+                "arabic_question_is_required": "The Arabic translation of the question required",
+                "english_options_is_required": "Options answer in English are required ",
+                "arabic_options_is_required": "Options answer in Arabic are required",
+                "options_must_have_same_length": "Arabic and English answer options must have the same number of options"
+            }
         }
     },
     "sideMenu": {
