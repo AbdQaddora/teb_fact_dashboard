@@ -45,7 +45,8 @@
         "remove_history_question_modal": {
             "question": "are you sure you want to delete this question?",
             "subTitle": "This action is permanently action and you can't go back",
-            "btn": "Delete"
+            "btn": "Delete",
+            "success_msg": "Question has been deleted successfully"
         },
         "new_history_question_modal": {
             "question_type": "Question type:",

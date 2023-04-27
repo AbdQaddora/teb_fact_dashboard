@@ -15,7 +15,6 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
     const dataAfterMemo: T[] = useMemo(() => data, [])
     const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
 
-    console.log("RENDER TABLE")
     const tableInstance = useTable({
         data: dataAfterMemo || emptyData,
         columns: columnsAfterMemo || emptyColumns

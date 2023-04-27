@@ -18,22 +18,14 @@ interface IProps<T extends Record<string, any>> {
 }
 
 const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at }: IProps<T>) => {
-    const isTableMounted = useRef<boolean>(true);
-    const [reRender, setReRender] = useState(false);
+    const [forceRender, setForceRender] = useState(true);
 
     useEffect(() => {
-        if (isTableMounted.current) {
-            setReRender(false);
-            isTableMounted.current = false;
-        }
+        setForceRender(prev => !prev);
+        setTimeout(() => {
+            setForceRender(prev => !prev);
+        })
     }, [updated_at])
-
-    useEffect(() => {
-        if (!isTableMounted.current) {
-            setReRender(true)
-            isTableMounted.current = true;
-        }
-    }, [reRender])
 
     return (
         <Style>
@@ -43,7 +35,7 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
                     +
                 </Button>}
             </div>
-            {reRender && (
+            {forceRender && (
                 data.length > 0 && (filterValue ? <TableWithFilter
                     filterValue={filterValue}
                     columns={columns}

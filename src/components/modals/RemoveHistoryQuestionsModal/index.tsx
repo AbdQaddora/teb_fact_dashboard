@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import noAvatar from '../../assets/images/no_avatar.webp';
 import { useAppDispatch } from '../../../hooks/redux';
 import { deleteQuestion } from '../../../redux/slices/historyQuestionsSlice';
+// tostas
+import { toast } from 'react-toastify';
 interface IProps {
     id: string;
     close: () => void;
@@ -18,6 +20,7 @@ const RemoveDoctorModal = ({ id, close }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
         // !todo call api
+        toast.success(t("success_msg"))
         dispatch(deleteQuestion({ id: id }))
         console.log({ id })
         close();

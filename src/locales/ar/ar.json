@@ -45,7 +45,8 @@
         "remove_history_question_modal": {
             "question": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
-            "btn": "أخذف"
+            "btn": "أخذف",
+            "success_msg": "تم حذف السؤال بنجاح"
         },
         "new_history_question_modal": {
             "question_type": "نوع السؤال",
