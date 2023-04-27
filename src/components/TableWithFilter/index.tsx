@@ -7,12 +7,15 @@ import { useLang } from '../../context/LanguageContext';
 
 interface IProps<T extends Record<string, any>> {
     data: T[],
-    columns: readonly Column<object>[],
+    columns: Column<T>[],
     filterValue: string,
 }
 const TableWithFilter = <T extends Record<string, any>,>({ data, columns, filterValue }: IProps<T>) => {
+    const dataAfterMemo: T[] = useMemo(() => data, [])
+    const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
+
     const tableInstance = useTable({
-        data, columns
+        data: dataAfterMemo, columns: columnsAfterMemo
     }, useGlobalFilter, useSortBy, usePagination);
     const {
         getTableBodyProps,

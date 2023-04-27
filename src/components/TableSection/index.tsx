@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Style from './style'
 import { H5 } from '../tiny/Typography/style'
 import { Column } from 'react-table'
@@ -14,12 +14,27 @@ interface IProps<T extends Record<string, any>> {
     data: T[],
     filterValue?: string,
     addNew?: () => void,
+    updated_at?: string
 }
 
-const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew }: IProps<T>) => {
-    const dataAfterMemo: T[] = useMemo(() => data, [data])
-    const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
-    
+const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at }: IProps<T>) => {
+    const isTableMounted = useRef<boolean>(true);
+    const [reRender, setReRender] = useState(false);
+
+    useEffect(() => {
+        if (isTableMounted.current) {
+            setReRender(false);
+            isTableMounted.current = false;
+        }
+    }, [updated_at])
+
+    useEffect(() => {
+        if (!isTableMounted.current) {
+            setReRender(true)
+            isTableMounted.current = true;
+        }
+    }, [reRender])
+
     return (
         <Style>
             <div className="section_head">
@@ -28,17 +43,19 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
                     +
                 </Button>}
             </div>
-            {filterValue ? <TableWithFilter
-                filterValue={filterValue}
-                columns={columnsAfterMemo}
-                data={dataAfterMemo}
-            /> : <Table
-                columns={columnsAfterMemo}
-                data={dataAfterMemo}
-            />}
-
+            {reRender && (
+                data.length > 0 && (filterValue ? <TableWithFilter
+                    filterValue={filterValue}
+                    columns={columns}
+                    data={data}
+                /> : <Table
+                    columns={columns}
+                    data={data}
+                />)
+            )}
         </Style>
     )
 }
+
 
 export default TableSection

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { H6 } from '../../tiny/Typography/style'
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { QuestionsTypes } from '../../../types/HistoryQuestion';
+import { IQuestion, QuestionsTypes } from '../../../types/HistoryQuestion';
 import Input from '../../tiny/Input';
 import Button from '../../tiny/Button';
 // translation
@@ -13,8 +13,11 @@ import Style from './style'
 import { toast } from 'react-toastify';
 // validation
 import questionSchema from '../../../validation/history_question';
+import { useAppDispatch } from '../../../hooks/redux';
+import { addQuestion } from '../../../redux/slices/historyQuestionsSlice';
+import { nanoid } from '@reduxjs/toolkit';
 interface IProps {
-    close: () => void
+    close: () => void,
 }
 
 interface IOptions {
@@ -24,13 +27,13 @@ interface IOptions {
 
 const NewHistoryQuestionModal = ({ close }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "modals.new_history_question_modal" })
+    const dispatch = useAppDispatch();
     const historyQuestionTypesOptions = [
         { value: QuestionsTypes.TrueFalse, label: t("true_or_false") },
         { value: QuestionsTypes.Textarea, label: t("free_text") },
         { value: QuestionsTypes.Radio, label: t("multiple_choice") },
         { value: QuestionsTypes.Checkbox, label: t("select_one_or_more") },
     ];
-
     const [questionType, setQuestionType] = useState<QuestionsTypes>(QuestionsTypes.TrueFalse);
     const [question, setQuestion] = useState({
         en: "",
@@ -46,7 +49,8 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
     }, [])
 
     const handelAdd = () => {
-        const data = {
+        const data: IQuestion = {
+            id: nanoid(),
             type: questionType,
             en: {
                 question: question.en,
@@ -67,6 +71,7 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
         }, { abortEarly: false })
             .then(() => {
                 // TODO: send api call
+                dispatch(addQuestion({ question: data }))
                 close();
                 toast.success(t("success_msg"));
             })

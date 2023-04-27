@@ -6,16 +6,19 @@ import { useTranslation } from 'react-i18next';
 
 // image
 import noAvatar from '../../assets/images/no_avatar.webp';
+import { useAppDispatch } from '../../../hooks/redux';
+import { deleteQuestion } from '../../../redux/slices/historyQuestionsSlice';
 interface IProps {
     id: string;
     close: () => void;
 }
 
 const RemoveDoctorModal = ({ id, close }: IProps) => {
-
+    const dispatch = useAppDispatch();
     const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
         // !todo call api
+        dispatch(deleteQuestion({ id: id }))
         console.log({ id })
         close();
     }

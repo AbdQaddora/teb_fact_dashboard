@@ -8,53 +8,13 @@ import allQuestionsMock from '../../mock/history_questions.json';
 // Define a type for the slice state
 interface IHistoryQuestionsSlice {
     questions: IQuestion[],
+    updated_at: string
 }
 
 // Define the initial state using that type
 const initialState: IHistoryQuestionsSlice = {
-    questions: [
-        {
-            "id": "3d1d0ec2-8db1-499c-9f5c-9fdfabc79bca",
-            "type": 0,
-            "ar": {
-                "question": "هل لديك حساسية لأي مواد أو أدوية؟",
-                "options": [
-                    "years",
-                    "months",
-                    "days"
-                ]
-            },
-            "en": {
-                "options": [
-                    "years",
-                    "months",
-                    "days",
-                    "hours"
-                ],
-                "question": "Do you have any allergies to any substances or medications?"
-            }
-        },
-        {
-            "id": "664287a9-47d0-46e3-92b4-a160903ffb5a",
-            "type": 3,
-            "ar": {
-                "question": "هل تعاني من أي حالات صحية أو مرضية حالياً؟",
-                "options": [
-                    "years",
-                    "months",
-                    "days"
-                ]
-            },
-            "en": {
-                "options": [
-                    "years",
-                    "months",
-                    "days",
-                    "hours"
-                ],
-                "question": "Do you have any current health conditions or illnesses?"
-            }
-        }],
+    questions: [],
+    updated_at: `${Date.now()}`
 }
 
 export const historyQuestionsSlice = createSlice({
@@ -62,13 +22,16 @@ export const historyQuestionsSlice = createSlice({
     initialState,
     reducers: {
         addQuestion: (state, action: PayloadAction<{ question: IQuestion }>) => {
-            state.questions = [...state.questions, action.payload.question]
+            state.questions = [action.payload.question, ...state.questions];
+            state.updated_at = `${Date.now()}`
         },
         setAllQuestion: (state, action: PayloadAction<{ questions: IQuestion[] }>) => {
-            state.questions = [...action.payload.questions]
+            state.questions = [...action.payload.questions];
+            state.updated_at = `${Date.now()}`
         },
         deleteQuestion: (state, action: PayloadAction<{ id: string }>) => {
             state.questions = state.questions.filter(question => question.id !== action.payload.id);
+            state.updated_at = `${Date.now()}`
         },
         updateQuestion: (state, action: PayloadAction<{ new_question: IQuestion }>) => {
             state.questions = state.questions.map(question => {
@@ -77,6 +40,7 @@ export const historyQuestionsSlice = createSlice({
                 }
                 return question;
             });
+            state.updated_at = `${Date.now()}`
         },
     },
 })

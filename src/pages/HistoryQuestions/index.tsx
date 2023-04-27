@@ -10,18 +10,21 @@ import TableSection from '../../components/TableSection';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
 import Modal from '../../components/Modal';
 import NewHistoryQuestionModal from '../../components/modals/NewHistoryQuestionModal';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
-    const { questions } = useAppSelector(state => state.historyQuestions);
+    const { questions, updated_at } = useAppSelector(selectHistoryQuestions);
     const dispatch = useAppDispatch();
-
-
-    const { t } = useTranslation("", { keyPrefix: "history_questions" });
+    
+    const { t } = useTranslation();
     const { lang } = useLang();
 
     useEffect(() => {
-        dispatch(getAllQuestions())
+        dispatch(getAllQuestions());
     }, [])
 
     return (
@@ -33,10 +36,11 @@ const HistoryQuestions = () => {
             </Modal>}
             <Style>
                 <div>
-                    <H4 margin='1rem 0 2rem'>{t("title")}</H4>
+                    <H4 margin='1rem 0 2rem'>{t("history_questions.title")}</H4>
                     <TableSection
+                        updated_at={updated_at}
                         addNew={() => { setIsNewQuestionModalOpen(true) }}
-                        title={t("subTitle")}
+                        title={t("history_questions.subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
                         data={questions.map(el => ({
                             question_id: el.id,
@@ -44,7 +48,7 @@ const HistoryQuestions = () => {
                         }))}
                     />
                 </div>
-            </Style>
+            </Style >
         </>
     )
 }

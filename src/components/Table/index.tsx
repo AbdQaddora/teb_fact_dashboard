@@ -8,16 +8,19 @@ const emptyData: Record<string, any>[] = [];
 const emptyColumns: readonly Column<object>[] = [];
 interface IProps<T extends Record<string, any>> {
     data: T[],
-    columns: readonly Column<object>[],
+    columns: Column<T>[],
 }
 
 const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
+    const dataAfterMemo: T[] = useMemo(() => data, [])
+    const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
+
+    console.log("RENDER TABLE")
     const tableInstance = useTable({
-        data: data || emptyData,
-        columns: columns || emptyColumns
+        data: dataAfterMemo || emptyData,
+        columns: columnsAfterMemo || emptyColumns
     }, useSortBy, usePagination);
 
-    console.log(Math.random());
     const {
         getTableBodyProps,
         getTableProps,
