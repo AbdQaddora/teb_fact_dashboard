@@ -3,6 +3,7 @@ import { useTable, useSortBy, usePagination, Column } from 'react-table';
 import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
+import { useLang } from '../../context/LanguageContext';
 
 const emptyData: Record<string, any>[] = [];
 const emptyColumns: readonly Column<object>[] = [];
@@ -12,7 +13,8 @@ interface IProps<T extends Record<string, any>> {
 }
 
 const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
-    const dataAfterMemo: T[] = useMemo(() => data, [])
+    const { lang: { langName } } = useLang();
+    const dataAfterMemo: T[] = useMemo(() => data, [langName])
     const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
 
     const tableInstance = useTable({
