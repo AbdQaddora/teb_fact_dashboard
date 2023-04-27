@@ -1,19 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next';
+import { useLang } from '../../context/LanguageContext';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getAllQuestions, selectHistoryQuestions } from '../../redux/slices/historyQuestionsSlice';
+
 import Style from './style'
 import { H4 } from '../../components/tiny/Typography/style';
 import TableSection from '../../components/TableSection';
-import { useTranslation } from 'react-i18next';
-import historyQuestionsMock from '../../mock/history_questions.json';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
-import { useLang } from '../../context/LanguageContext';
 import Modal from '../../components/Modal';
 import NewHistoryQuestionModal from '../../components/modals/NewHistoryQuestionModal';
 
 const HistoryQuestions = () => {
-    const [historyQuestions, setHistoryQuestions] = useState(historyQuestionsMock);
+    const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
+    const { questions } = useAppSelector(state => state.historyQuestions);
+    const dispatch = useAppDispatch();
+
+
     const { t } = useTranslation("", { keyPrefix: "history_questions" });
     const { lang } = useLang();
-    const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
+
+    useEffect(() => {
+        dispatch(getAllQuestions())
+    }, [])
 
     return (
         <>
@@ -29,8 +38,8 @@ const HistoryQuestions = () => {
                         addNew={() => { setIsNewQuestionModalOpen(true) }}
                         title={t("subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
-                        data={historyQuestions.map(el => ({
-                            question_id: el.question_id,
+                        data={questions.map(el => ({
+                            question_id: el.id,
                             question: el[lang.langName].question
                         }))}
                     />

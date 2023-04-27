@@ -5,13 +5,14 @@ export enum QuestionsTypes {
     Checkbox = 3,
 }
 
-export type TQuestion = {
+export type TQuestionInSingleLang = {
     question: string,
     options?: string[]
 }
 
-export interface IQuestionResponse {
+export interface IQuestion {
+    id: string,
     type: QuestionsTypes,
-    ar: TQuestion,
-    en: TQuestion,
+    ar: TQuestionInSingleLang,
+    en: TQuestionInSingleLang,
 }

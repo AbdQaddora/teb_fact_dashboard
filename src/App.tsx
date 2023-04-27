@@ -1,5 +1,8 @@
 // routing
 import Router from './router';
+// redux
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 // theming and style
 import { ThemeProvider } from 'styled-components';
@@ -14,9 +17,11 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <LanguageContextProvider>
-          <GlobalStyle />
-          <NotificationsContainer />
-          <Router />
+          <Provider store={store}>
+            <GlobalStyle />
+            <NotificationsContainer />
+            <Router />
+          </Provider>
         </LanguageContextProvider>
       </ThemeProvider>
     </div>

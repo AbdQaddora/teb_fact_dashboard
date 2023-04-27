@@ -3,22 +3,21 @@ import { useTable, useSortBy, usePagination, Column } from 'react-table';
 import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
-import { useLang } from '../../context/LanguageContext';
 
+const emptyData: Record<string, any>[] = [];
+const emptyColumns: readonly Column<object>[] = [];
 interface IProps<T extends Record<string, any>> {
     data: T[],
-    columns: Column<T>[]
+    columns: readonly Column<object>[],
 }
-const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
-    const columnsAfterMemo = useMemo(() => columns, []) as readonly Column<object>[];
-    const { lang } = useLang();
-    const dataAfterMemo: T[] = useMemo(() => data, [lang.langName])
 
+const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
     const tableInstance = useTable({
-        columns: columnsAfterMemo,
-        data: dataAfterMemo as object[]
+        data: data || emptyData,
+        columns: columns || emptyColumns
     }, useSortBy, usePagination);
 
+    console.log(Math.random());
     const {
         getTableBodyProps,
         getTableProps,
