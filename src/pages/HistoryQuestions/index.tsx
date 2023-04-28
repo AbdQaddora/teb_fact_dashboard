@@ -9,7 +9,7 @@ import { H4 } from '../../components/tiny/Typography/style';
 import TableSection from '../../components/TableSection';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
 import Modal from '../../components/Modal';
-import NewHistoryQuestionModal from '../../components/modals/NewHistoryQuestionModal';
+import HistoryQuestionModal from '../../components/modals/HistoryQuestionModal';
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/styles/ag-grid.css';
@@ -19,7 +19,7 @@ const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
     const { questions, updated_at } = useAppSelector(selectHistoryQuestions);
     const dispatch = useAppDispatch();
-    
+
     const { t } = useTranslation();
     const { lang } = useLang();
 
@@ -30,7 +30,7 @@ const HistoryQuestions = () => {
     return (
         <>
             {isNewQuestionModalOpen && <Modal close={() => setIsNewQuestionModalOpen(false)}>
-                <NewHistoryQuestionModal
+                <HistoryQuestionModal
                     close={() => setIsNewQuestionModalOpen(false)}
                 />
             </Modal>}
@@ -42,10 +42,7 @@ const HistoryQuestions = () => {
                         addNew={() => { setIsNewQuestionModalOpen(true) }}
                         title={t("history_questions.subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
-                        data={questions.map(el => ({
-                            question_id: el.id,
-                            question: el[lang.langName].question
-                        }))}
+                        data={questions}
                     />
                 </div>
             </Style >

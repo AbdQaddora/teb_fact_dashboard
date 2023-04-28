@@ -35,7 +35,7 @@ export const historyQuestionsSlice = createSlice({
         },
         updateQuestion: (state, action: PayloadAction<{ new_question: IQuestion }>) => {
             state.questions = state.questions.map(question => {
-                if (question.id !== action.payload.new_question.id) {
+                if (question.id === action.payload.new_question.id) {
                     return action.payload.new_question;
                 }
                 return question;
@@ -52,8 +52,23 @@ export const selectHistoryQuestions = (state: RootState) => state.historyQuestio
 
 // custom reducers
 export const getAllQuestions = () => (dispatch: AppDispatch) => {
-    // TODO: API CALL TO GET THE DATA
+    // TODO: API CALL TO GET THE ALL QUESTIONS
     dispatch(setAllQuestion({ questions: allQuestionsMock }))
+}
+
+export const addHistoryQuestion = (question: IQuestion) => (dispatch: AppDispatch) => {
+    // TODO: API CALL TO ADD THE QUESTION
+    dispatch(addQuestion({ question }))
+}
+
+export const updateHistoryQuestion = (new_question: IQuestion) => (dispatch: AppDispatch) => {
+    // TODO: API CALL TO UPDATE THE QUESTION
+    dispatch(updateQuestion({ new_question }))
+}
+
+export const deleteHistoryQuestion = (id: string) => (dispatch: AppDispatch) => {
+    // TODO: API CALL TO DELETE THE QUESTION
+    dispatch(deleteQuestion({ id }))
 }
 
 export default historyQuestionsSlice.reducer

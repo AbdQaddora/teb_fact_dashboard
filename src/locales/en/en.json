@@ -59,7 +59,9 @@
             "answer_options_in_arabic": "Answer options in arabic",
             "answer_options_in_english": "Answer options in english",
             "add_btn": "Add question",
-            "success_msg": "Question added successfully",
+            "update_btn": "update question",
+            "success_add_msg": "Question added successfully",
+            "success_update_msg": "Question updated successfully",
             "errors": {
                 "english_question_is_required": "The English translation of the question required",
                 "arabic_question_is_required": "The Arabic translation of the question required",

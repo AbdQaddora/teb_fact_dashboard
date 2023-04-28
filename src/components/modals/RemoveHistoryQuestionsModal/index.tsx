@@ -4,10 +4,8 @@ import { H5, Subtitle1 } from '../../tiny/Typography/style';
 import Button from '../../tiny/Button';
 import { useTranslation } from 'react-i18next';
 
-// image
-import noAvatar from '../../assets/images/no_avatar.webp';
 import { useAppDispatch } from '../../../hooks/redux';
-import { deleteQuestion } from '../../../redux/slices/historyQuestionsSlice';
+import { deleteHistoryQuestion } from '../../../redux/slices/historyQuestionsSlice';
 // tostas
 import { toast } from 'react-toastify';
 interface IProps {
@@ -19,11 +17,14 @@ const RemoveDoctorModal = ({ id, close }: IProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
-        // !todo call api
-        toast.success(t("success_msg"))
-        dispatch(deleteQuestion({ id: id }))
-        console.log({ id })
-        close();
+        try {
+            dispatch(deleteHistoryQuestion(id))
+            toast.success(t("success_msg"))
+            close();
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     return (

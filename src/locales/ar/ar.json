@@ -59,7 +59,9 @@
             "answer_options_in_arabic": "خيارات الاجابة باللغة العربية",
             "answer_options_in_english": "خيارات الاجابة باللغة الانجليزية",
             "add_btn": "اضافة السؤال",
-            "success_msg": "تم اضافة السؤال بنجاح",
+            "update_btn": "تعديل السؤال",
+            "success_add_msg": "تم اضافة السؤال بنجاح",
+            "success_update_msg": "تم تحديث السؤال بنجاح",
             "errors": {
                 "english_question_is_required": "الترجمة الإنجليزية للسؤال مطلوبة",
                 "arabic_question_is_required": "الترجمة العربية للسؤال مطلوبة",

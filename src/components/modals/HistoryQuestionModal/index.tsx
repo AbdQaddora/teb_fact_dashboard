@@ -14,10 +14,11 @@ import { toast } from 'react-toastify';
 // validation
 import questionSchema from '../../../validation/history_question';
 import { useAppDispatch } from '../../../hooks/redux';
-import { addQuestion } from '../../../redux/slices/historyQuestionsSlice';
+import { addHistoryQuestion, addQuestion, updateHistoryQuestion } from '../../../redux/slices/historyQuestionsSlice';
 import { nanoid } from '@reduxjs/toolkit';
 interface IProps {
     close: () => void,
+    data?: IQuestion
 }
 
 interface IOptions {
@@ -25,7 +26,7 @@ interface IOptions {
     value: string,
 }
 
-const NewHistoryQuestionModal = ({ close }: IProps) => {
+const HistoryQuestionModal = ({ close, data }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "modals.new_history_question_modal" })
     const dispatch = useAppDispatch();
     const historyQuestionTypesOptions = [
@@ -34,22 +35,28 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
         { value: QuestionsTypes.Radio, label: t("multiple_choice") },
         { value: QuestionsTypes.Checkbox, label: t("select_one_or_more") },
     ];
-    const [questionType, setQuestionType] = useState<QuestionsTypes>(QuestionsTypes.TrueFalse);
+    const [questionType, setQuestionType] = useState<QuestionsTypes>(data?.type || QuestionsTypes.TrueFalse);
     const [question, setQuestion] = useState({
-        en: "",
-        ar: ""
+        en: data?.en.question || "",
+        ar: data?.ar.question || ""
     });
     const [options, setOptions] = useState<{ en: IOptions[], ar: IOptions[] }>({
-        en: [],
-        ar: []
+        en: data?.en.options?.map(el => ({
+            label: el,
+            value: el,
+        })) || [],
+        ar: data?.ar.options?.map(el => ({
+            label: el,
+            value: el,
+        })) || [],
     });
 
     const handelQuestionInputs = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setQuestion(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }, [])
 
-    const handelAdd = () => {
-        const data: IQuestion = {
+    const handelSubmit = () => {
+        const dataRequest: IQuestion = {
             id: nanoid(),
             type: questionType,
             en: {
@@ -62,18 +69,31 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
             }
         }
 
+
         questionSchema.validate({
-            type: data.type,
-            en_question: data.en.question,
-            ar_question: data.ar.question,
-            en_options: data.en.options,
-            ar_options: data.ar.options,
+            type: dataRequest.type,
+            en_question: dataRequest.en.question,
+            ar_question: dataRequest.ar.question,
+            en_options: dataRequest.en.options,
+            ar_options: dataRequest.ar.options,
         }, { abortEarly: false })
             .then(() => {
-                // TODO: send api call
-                dispatch(addQuestion({ question: data }))
-                close();
-                toast.success(t("success_msg"));
+                try {
+                    if (data?.id) {
+                        // update
+                        dataRequest.id = data.id;
+                        dispatch(updateHistoryQuestion(dataRequest))
+                        close();
+                        toast.success(t("success_update_msg"));
+                    } else {
+                        // add
+                        dispatch(addHistoryQuestion(dataRequest))
+                        close();
+                        toast.success(t("success_add_msg"));
+                    }
+                } catch (error) {
+                    toast.error("something went wrong please call technical support team");
+                }
             })
             .catch(({ errors }) => {
                 errors.map((error: string) => {
@@ -81,6 +101,7 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
                 })
             })
     }
+
 
 
     return (
@@ -166,9 +187,9 @@ const NewHistoryQuestionModal = ({ close }: IProps) => {
                         })}
                     />
                 </>}
-            <Button margin='0.5rem 0' fullWidth onClick={handelAdd}>{t("add_btn")}</Button>
+            <Button margin='0.5rem 0' fullWidth onClick={handelSubmit}>{data?.id ? t("update_btn") : t("add_btn")}</Button>
         </Style>
     )
 }
 
-export default NewHistoryQuestionModal
+export default HistoryQuestionModal
