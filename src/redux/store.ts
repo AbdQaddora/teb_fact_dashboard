@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import historyQuestionsReducer from './slices/historyQuestionsSlice';
+import staticPagesReducer from './slices/staticPagesSlice';
 
 export const store = configureStore({
     reducer: {
         historyQuestions: historyQuestionsReducer,
+        staticPages: staticPagesReducer,
     },
 })
 

@@ -7,7 +7,7 @@ import Button from '../../components/tiny/Button'
 import ImageInput from '../../components/tiny/ImageInput'
 import { useTranslation } from 'react-i18next'
 
-const NewStaticPage = () => {
+const StaticPage = () => {
     const { t } = useTranslation("", { keyPrefix: "new_static_page" })
     return (
         <Style>
@@ -54,4 +54,4 @@ const NewStaticPage = () => {
     )
 }
 
-export default NewStaticPage
+export default StaticPage

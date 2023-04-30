@@ -15,7 +15,8 @@ export const PATHS = {
     TICKET: "/ticket",
     TICKETS: "/tickets",
     STATIC_PAGES: "/static-pages",
-    NEW_STATIC_PAGES: "/static-pages/new",
+    STATIC_PAGE: "/static-page",
+    NEW_STATIC_PAGE: "/static-page-new",
     HISTORY_QUESTIONS: "/history-questions"
 }
 
@@ -31,7 +32,7 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 const Ticket = lazy(() => import('../pages/Ticket'));
 const Tickets = lazy(() => import('../pages/Tickets'));
 const StaticPages = lazy(() => import('../pages/StaticPages'));
-const NewStaticPage = lazy(() => import('../pages/NewStaticPage'));
+const StaticPage = lazy(() => import('../pages/StaticPage'));
 const HistoryQuestions = lazy(() => import('../pages/HistoryQuestions'));
 
 const Router = () => {
@@ -69,12 +70,20 @@ const Router = () => {
             <Route path={PATHS.TICKETS} element={<DashboardLayout>
                 <Tickets />
             </DashboardLayout>} />
+            {/* STATIC PAGES TABLE */}
             <Route path={PATHS.STATIC_PAGES} element={<DashboardLayout>
                 <StaticPages />
             </DashboardLayout>} />
-            <Route path={PATHS.NEW_STATIC_PAGES} element={<DashboardLayout>
-                <NewStaticPage />
+            {/* FOR EDIT PAGE */}
+            <Route path={PATHS.STATIC_PAGE + "/:id"} element={<DashboardLayout>
+                <StaticPage />
             </DashboardLayout>} />
+
+            {/* FOR NEW PAGE */}
+            <Route path={PATHS.NEW_STATIC_PAGE} element={<DashboardLayout>
+                <StaticPage />
+            </DashboardLayout>} />
+
             <Route path={PATHS.HISTORY_QUESTIONS} element={<DashboardLayout>
                 <HistoryQuestions />
             </DashboardLayout>} />

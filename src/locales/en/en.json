@@ -106,17 +106,23 @@
             "actions": "Actions"
         },
         "doctors": {
-            "name": "Name",
-            "email": "Email",
-            "phone": "Phone",
+            "name": "name",
+            "email": "email",
+            "phone": "phone",
             "consulting_count": "consulting count",
             "last_consultation_date": "last consulting",
             "rating": "rating",
             "actions": "actions"
         },
         "history_question": {
-            "question": "Question",
-            "actions": "Actions"
+            "question": "question",
+            "actions": "actions"
+        },
+        "static_pages": {
+            "icon": "icon",
+            "title": "title",
+            "description": "description",
+            "actions": "actions"
         }
     },
     "login": {

@@ -10,10 +10,6 @@ import TableSection from '../../components/TableSection';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
 import Modal from '../../components/Modal';
 import HistoryQuestionModal from '../../components/modals/HistoryQuestionModal';
-import { AgGridReact } from 'ag-grid-react';
-
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);

@@ -118,6 +118,12 @@
         "history_question": {
             "question": "السؤال",
             "actions": "افعال"
+        },
+        "static_pages": {
+            "icon": "الأيقونة",
+            "title": "العنوان",
+            "description": "الوصف",
+            "actions": "افعال"
         }
     },
     "login": {
