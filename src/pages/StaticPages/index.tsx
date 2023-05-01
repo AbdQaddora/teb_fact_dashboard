@@ -13,14 +13,13 @@ import { PATHS } from '../../router';
 import { useNavigate } from 'react-router-dom';
 
 const StaticPages = () => {
-    const { pages, updated_at } = useAppSelector(selectStaticPages);
+    const { pages, updated_at, is_initial_data_fetched } = useAppSelector(selectStaticPages);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const { lang } = useLang();
 
     useEffect(() => {
-        dispatch(getAllPages());
+        dispatch(getAllPages(is_initial_data_fetched));
     }, [])
 
     return (

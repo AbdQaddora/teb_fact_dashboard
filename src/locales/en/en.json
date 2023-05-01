@@ -138,13 +138,27 @@
     "static_pages": {
         "add_new_page": "Add new page"
     },
-    "new_static_page": {
+    "static_page": {
         "page_icon": "Page icon",
         "page_icon_input": "Icon",
         "english_page": "English page",
         "english_title_placeholder": "English title",
         "arabic_page": "Arabic page",
-        "arabic_title_placeholder": "Arabic title"
+        "arabic_title_placeholder": "Arabic title",
+        "page_description": "Page description",
+        "success_add_msg": "Page added successfully",
+        "success_update_msg": "Page updated successfully",
+        "update_btn": "update page",
+        "add_btn": "Add page",
+        "errors": {
+            "page_icon_required": "page icon is required filed",
+            "page_description_required": "page description is required filed",
+            "page_title_ar_required": "page title in arabic is required filed",
+            "page_title_en_required": "page title in english is required filed",
+            "page_content_ar_required": "page content in arabic is required filed",
+            "page_content_en_required": "page content in english is required filed",
+            "something_went_wrong": "something went wrong please try again later"
+        }
     },
     "latest_consultations": {
         "title": "Consultations",

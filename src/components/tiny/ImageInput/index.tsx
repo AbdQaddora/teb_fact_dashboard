@@ -5,14 +5,15 @@ import { MdModeEdit } from 'react-icons/md';
 
 interface IProps {
     onChange: (image: string) => void,
+    value: string
     className?: string,
     margin?: string,
     height?: string,
     width?: string,
     text?: string
 }
-const ImageInput = ({ onChange, className = "", margin, height, width, text }: IProps) => {
-    const [image, setImage] = useState("");
+const ImageInput = ({ onChange, className = "", margin, height, width, text, value }: IProps) => {
+    const [image, setImage] = useState(value);
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const reader = new FileReader();
 

@@ -9,12 +9,14 @@ import allQuestionsMock from '../../mock/history_questions.json';
 interface IHistoryQuestionsSlice {
     questions: IQuestion[],
     updated_at: string
+    is_initial_data_fetched: boolean
 }
 
 // Define the initial state using that type
 const initialState: IHistoryQuestionsSlice = {
     questions: [],
-    updated_at: `${Date.now()}`
+    updated_at: `${Date.now()}`,
+    is_initial_data_fetched: false
 }
 
 export const historyQuestionsSlice = createSlice({
@@ -27,7 +29,8 @@ export const historyQuestionsSlice = createSlice({
         },
         setAllQuestion: (state, action: PayloadAction<{ questions: IQuestion[] }>) => {
             state.questions = [...action.payload.questions];
-            state.updated_at = `${Date.now()}`
+            state.updated_at = `${Date.now()}`,
+                state.is_initial_data_fetched = true;
         },
         deleteQuestion: (state, action: PayloadAction<{ id: string }>) => {
             state.questions = state.questions.filter(question => question.id !== action.payload.id);
@@ -45,15 +48,23 @@ export const historyQuestionsSlice = createSlice({
     },
 })
 
-export const { addQuestion, deleteQuestion, updateQuestion, setAllQuestion } = historyQuestionsSlice.actions
+export const {
+    addQuestion,
+    deleteQuestion,
+    updateQuestion,
+    setAllQuestion
+} = historyQuestionsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectHistoryQuestions = (state: RootState) => state.historyQuestions
 
 // custom reducers
-export const getAllQuestions = () => (dispatch: AppDispatch) => {
-    // TODO: API CALL TO GET THE ALL QUESTIONS
-    dispatch(setAllQuestion({ questions: allQuestionsMock }))
+export const getAllQuestions = (is_initial_data_fetched: boolean) => (dispatch: AppDispatch) => {
+    if (!is_initial_data_fetched) {
+        // TODO: API CALL TO GET THE ALL QUESTIONS
+        console.log("RESET")
+        dispatch(setAllQuestion({ questions: allQuestionsMock }))
+    }
 }
 
 export const addHistoryQuestion = (question: IQuestion) => (dispatch: AppDispatch) => {

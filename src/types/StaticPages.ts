@@ -5,7 +5,7 @@ export type TStaticPageInSingleLang = {
 
 export interface IStaticPage {
     id: string,
-    slug?: string,
+    slug: string,
     is_active: boolean,
     icon: string,
     ar: TStaticPageInSingleLang,

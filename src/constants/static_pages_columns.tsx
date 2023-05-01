@@ -28,11 +28,10 @@ const STATIC_PAGES_COLUMNS: Column<IStaticPage>[] = [
     },
     {
         Header: () => <Translate TranslateKey='tables.static_pages.description' />,
-        accessor: "en",
+        accessor: "slug",
         width: "100%",
         maxWidth: 700,
         minWidth: 400,
-        Cell: ({ row }) => <DescriptionCell data={row.original} />,
     },
     {
         Header: () => <Translate TranslateKey='tables.static_pages.actions' />,
@@ -47,13 +46,6 @@ const TitleCell = ({ data }: { data: IStaticPage }) => {
     const { lang } = useLang();
     return <Body1 weight={500}>
         {data[lang.langName].title}
-    </Body1>
-}
-
-const DescriptionCell = ({ data }: { data: IStaticPage }) => {
-    const { lang } = useLang();
-    return <Body1 weight={500}>
-        {data[lang.langName].description}
     </Body1>
 }
 

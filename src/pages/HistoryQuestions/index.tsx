@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { useLang } from '../../context/LanguageContext';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getAllQuestions, selectHistoryQuestions } from '../../redux/slices/historyQuestionsSlice';
 
@@ -13,14 +12,13 @@ import HistoryQuestionModal from '../../components/modals/HistoryQuestionModal';
 
 const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
-    const { questions, updated_at } = useAppSelector(selectHistoryQuestions);
+    const { questions, updated_at, is_initial_data_fetched } = useAppSelector(selectHistoryQuestions);
     const dispatch = useAppDispatch();
 
     const { t } = useTranslation();
-    const { lang } = useLang();
 
     useEffect(() => {
-        dispatch(getAllQuestions());
+        dispatch(getAllQuestions(is_initial_data_fetched));
     }, [])
 
     return (

@@ -139,13 +139,27 @@
     "static_pages": {
         "add_new_page": "إضافة صفحة جديدة"
     },
-    "new_static_page": {
+    "static_page": {
         "page_icon": "أيقونة الصفحة",
         "page_icon_input": "الأيقونة",
         "english_page": "الصفحة باللغة الانجليزية",
         "english_title_placeholder": "العنوان باللغة الانجليزية",
         "arabic_page": "الصفحة باللغة العربية",
-        "arabic_title_placeholder": "العنوان باللغة العربية"
+        "arabic_title_placeholder": "العنوان باللغة العربية",
+        "page_description": "وصف الصفحة",
+        "success_add_msg": "تم اضافة الصفحة بنجاح",
+        "success_update_msg": "تم تحديث الصفحة بنجاح",
+        "update_btn": "تحديث الصفحة",
+        "add_btn": "اضافة الصفحة",
+        "errors": {
+            "page_icon_required": "ايقونة الصفحة حقل اجباري",
+            "page_description_required": "وصف الصفحة حقل اجباري",
+            "page_title_ar_required": "عنوان الصفحة باللغة العربية حقل اجباري",
+            "page_title_en_required": "عنوان الصفحة باللغة الانجليزية حقل اجباري",
+            "page_content_ar_required": "محتوى الصفحة باللغة العربية حقل اجباري",
+            "page_content_en_required": "محتوى الصفحة باللغة الانجليزية حقل اجباري",
+            "something_went_wrong": "حدث خطأ ما حاول مرة اخرى في وقت لاحق"
+        }
     },
     "latest_consultations": {
         "title": "الاستشارات",

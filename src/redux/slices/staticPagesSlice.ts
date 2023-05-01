@@ -8,13 +8,15 @@ import allPagesMock from '../../mock/static_pages.json';
 // Define a type for the slice state
 interface IStaticPagesSlice {
     pages: IStaticPage[],
-    updated_at: string
+    updated_at: string,
+    is_initial_data_fetched: boolean
 }
 
 // Define the initial state using that type
 const initialState: IStaticPagesSlice = {
     pages: [],
-    updated_at: `${Date.now()}`
+    updated_at: `${Date.now()}`,
+    is_initial_data_fetched: false
 }
 
 export const staticPagesSlice = createSlice({
@@ -28,6 +30,7 @@ export const staticPagesSlice = createSlice({
         setAllPages_local: (state, action: PayloadAction<{ pages: IStaticPage[] }>) => {
             state.pages = [...action.payload.pages];
             state.updated_at = `${Date.now()}`
+            state.is_initial_data_fetched = true
         },
         deletePage_local: (state, action: PayloadAction<{ id: string }>) => {
             state.pages = state.pages.filter(page => page.id !== action.payload.id);
@@ -66,10 +69,11 @@ export const {
 export const selectStaticPages = (state: RootState) => state.staticPages
 
 // custom reducers
-export const getAllPages = () => (dispatch: AppDispatch) => {
-    // TODO: API CALL TO GET ALL PAGES
-    console.log({ allPagesMock })
-    dispatch(setAllPages_local({ pages: allPagesMock }))
+export const getAllPages = (is_initial_data_fetched: boolean) => (dispatch: AppDispatch) => {
+    if (!is_initial_data_fetched) {
+        // TODO: API CALL TO GET ALL PAGES
+        dispatch(setAllPages_local({ pages: allPagesMock }))
+    }
 }
 
 export const addStaticPage = (page: IStaticPage) => (dispatch: AppDispatch) => {
@@ -79,6 +83,7 @@ export const addStaticPage = (page: IStaticPage) => (dispatch: AppDispatch) => {
 
 export const updateStaticPage = (new_page: IStaticPage) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO UPDATE THE PAGE
+    console.log({ new_page })
     dispatch(updatePage_local({ new_page }))
 }
 
