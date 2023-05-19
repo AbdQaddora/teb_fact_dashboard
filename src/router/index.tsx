@@ -4,9 +4,6 @@ import DashboardLayout from '../layouts/DashboardLayout';
 import Loading from '../components/tiny/Loading';
 
 export const PATHS = {
-    ADD_NEW_ARTICLE: "/new-article",
-    ARTICLE: "/article",
-    ARTICLES: "/articles",
     CONSULTATIONS: "/consultations",
     DOCTOR: "/doctor",
     DOCTORS: "/doctors",
@@ -22,9 +19,6 @@ export const PATHS = {
 
 const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/Home'));
-const AddNewArticle = lazy(() => import('../pages/AddNewArticle'));
-const Article = lazy(() => import('../pages/Article'));
-const Articles = lazy(() => import('../pages/Articles'));
 const Consultations = lazy(() => import('../pages/Consultations'));
 const Doctor = lazy(() => import('../pages/Doctor'));
 const Doctors = lazy(() => import('../pages/Doctors'));
@@ -45,15 +39,6 @@ const Router = () => {
 
             <Route path={PATHS.HOME} element={<DashboardLayout>
                 <Home />
-            </DashboardLayout>} />
-            <Route path={PATHS.ADD_NEW_ARTICLE} element={<DashboardLayout>
-                <AddNewArticle />
-            </DashboardLayout>} />
-            <Route path={PATHS.ARTICLE + "/:id"} element={<DashboardLayout>
-                <Article />
-            </DashboardLayout>} />
-            <Route path={PATHS.ARTICLES} element={<DashboardLayout>
-                <Articles />
             </DashboardLayout>} />
             <Route path={PATHS.CONSULTATIONS} element={<DashboardLayout>
                 <Consultations />
@@ -87,9 +72,7 @@ const Router = () => {
             <Route path={PATHS.HISTORY_QUESTIONS} element={<DashboardLayout>
                 <HistoryQuestions />
             </DashboardLayout>} />
-            <Route path={"/*"} element={<DashboardLayout>
-                <NotFound />
-            </DashboardLayout>} />
+            <Route path={"/*"} element={<NotFound />} />
         </Routes>
     )
 }

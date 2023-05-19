@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
-import { useLang } from '../../context/LanguageContext';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import Style from './style'
@@ -25,11 +24,11 @@ const StaticPages = () => {
     return (
         <Style>
             <div>
-                <H4 margin='1rem 0 2rem'>{t("history_questions.title")}</H4>
+                <H4 margin='1rem 0 2rem'>{t("static_pages.static_pages")}</H4>
                 <TableSection
                     updated_at={updated_at}
                     addNew={() => { navigate(PATHS.NEW_STATIC_PAGE) }}
-                    title={t("history_questions.subTitle")}
+                    title={t("static_pages.pages")}
                     columns={STATIC_PAGES_COLUMNS}
                     data={pages}
                 />

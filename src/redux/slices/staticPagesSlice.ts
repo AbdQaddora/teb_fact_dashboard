@@ -62,7 +62,7 @@ export const {
     deletePage_local,
     setAllPages_local,
     updatePage_local,
-    flipPageActiveState_local
+    flipPageActiveState_local,
 } = staticPagesSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type

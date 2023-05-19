@@ -14,20 +14,6 @@
             "open": "مفتوح",
             "closed": "مغلق"
         },
-        "static_page_section": {
-            "activate": "تفعيل",
-            "deactivate": "تعطيل",
-            "arabic": "محتوى الصفحة باللغة العربية",
-            "english": "محتوى الصفحة باللغة الانجليزية",
-            "arabic_small": "العربية",
-            "english_small": "الانجليزية",
-            "save": "حفظ التعديلات",
-            "cancel": "الغاء",
-            "delete": "حذف الصفحة",
-            "page_icon": "أيقونة الصفحة :",
-            "title": "العنوان",
-            "icon": "الأيقونة"
-        },
         "textEditor": {
             "small": "صغير",
             "normal": "عادي",
@@ -47,6 +33,12 @@
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
             "btn": "أخذف",
             "success_msg": "تم حذف السؤال بنجاح"
+        },
+        "remove_static_page_modal": {
+            "question": "هل أنت متأكد أنك تريد حذف هذا الصفحة",
+            "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
+            "btn": "أخذف",
+            "success_msg": "تم حذف الصفحة بنجاح"
         },
         "new_history_question_modal": {
             "question_type": "نوع السؤال",
@@ -134,10 +126,27 @@
         "btn": "تسجيل الدخول"
     },
     "home": {
-        "latest_consultations": "أحدث الاستشارات"
+        "latest_consultations": "أحدث الاستشارات",
+        "cards": {
+            "doctors": {
+                "label": "عدد الأطباء"
+            },
+            "patients": {
+                "label": "عدد المرضى"
+            },
+            "consultations": {
+                "label": "عدد الأستشارات"
+            }
+        }
     },
     "static_pages": {
-        "add_new_page": "إضافة صفحة جديدة"
+        "static_pages": "الصفحات الثابتة",
+        "pages": "الصفحات"
+    },
+    "not_found": {
+        "title": "404: الصفحة التي تبحث عنها ليست هنا",
+        "sub_title": "إما انك ادخلت رابط خاطئ أو أتيت إلى هنا عن طريق الخطأ. أيا كان ذلك ، حاول استخدام زر العودة",
+        "back_btn": "عد إلى لوحة التحكم"
     },
     "static_page": {
         "page_icon": "أيقونة الصفحة",

@@ -13,7 +13,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = ({ placeholder, error = false, height, value, fullWidth, margin, disabled, ...rest }: IProps) => {
     const id = useId();
     const [isEmpty, setIsEmpty] = useState(true);
-
+    console.log({ value })
     useEffect(() => {
         if (value && isEmpty) {
             setIsEmpty(false);

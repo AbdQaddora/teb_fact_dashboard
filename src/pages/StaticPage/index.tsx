@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import Style from './style'
 import { H5 } from '../../components/tiny/Typography/style'
 import Input from '../../components/tiny/Input'
@@ -8,43 +8,45 @@ import ImageInput from '../../components/tiny/ImageInput'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { addStaticPage, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
+import { addStaticPage, getAllPages, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
 import { IStaticPage } from '../../types/StaticPages'
 import { PATHS } from '../../router'
 import pageSchema from '../../validation/static_page'
 import { toast } from 'react-toastify'
+
+const defaultValues: IStaticPage = {
+    ar: {
+        title: "",
+        description: ""
+    },
+    en: {
+        title: "",
+        description: ""
+    },
+    icon: "",
+    id: "",
+    is_active: true,
+    slug: ""
+}
 
 const StaticPage = () => {
     const { t } = useTranslation("", { keyPrefix: "static_page" })
     const { pathname } = useLocation();
     const { id } = useParams();
     const navigate = useNavigate();
-    const { pages } = useAppSelector(selectStaticPages);
+    const { pages, is_initial_data_fetched } = useAppSelector(selectStaticPages);
     const dispatch = useAppDispatch();
 
-    const localData = useMemo(() => {
-        const data = pages.find(page => page.id === id)
-        if (data) {
-            return data
-        }
+    const [data, setData] = useState<IStaticPage>(defaultValues);
 
-        return {
-            ar: {
-                title: "",
-                description: ""
-            },
-            en: {
-                title: "",
-                description: ""
-            },
-            icon: "",
-            id: "",
-            is_active: true,
-            slug: ""
-        }
-    }, []);
-
-    const [data, setData] = useState<IStaticPage>(localData);
+    useEffect(() => {
+        dispatch(getAllPages(is_initial_data_fetched));
+        setData(pages.find(page => page.id === id) || defaultValues);
+    }, [pages])
+    
+    useEffect(() => {
+        console.log(data)
+    }, [data])
 
     const handelSubmit = () => {
         // VALIDATION

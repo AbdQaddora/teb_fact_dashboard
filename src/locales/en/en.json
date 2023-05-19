@@ -14,20 +14,6 @@
             "open": "Open",
             "closed": "Closed"
         },
-        "static_page_section": {
-            "activate": "Activate",
-            "deactivate": "Deactivate",
-            "arabic": "Arabic page content",
-            "english": "English page content",
-            "arabic_small": "Arabic",
-            "english_small": "English",
-            "save": "save changes",
-            "cancel": "cancel",
-            "delete": "delete page",
-            "page_icon": "page icon: ",
-            "title": "Title",
-            "icon": "icon"
-        },
         "textEditor": {
             "small": "Small",
             "normal": "Normal",
@@ -47,6 +33,12 @@
             "subTitle": "This action is permanently action and you can't go back",
             "btn": "Delete",
             "success_msg": "Question has been deleted successfully"
+        },
+        "remove_static_page_modal": {
+            "question": "are you sure you want to delete this page?",
+            "subTitle": "This action is permanently action and you can't go back",
+            "btn": "Delete",
+            "success_msg": "Page has been deleted successfully"
         },
         "new_history_question_modal": {
             "question_type": "Question type:",
@@ -133,10 +125,27 @@
         "btn": "Login"
     },
     "home": {
-        "latest_consultations": "Latest consultations"
+        "latest_consultations": "Latest consultations",
+        "cards": {
+            "doctors": {
+                "label": "total doctors"
+            },
+            "patients": {
+                "label": "total patients"
+            },
+            "consultations": {
+                "label": "total consultations"
+            }
+        }
     },
     "static_pages": {
-        "add_new_page": "Add new page"
+        "static_pages": "Static pages",
+        "pages": "Pages"
+    },
+    "not_found": {
+        "title": "404: The page you are looking for isn’t here",
+        "sub_title": "You either tried some shady route or you came here by mistake. Whichever it is, try using the navigation",
+        "back_btn": "Go back to Dashboard"
     },
     "static_page": {
         "page_icon": "Page icon",

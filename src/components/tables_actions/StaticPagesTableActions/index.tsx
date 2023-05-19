@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '../../../router'
 import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
-import RemoveDoctorModal from '../../modals/RemoveDoctorModal'
 import { IStaticPage } from '../../../types/StaticPages'
+import RemoveStaticPageModal from '../../modals/RemoveStaticPageModal'
 
 interface IProps {
     data: IStaticPage
@@ -19,11 +19,10 @@ const StaticPagesTableActions = ({ data }: IProps) => {
     return (
         <>
             {isRemoveModalOpen && <Modal close={() => setIsRemoveModalOpen(false)}>
-                {/* <RemoveDoctorModal
+                <RemoveStaticPageModal
+                    id={data.id}
                     close={() => setIsRemoveModalOpen(false)}
-                    {...{ id, name, avatar }}
-                /> */}
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime, fugiat.
+                />
             </Modal>}
             <Style>
                 <Link to={`${PATHS.STATIC_PAGE}/${data.id}`}>
