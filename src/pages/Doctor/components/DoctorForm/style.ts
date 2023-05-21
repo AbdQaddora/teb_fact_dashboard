@@ -20,8 +20,12 @@ const Style = styled.div`
         column-gap: 1rem;
         border-bottom: 1px solid ${props => props.theme.colors.other.divider};
 
+        .date_input{
+            direction: ltr;
+        }
+
         .date_input > label{
-            padding-inline-end:5px ;
+            padding-inline-end:25px ;
             padding-bottom:2px ;
         }
     }

@@ -186,6 +186,20 @@
         "subTitle": "All Doctors",
         "search": "Search doctors"
     },
+    "doctor": {
+        "doctor": "Doctor",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "gender": "Gender",
+        "date_of_birth": "Date Of Birth",
+        "graduation_year": "Graduation Year",
+        "graduation_GPA": "Graduation GPA",
+        "max_open_consultations": "Max Open Consultations",
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "save": "Save Changes"
+    },
     "history_questions": {
         "title": "Medical history",
         "subTitle": "Medical history questions"

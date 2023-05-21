@@ -187,6 +187,20 @@
         "subTitle": "كل الاطباء",
         "search": "ابحث عن الأطباء"
     },
+    "doctor": {
+        "doctor": "الطبيب",
+        "name": "الاسم",
+        "email": "البريد الالكتروني",
+        "phone": "رقم الموبايل",
+        "gender": "الجنس",
+        "date_of_birth": "تاريخ الميلاد",
+        "graduation_year": "سنة التخرج",
+        "graduation_GPA": "معدل التخرج",
+        "max_open_consultations": "الحد الأقصى للاستشارات",
+        "activate": "تفعيل",
+        "deactivate": "تعطيل",
+        "save": "حفظ التغيرات"
+    },
     "history_questions": {
         "title": "التاريخ المرضي",
         "subTitle": "اسئلة التاريخ المرضي"
