@@ -6,7 +6,12 @@ const Style = styled.div`
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 1rem;
+
+        @media (max-width:920px){
+            grid-template-columns: 1fr;
+        }
     }
+    
 
     .certificate{
         margin-top: 2rem;
