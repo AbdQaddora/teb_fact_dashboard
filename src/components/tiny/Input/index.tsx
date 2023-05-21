@@ -7,10 +7,11 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
     error?: boolean
     fullWidth?: boolean
     margin?: string
-    height?: "small" | "large"
+    height?: "small" | "large",
+    className?: string
 }
 
-const Input = ({ placeholder, error = false, height, value, fullWidth, margin, disabled, ...rest }: IProps) => {
+const Input = ({ placeholder, error = false, className = "", height, value, fullWidth, margin, disabled, ...rest }: IProps) => {
     const id = useId();
     const [isEmpty, setIsEmpty] = useState(true);
     console.log({ value })
@@ -24,7 +25,7 @@ const Input = ({ placeholder, error = false, height, value, fullWidth, margin, d
 
 
     return (
-        <Style {...{ height, disabled, fullWidth, margin, error }} className={!isEmpty ? "not_empty" : ""}>
+        <Style {...{ height, disabled, fullWidth, margin, error }} className={!isEmpty ? `not_empty ${className}` : className}>
             <input disabled={disabled} value={value} id={id} {...rest} />
             <label htmlFor={id}>{placeholder}</label>
         </Style>
