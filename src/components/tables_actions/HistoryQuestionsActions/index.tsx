@@ -5,15 +5,12 @@ import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
 import RemoveHistoryQuestionsModal from '../../modals/RemoveHistoryQuestionsModal'
 import HistoryQuestionModal from '../../modals/HistoryQuestionModal'
-import { IQuestion } from '../../../types/HistoryQuestion'
 
 interface IProps {
-    editBtnText: string,
-    removeBtnText: string,
     data: IQuestion
 }
 
-const HistoryQuestionsActions = ({ data, editBtnText, removeBtnText }: IProps) => {
+const HistoryQuestionsActions = ({ data }: IProps) => {
     const { t } = useTranslation();
     const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -33,11 +30,11 @@ const HistoryQuestionsActions = ({ data, editBtnText, removeBtnText }: IProps) =
                 />
             </Modal>}
             <Style>
-                <Button onClick={() => setIsUpdateModalOpen(true)}>{t(editBtnText)}</Button>
+                <Button onClick={() => setIsUpdateModalOpen(true)}>{t("components.table_actions.edit")}</Button>
                 <Button
                     color='danger'
                     onClick={() => setIsRemoveModalOpen(true)}
-                >{t(removeBtnText)}</Button>
+                >{t("components.table_actions.remove")}</Button>
             </Style>
         </>
     )

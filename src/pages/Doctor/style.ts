@@ -13,13 +13,23 @@ const Style = styled.div`
     }
     
 
-    .certificate{
+    .no_certificate , .certificate{
         margin-top: 2rem;
         width: 100%;
         border-radius: 8px;
         min-height: 80dvh;
         aspect-ratio: 16/9;
+    }
+
+    .certificate{
         object-fit: cover;
+    }
+
+    .no_certificate{
+        background-color: #CCC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `
 

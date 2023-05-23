@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '../../../router'
 import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
-import { IStaticPage } from '../../../types/StaticPages'
 import RemoveStaticPageModal from '../../modals/RemoveStaticPageModal'
 
 interface IProps {
@@ -31,7 +30,7 @@ const StaticPagesTableActions = ({ data }: IProps) => {
                 <Button
                     color='danger'
                     onClick={() => setIsRemoveModalOpen(true)}
-                >{t(t("components.table_actions.remove"))}</Button>
+                >{t("components.table_actions.remove")}</Button>
             </Style>
         </>
     )

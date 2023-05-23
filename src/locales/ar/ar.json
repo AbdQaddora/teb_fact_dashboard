@@ -102,8 +102,9 @@
             "name": "الاسم",
             "email": "البريد الالكتروني",
             "phone": "الهاتف",
-            "consulting_count": "عدد الاستشارات",
-            "last_consultation_date": "تاريخ اخر استشارة",
+            "max_open_consultations": "الحد الأقصى للاستشارات",
+            "graduation_year": "سنة التخرج",
+            "graduation_GPA": "معدل التخرج",
             "rating": "التقييم",
             "actions": "افعال"
         },
@@ -199,7 +200,8 @@
         "max_open_consultations": "الحد الأقصى للاستشارات",
         "activate": "تفعيل",
         "deactivate": "تعطيل",
-        "save": "حفظ التغيرات"
+        "save": "حفظ التغيرات",
+        "no_certificate_yet": "لم يقدم شهادته لنا حتى الان"
     },
     "history_questions": {
         "title": "التاريخ المرضي",

@@ -1,22 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { H4 } from '../../components/tiny/Typography/style';
 import TableSection from '../../components/TableSection';
 import DOCTORS_COLUMNS from '../../constants/doctors_columns';
-
-// mock
-import doctorsMock from '../../mock/doctors.json';
 import Input from '../../components/tiny/Input';
-import Style from './style';
 
+
+import { getAllDoctors, selectDoctors } from '../../redux/slices/doctorsSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+
+import Style from './style';
 const Doctors = () => {
-  const [latestConsultations, setLatestConsultations] = useState(doctorsMock);
+  const { doctors, updated_at } = useAppSelector(selectDoctors);
+  const dispatch = useAppDispatch();
+
   const { t } = useTranslation("", { keyPrefix: "doctors" })
   const [filter, setFilter] = useState("");
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
   }
+
+  useEffect(() => {
+    if (doctors.length === 0) {
+      dispatch(getAllDoctors())
+    }
+  }, [])
+
 
   return (
     <Style>
@@ -31,10 +41,11 @@ const Doctors = () => {
         />
       </div>
       <TableSection
+        updated_at={updated_at}
         filterValue={filter}
         title={t("subTitle")}
         columns={DOCTORS_COLUMNS}
-        data={latestConsultations}
+        data={doctors as IDoctor[]}
       />
     </Style>
   )

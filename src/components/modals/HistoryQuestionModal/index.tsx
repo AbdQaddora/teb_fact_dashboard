@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react'
 import { H6 } from '../../tiny/Typography/style'
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { IQuestion, QuestionsTypes } from '../../../types/HistoryQuestion';
 import Input from '../../tiny/Input';
 import Button from '../../tiny/Button';
 // translation

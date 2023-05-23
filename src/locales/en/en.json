@@ -101,8 +101,9 @@
             "name": "name",
             "email": "email",
             "phone": "phone",
-            "consulting_count": "consulting count",
-            "last_consultation_date": "last consulting",
+            "max_open_consultations": "Max Open Consultations",
+            "graduation_year": "graduation year",
+            "graduation_GPA": "GPA",
             "rating": "rating",
             "actions": "actions"
         },
@@ -198,7 +199,8 @@
         "max_open_consultations": "Max Open Consultations",
         "activate": "Activate",
         "deactivate": "Deactivate",
-        "save": "Save Changes"
+        "save": "Save Changes",
+        "no_certificate_yet": "didn't provide us his certificate yet"
     },
     "history_questions": {
         "title": "Medical history",

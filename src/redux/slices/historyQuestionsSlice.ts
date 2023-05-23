@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { AppDispatch, RootState } from '../store'
-import { IQuestion } from '../../types/HistoryQuestion'
 
 // mock
 import allQuestionsMock from '../../mock/history_questions.json';

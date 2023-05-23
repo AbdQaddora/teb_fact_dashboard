@@ -1,9 +1,9 @@
-export type TStaticPageInSingleLang = {
+type TStaticPageInSingleLang = {
     title: string,
     description: string
 }
 
-export interface IStaticPage {
+interface IStaticPage {
     id: string,
     slug: string,
     is_active: boolean,

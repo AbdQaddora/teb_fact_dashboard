@@ -54,6 +54,10 @@ const Style = styled.div<IProps>`
         }
     }
 
+    .date{
+        height: ${props => props.height === "small" ? "2.5rem" : "3rem"};
+    }
+
 
 `
 

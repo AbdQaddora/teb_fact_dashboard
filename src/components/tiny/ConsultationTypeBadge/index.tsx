@@ -1,6 +1,5 @@
 import React from 'react'
 import Style from './style'
-import ConsultationType from '../../../types/ConsultationType'
 import { useTranslation } from 'react-i18next'
 
 interface IProps {

@@ -4,18 +4,7 @@ import NameAndAvatarCell from '../components/tiny/NameAndAvatar';
 import DoctorsTableActions from '../components/tables_actions/DoctorsTableActions';
 import Rating from '../components/tiny/Rating';
 
-export interface IDataReports {
-    id: string;
-    name: string,
-    avatar: string,
-    email: string;
-    phone: string;
-    rating: number;
-    consulting_count: number;
-    last_consultation_date: string;
-}
-
-const DOCTORS_COLUMNS: Column<IDataReports>[] = [
+const DOCTORS_COLUMNS: Column<IDoctor>[] = [
     {
         Header: () => <Translate TranslateKey='tables.doctors.name' />,
         accessor: "name",
@@ -25,13 +14,18 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
     {
         Header: () => <Translate TranslateKey='tables.doctors.email' />,
         accessor: "email",
-        maxWidth: 250
+        maxWidth: 200,
+        Cell: ({ value }) => <p style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
+        }}>{value}</p>
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.phone' />,
         accessor: "phone",
         disableGlobalFilter: true,
-        maxWidth: 120
+        minWidth: 120
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.rating' />,
@@ -41,18 +35,16 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
         maxWidth: 150
     },
     {
-        Header: () => <Translate TranslateKey='tables.doctors.consulting_count' />,
-        accessor: "consulting_count",
+        Header: () => <Translate TranslateKey='tables.doctors.max_open_consultations' />,
+        accessor: "max_open_consultations",
         disableGlobalFilter: true,
-        maxWidth: 200,
-        minWidth: 150
+        minWidth: 200
     },
     {
-        Header: () => <Translate TranslateKey='tables.doctors.last_consultation_date' />,
-        accessor: "last_consultation_date",
+        Header: () => <Translate TranslateKey='tables.doctors.graduation_GPA' />,
+        accessor: "graduation_gpa",
         disableGlobalFilter: true,
-        maxWidth: 200,
-        minWidth: 150
+        minWidth: 100
     },
     {
         Header: () => <Translate TranslateKey='tables.doctors.actions' />,
@@ -64,8 +56,6 @@ const DOCTORS_COLUMNS: Column<IDataReports>[] = [
             id={row.original.id}
             name={row.original.name}
             avatar={row.original.avatar}
-            editBtnText={"components.table_actions.edit"}
-            removeBtnText={"components.table_actions.remove"}
         />
         ,
     }

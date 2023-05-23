@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 // image
 import noAvatar from '../../../assets/images/no_avatar.webp';
+import { useAppDispatch } from '../../../hooks/redux';
+import { deleteDoctor } from '../../../redux/slices/doctorsSlice';
 interface IProps {
     id: string;
     name: string;
@@ -13,11 +15,11 @@ interface IProps {
 }
 
 const RemoveDoctorModal = ({ id, name, avatar, close }: IProps) => {
+    const dispatch = useAppDispatch();
 
     const { t } = useTranslation("", { keyPrefix: "modals.remove_doctor_modal" });
     const handelRemove = () => {
-        // !todo call api
-        console.log({ id })
+        dispatch(deleteDoctor(id))
         close();
     }
 

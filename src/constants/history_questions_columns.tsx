@@ -2,7 +2,6 @@ import { Column } from 'react-table';
 import Translate from '../components/tiny/Translate';
 import HistoryQuestionsActions from '../components/tables_actions/HistoryQuestionsActions';
 import { Body1 } from '../components/tiny/Typography/style';
-import { IQuestion } from '../types/HistoryQuestion';
 import { useLang } from '../context/LanguageContext';
 
 const HISTORY_QUESTIONS_COLUMNS: Column<IQuestion>[] = [
@@ -25,13 +24,7 @@ const HISTORY_QUESTIONS_COLUMNS: Column<IQuestion>[] = [
         accessor: "ar",
         width: "150px",
         disableSortBy: true,
-        Cell: ({ row }) => {
-            return <HistoryQuestionsActions
-                editBtnText='components.table_actions.edit'
-                removeBtnText='components.table_actions.remove'
-                data={row.original}
-            />
-        }
+        Cell: ({ row }) => <HistoryQuestionsActions data={row.original} />
     },
 ];
 

@@ -62,7 +62,7 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                         })}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                        {page.map(row => {
+                        {page.length > 0 ? page.map(row => {
                             prepareRow(row);
                             return <tr className='table_body_row'{...row.getRowProps()}>
                                 {row.cells.map(cell => <td {...cell.getCellProps({
@@ -73,7 +73,9 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                                     }
                                 })}>{cell.render("Cell")}</td>)}
                             </tr>
-                        })}
+                        }) : <tr>
+                            <td>NO DATA</td>
+                        </tr>}
                     </tbody>
                 </Style>
             </TableContainer>

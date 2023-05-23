@@ -35,6 +35,10 @@ const Style = styled.div`
         display: flex;
         justify-content: flex-end;
     }
+
+    .gender > div{
+        min-height: 3rem;
+    }
 `
 
 export default Style;

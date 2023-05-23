@@ -1,6 +1,5 @@
 import { Column } from 'react-table';
 import Translate from '../components/tiny/Translate';
-import { IStaticPage } from '../types/StaticPages';
 import { useLang } from '../context/LanguageContext';
 import { Body1 } from '../components/tiny/Typography/style';
 import StaticPagesTableActions from '../components/tables_actions/StaticPagesTableActions';

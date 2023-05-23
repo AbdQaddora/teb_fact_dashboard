@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { AppDispatch, RootState } from '../store'
-import { IStaticPage } from '../../types/StaticPages';
 
 // mock
 import allPagesMock from '../../mock/static_pages.json';
