@@ -3,6 +3,7 @@ import type { AppDispatch, RootState } from '../store'
 
 // mock
 import allQuestionsMock from '../../mock/history_questions.json';
+import { IQuestion } from '../../types/HistoryQuestion';
 
 // Define a type for the slice state
 interface IHistoryQuestionsSlice {

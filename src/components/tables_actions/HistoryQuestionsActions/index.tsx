@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
 import RemoveHistoryQuestionsModal from '../../modals/RemoveHistoryQuestionsModal'
 import HistoryQuestionModal from '../../modals/HistoryQuestionModal'
+import { IQuestion } from '../../../types/HistoryQuestion'
 
 interface IProps {
     data: IQuestion

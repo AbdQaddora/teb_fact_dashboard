@@ -3,6 +3,7 @@ import Translate from '../components/tiny/Translate';
 import HistoryQuestionsActions from '../components/tables_actions/HistoryQuestionsActions';
 import { Body1 } from '../components/tiny/Typography/style';
 import { useLang } from '../context/LanguageContext';
+import { IQuestion } from '../types/HistoryQuestion';
 
 const HISTORY_QUESTIONS_COLUMNS: Column<IQuestion>[] = [
     {
