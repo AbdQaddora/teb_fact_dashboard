@@ -1,3 +1,5 @@
+import { QuestionsTypes } from "./QuestionsTypes"
+
 type TQuestionInSingleLang = {
     question: string,
     options?: string[]
