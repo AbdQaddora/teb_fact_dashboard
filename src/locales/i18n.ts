@@ -15,8 +15,8 @@ i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: localStorage.getItem(import.meta.env.REACT_APP_TEB_FACT_DASHBOARD_LOCAL_STORAGE_LANGUAGE_KEY as string) ?
-            JSON.parse(localStorage.getItem(import.meta.env.REACT_APP_TEB_FACT_DASHBOARD_LOCAL_STORAGE_LANGUAGE_KEY as string) || "").langName : 'en',
+        lng: localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) ?
+            JSON.parse(localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) || "").langName : 'en',
         interpolation: {
             escapeValue: false,
         },

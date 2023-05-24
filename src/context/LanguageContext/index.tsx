@@ -23,16 +23,15 @@ const langsArray: ILang[] = [
 
 
 const LanguageContext = createContext<ILanguageContext>({
-    lang: localStorage.getItem(import.meta.env.REACT_APP_TEB_FACT_DASHBOARD_LOCAL_STORAGE_LANGUAGE_KEY as string) ?
-        JSON.parse(localStorage.getItem(import.meta.env.REACT_APP_TEB_FACT_DASHBOARD_LOCAL_STORAGE_LANGUAGE_KEY as string) || "") : langsArray[0],
+    lang: localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY) ?
+        JSON.parse(localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY) || "") : langsArray[0],
     changeLang: () => { }
 })
 
 export const useLang = () => useContext(LanguageContext)
 
 const LanguageContextProvider = ({ children }: { children: ReactNode }) => {
-    const [lang, setLang] = useLocalStorage<ILang>(import.meta.env.REACT_APP_TEB_FACT_DASHBOARD_LOCAL_STORAGE_LANGUAGE_KEY as string, langsArray[0]);
-
+    const [lang, setLang] = useLocalStorage<ILang>(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY, langsArray[0]);
     const changeLang = (lang: TLangs) => {
         i18n.changeLanguage(lang);
         setLang(langsArray.find(el => el.langName === lang) || langsArray[0])

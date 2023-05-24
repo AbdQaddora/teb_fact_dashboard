@@ -19,6 +19,10 @@ const Style = styled.div`
         background: radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%);
     }
 
+    .remember_me{
+        margin-bottom: 1rem;
+    }
+
     @media (max-width:920px) {
         grid-template-columns: 1fr;
         .form_container{

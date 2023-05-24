@@ -123,7 +123,13 @@
         "subTitle": "login into tebfact internal platform",
         "label1": "Email Address",
         "label2": "Password",
-        "btn": "Login"
+        "btn": "Login",
+        "remember_me": "Remember me",
+        "errors": {
+            "invalid_email": "Invalid email",
+            "email_is_required": "Email is required",
+            "password_is_required": "Password is required"
+        }
     },
     "home": {
         "latest_consultations": "Latest consultations",

@@ -15,6 +15,7 @@ import questionSchema from '../../../validation/history_question';
 import { useAppDispatch } from '../../../hooks/redux';
 import { addHistoryQuestion, addQuestion, updateHistoryQuestion } from '../../../redux/slices/historyQuestionsSlice';
 import { nanoid } from '@reduxjs/toolkit';
+import { QuestionsTypes } from '../../../types/QuestionsTypes';
 interface IProps {
     close: () => void,
     data?: IQuestion
