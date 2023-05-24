@@ -12,7 +12,7 @@ interface IProps {
 const colorStyle = css<IProps>`
     --btn-color:${props => props.color === "secondary"
         ? props.theme.colors.secondary.main :
-        props.color === "danger" ? props.theme.colors.danger.main : props.theme.colors.primary.main};
+        props.color === "danger" ? props.theme.colors.danger.main : props.theme.colors.primary.dark};
     
     --btn-hover-color:${props => props.variant === "outlined" || props.variant === "text" ?
         props.color === "secondary" ? props.theme.colors.secondary.states.p8 : props.theme.colors.primary.states.p8 :
@@ -20,7 +20,7 @@ const colorStyle = css<IProps>`
             props.color === "danger" ? props.theme.colors.danger.second : props.theme.colors.primary.states.p130};
 
     --btn-text-color:${props => props.variant === "outlined" || props.variant === "text" ?
-        props.color === "secondary" ? props.theme.colors.secondary.main : props.theme.colors.primary.main :
+        props.color === "secondary" ? props.theme.colors.secondary.main : props.theme.colors.primary.dark :
         props => props.color === "secondary" ? props.theme.colors.secondary.contrast : props.theme.colors.primary.contrast};
 `
 // variant
