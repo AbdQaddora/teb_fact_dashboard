@@ -6,10 +6,11 @@ import { useLang } from '../../context/LanguageContext'
 
 interface IProps {
     children: ReactNode,
+    fitWidth?: boolean,
     close: () => void
 }
 
-const Modal = ({ children, close }: IProps) => {
+const Modal = ({ children, close, fitWidth }: IProps) => {
     const { lang: { direction } } = useLang();
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const Modal = ({ children, close }: IProps) => {
     }, [])
 
     return createPortal(
-        <Style className={direction}>
+        <Style className={direction} fitWidth={fitWidth}>
             <div className="overlay" onClick={close}></div>
             <div className="container">
                 <div className="modal" onClick={(e) => e.stopPropagation()}>

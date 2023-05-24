@@ -1,6 +1,8 @@
 import styled from "styled-components";
-
-const Style = styled.div`
+interface IProps {
+    fitWidth?: boolean,
+}
+const Style = styled.div<IProps>`
     .overlay , .container{
         position: fixed;
         inset: 0;
@@ -19,8 +21,7 @@ const Style = styled.div`
         align-items: center;
         justify-content: center;
         .modal{
-            width: 50%;
-            max-width: 650px;
+            ${props => props.fitWidth ? "width: fit-content;" : "width: 50%;max-width: 650px;"}
             padding: 1rem;
             border-radius: 8px;
             background-color: ${props => props.theme.colors.background.paper};
@@ -45,16 +46,15 @@ const Style = styled.div`
             }
 
             @media screen and (max-width:1200px){
-                width: 60%;
+                ${props => props.fitWidth ? "width: fit-content;max-width:95%;" : "width: 60%;max-width: 650px;"}
             }
 
             @media screen and (max-width:920px){
-                width: 80%;
+                ${props => props.fitWidth ? "width: fit-content;max-width:95%;" : "width: 80%;max-width: 650px;"}
             }
 
             @media screen and (max-width:720px){
-                width: calc(100% - 32px);
-                max-width: unset;
+                ${props => props.fitWidth ? "width: fit-content;max-width:95%;" : "width: calc(100% - 32px);max-width: unset;"}
             }
         }
     }

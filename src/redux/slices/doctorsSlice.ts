@@ -109,19 +109,19 @@ export const getDoctorBtId = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO GET THE DOCTOR
     dispatch(_setDoctor({
         doctor: {
-            "id": "646c853ffc13ae1eee753b1d",
+            "id": "646c853ffc13sdsdasdae1eee753b1e",
             "isActive": true,
-            "name": "Nessi",
-            "avatar": "https://randomuser.me/api/portraits/men/35.jpg",
-            "email": "npauluzzi5@google.cn",
+            "name": "Hasan",
+            "avatar": "https://i.ibb.co/XYkxcph/Whats-App-Image-2023-05-24-at-19-30-54.jpg",
+            "email": "hshamia18@gmail.com",
             "gender": "male",
-            "phone": "841-846-5381",
-            "date_of_birth": "24/7/2000",
-            "graduation_year": 1990,
-            "graduation_gpa": 95.7,
-            "max_open_consultations": 6,
-            "certificate": "certificate",
-            "rating": 2
+            "phone": "00970599869275",
+            "date_of_birth": "9/6/1991",
+            "graduation_year": 2015,
+            "graduation_gpa": 93.2,
+            "max_open_consultations": 10,
+            "certificate": "",
+            "rating": 5
         }
     }))
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import Style from './style'
-import { Body2, H5 } from '../../../../components/tiny/Typography/style'
+import { Body2, H5 } from '../../../../../components/tiny/Typography/style'
 interface IProps {
     icon: ReactNode,
     label: string,
