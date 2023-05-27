@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 // validation
 import questionSchema from '../../../validation/history_question';
 import { useAppDispatch } from '../../../hooks/redux';
-import { addHistoryQuestion, addQuestion, updateHistoryQuestion } from '../../../redux/slices/historyQuestionsSlice';
+import { addQuestion, updateQuestion } from '../../../redux/slices/historyQuestionsSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import { IQuestion, QuestionsTypes } from '../../../types/HistoryQuestion';
 interface IProps {
@@ -82,12 +82,12 @@ const HistoryQuestionModal = ({ close, data }: IProps) => {
                     if (data?.id) {
                         // update
                         dataRequest.id = data.id;
-                        dispatch(updateHistoryQuestion(dataRequest))
+                        dispatch(updateQuestion(dataRequest))
                         close();
                         toast.success(t("success_update_msg"));
                     } else {
                         // add
-                        dispatch(addHistoryQuestion(dataRequest))
+                        dispatch(addQuestion(dataRequest))
                         close();
                         toast.success(t("success_add_msg"));
                     }

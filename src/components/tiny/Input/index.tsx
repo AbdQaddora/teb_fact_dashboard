@@ -40,7 +40,7 @@ const Input = ({ placeholder, error = false, className = "", height, value, full
 
     return (
         <Style {...{ height, disabled, fullWidth, margin, error }} className={!isEmpty ? `not_empty ${className}` : className}>
-            <input disabled={disabled} value={value} id={id} {...rest} onChange={rest.onChange} />
+            <input dir="auto" disabled={disabled} value={value} id={id} {...rest} onChange={rest.onChange} />
             <label htmlFor={id}>{placeholder}</label>
         </Style>
     )

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getAllQuestions, selectHistoryQuestions } from '../../redux/slices/historyQuestionsSlice';
+import { getQuestions, selectHistoryQuestions } from '../../redux/slices/historyQuestionsSlice';
 
 import Style from './style'
 import { H4 } from '../../components/tiny/Typography/style';
@@ -9,18 +9,31 @@ import TableSection from '../../components/TableSection';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
 import Modal from '../../components/Modal';
 import HistoryQuestionModal from '../../components/modals/HistoryQuestionModal';
+import TablePagination from '../../components/TablePagination';
 
 const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
-    const { questions, updated_at, is_initial_data_fetched } = useAppSelector(selectHistoryQuestions);
-    const dispatch = useAppDispatch();
-
     const { t } = useTranslation();
 
-    useEffect(() => {
-        dispatch(getAllQuestions(is_initial_data_fetched));
-    }, [])
+    const { questions, updated_at, totalQuestionsCount } = useAppSelector(selectHistoryQuestions);
+    const dispatch = useAppDispatch();
 
+    const [pageSize, setPageSize] = useState(10);
+    const [activePage, setActivePage] = useState(1);
+
+
+    useEffect(() => {
+        dispatch(getQuestions(activePage, pageSize));
+    }, [pageSize, activePage])
+
+    const nextPage = () => {
+        setActivePage(prev => prev + 1 <= Math.ceil(totalQuestionsCount / pageSize) ? prev + 1 : prev)
+    }
+
+    const prevPage = () => {
+        setActivePage(prev => prev - 1 > 0 ? prev - 1 : prev)
+    }
+    
     return (
         <>
             {isNewQuestionModalOpen && <Modal close={() => setIsNewQuestionModalOpen(false)}>
@@ -37,6 +50,14 @@ const HistoryQuestions = () => {
                         title={t("history_questions.subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
                         data={questions}
+                        Pagination={<TablePagination
+                            nextPage={nextPage}
+                            pageCount={Math.ceil(totalQuestionsCount / pageSize)}
+                            pageIndex={activePage}
+                            pageSize={pageSize}
+                            previousPage={prevPage}
+                            setPageSize={setPageSize}
+                        />}
                     />
                 </div>
             </Style >

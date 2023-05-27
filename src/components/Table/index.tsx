@@ -20,19 +20,14 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
     const tableInstance = useTable({
         data: dataAfterMemo || emptyData,
         columns: columnsAfterMemo || emptyColumns
-    }, useSortBy, usePagination);
+    }, useSortBy);
 
     const {
         getTableBodyProps,
         getTableProps,
-        page,
+        rows,
         headerGroups,
         prepareRow,
-        pageCount,
-        nextPage,
-        previousPage,
-        setPageSize,
-        state: { pageIndex, pageSize }
     } = tableInstance;
 
     return (
@@ -62,7 +57,7 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                         })}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                        {page.length > 0 ? page.map(row => {
+                        {rows.length > 0 ? rows.map(row => {
                             prepareRow(row);
                             return <tr className='table_body_row'{...row.getRowProps()}>
                                 {row.cells.map(cell => <td {...cell.getCellProps({
@@ -79,7 +74,6 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                     </tbody>
                 </Style>
             </TableContainer>
-            <TablePagination {...{ nextPage, pageCount, pageIndex, pageSize, previousPage, setPageSize, }} />
         </>
     )
 }

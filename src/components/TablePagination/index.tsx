@@ -52,7 +52,7 @@ const TablePagination = ({ pageIndex, pageCount, pageSize, nextPage, previousPag
                 <button className="table_pagination_btn" onClick={previousPage}>
                     {direction === 'ltr' ? <GrPrevious className='icon' /> : <GrNext className='icon' />}
                 </button>
-                <Body1 className='count_text'>{pageIndex + 1} {t("of")} {pageCount}</Body1>
+                <Body1 className='count_text'>{pageIndex} {t("of")} {pageCount}</Body1>
                 <button className="table_pagination_btn" onClick={nextPage}>
                     {direction === 'ltr' ? <GrNext className='icon' /> : <GrPrevious className='icon' />}
                 </button>

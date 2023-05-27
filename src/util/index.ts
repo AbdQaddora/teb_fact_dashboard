@@ -17,6 +17,7 @@ export const dateToString = (date: Date) => {
 
 export const getAuthTokenFromLocalStorage = () => {
     const item = localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_TOKEN_KEY);
+    
     if (item) {
         return item
     }

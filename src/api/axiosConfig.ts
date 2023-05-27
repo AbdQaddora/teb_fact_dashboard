@@ -6,13 +6,14 @@ const api = axios.create({
     headers: {
         'Accept-Language': localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) ?
             JSON.parse(localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) || "").langName : 'en',
-        'Authorization': getAuthTokenFromLocalStorage()
     }
 });
 
 export const setTokenInAxios = (token: string) => {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
+
+setTokenInAxios(getAuthTokenFromLocalStorage())
 
 export const changeLocal = (local: string) => {
     api.defaults.headers.common['Accept-Language'] = local;

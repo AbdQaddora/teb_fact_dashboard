@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, ReactNode, useState } from 'react'
 import Style from './style'
 import { H5 } from '../tiny/Typography/style'
 import { Column } from 'react-table'
@@ -14,10 +14,11 @@ interface IProps<T extends Record<string, any>> {
     data: T[],
     filterValue?: string,
     addNew?: () => void,
-    updated_at?: string
+    updated_at?: string,
+    Pagination?: ReactNode
 }
 
-const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at }: IProps<T>) => {
+const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at, Pagination }: IProps<T>) => {
     const [forceRender, setForceRender] = useState(true);
 
     useEffect(() => {
@@ -45,6 +46,7 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
                     data={data}
                 />)
             )}
+            {Pagination ? Pagination : ""}
         </Style>
     )
 }

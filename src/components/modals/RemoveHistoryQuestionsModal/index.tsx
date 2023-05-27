@@ -5,7 +5,7 @@ import Button from '../../tiny/Button';
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch } from '../../../hooks/redux';
-import { deleteHistoryQuestion } from '../../../redux/slices/historyQuestionsSlice';
+import { deleteQuestion } from '../../../redux/slices/historyQuestionsSlice';
 // tostas
 import { toast } from 'react-toastify';
 interface IProps {
@@ -18,7 +18,7 @@ const RemoveDoctorModal = ({ id, close }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
         try {
-            dispatch(deleteHistoryQuestion(id))
+            dispatch(deleteQuestion(id))
             toast.success(t("success_msg"))
             close();
         } catch (error) {
