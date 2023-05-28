@@ -23,15 +23,15 @@ const Style = styled.div`
 
     @keyframes loading {
             0%{
-                background-color: #AAA;
+                background-color: ${props => props.theme.colors.primary.main};
             }
 
             50%{
-                background-color: #DDD;
+                background-color: ${props => props.theme.colors.primary.states.p130};
             }
 
             100%{
-                background-color: #AAA;
+                background-color: ${props => props.theme.colors.primary.main};
             }
     }
 
@@ -57,8 +57,9 @@ const Style = styled.div`
         }
 
         .loading_td{
+            border-radius: 4px;
             height: 45px;
-            background-color: #AAA;
+            opacity: 0.8;
             margin: 1px;
             animation-name: loading;
             animation-iteration-count: infinite;

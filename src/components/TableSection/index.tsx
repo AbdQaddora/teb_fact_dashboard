@@ -90,7 +90,7 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
                         </tr>
                     </thead>
                     <tbody>
-                        {[...Array(10)].map(el => {
+                        {[...Array(pagination?.pageSize || 10)].map(el => {
                             return <tr>
                                 {columns.map(el => <td style={{
                                     minWidth: el.minWidth ? `${el.minWidth}px` : undefined,
