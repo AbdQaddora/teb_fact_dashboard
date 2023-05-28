@@ -21,19 +21,10 @@ const HistoryQuestions = () => {
     const [pageSize, setPageSize] = useState(10);
     const [activePage, setActivePage] = useState(1);
 
-
     useEffect(() => {
         dispatch(getQuestions(activePage, pageSize));
     }, [pageSize, activePage])
 
-    const nextPage = () => {
-        setActivePage(prev => prev + 1 <= Math.ceil(totalQuestionsCount / pageSize) ? prev + 1 : prev)
-    }
-
-    const prevPage = () => {
-        setActivePage(prev => prev - 1 > 0 ? prev - 1 : prev)
-    }
-    
     return (
         <>
             {isNewQuestionModalOpen && <Modal close={() => setIsNewQuestionModalOpen(false)}>
@@ -50,14 +41,13 @@ const HistoryQuestions = () => {
                         title={t("history_questions.subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
                         data={questions}
-                        Pagination={<TablePagination
-                            nextPage={nextPage}
-                            pageCount={Math.ceil(totalQuestionsCount / pageSize)}
-                            pageIndex={activePage}
-                            pageSize={pageSize}
-                            previousPage={prevPage}
-                            setPageSize={setPageSize}
-                        />}
+                        pagination={{
+                            activePage,
+                            pageSize,
+                            setActivePage,
+                            setPageSize,
+                            totalCount: totalQuestionsCount
+                        }}
                     />
                 </div>
             </Style >

@@ -20,6 +20,52 @@ const Style = styled.div`
             justify-content: center;
         }
     }
+
+    @keyframes loading {
+            0%{
+                background-color: #AAA;
+            }
+
+            50%{
+                background-color: #DDD;
+            }
+
+            100%{
+                background-color: #AAA;
+            }
+    }
+
+    .loading_table{
+        border-collapse: collapse;
+        width: 100% !important;
+        
+        .table_header{
+            background-color: ${props => props.theme.colors.text.primary};
+            th{ 
+                flex-grow: 1;
+                padding: 10px 8px;
+                text-align: start;
+                line-height: 30px;
+                text-transform: capitalize;
+                font-weight: 500;
+                color: ${props => props.theme.colors.neutral.n100};
+                user-select: none;
+                .order_icon{
+                    margin-inline-end: 5px;
+                }
+            }
+        }
+
+        .loading_td{
+            height: 45px;
+            background-color: #AAA;
+            margin: 1px;
+            animation-name: loading;
+            animation-iteration-count: infinite;
+            animation-duration: 2s;
+            animation-timing-function:ease-in-out ;
+        }
+    }
 `
 
 export default Style;
