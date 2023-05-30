@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
 import RemoveStaticPageModal from '../../modals/RemoveStaticPageModal'
 import { useAppDispatch } from '../../../hooks/redux'
-import { selectPageById } from '../../../redux/slices/staticPagesSlice'
+import { selectPageById, updatePageActiveState } from '../../../redux/slices/staticPagesSlice'
 
 interface IProps {
     data: IStaticPage
@@ -22,6 +22,11 @@ const StaticPagesTableActions = ({ data }: IProps) => {
     const onEdit = () => {
         dispatch(selectPageById({ id: data.id }))
     }
+
+    const onFlipState = () => {
+        dispatch(updatePageActiveState(data.id, !data.status))
+    }
+
     return (
         <>
             {isRemoveModalOpen && <Modal close={() => setIsRemoveModalOpen(false)}>
@@ -34,6 +39,9 @@ const StaticPagesTableActions = ({ data }: IProps) => {
                 <Link to={`${PATHS.STATIC_PAGE}/${data.id}`}>
                     <Button onClick={onEdit}>{t("components.table_actions.edit")}</Button>
                 </Link>
+                <Button
+                    color={data.status ? 'danger' : 'secondary'} onClick={onFlipState}
+                >{t(data.status ? 'doctor.deactivate' : 'doctor.activate')}</Button>
                 <Button
                     color='danger'
                     onClick={() => setIsRemoveModalOpen(true)}

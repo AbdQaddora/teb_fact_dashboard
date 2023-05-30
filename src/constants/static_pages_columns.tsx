@@ -35,7 +35,6 @@ const STATIC_PAGES_COLUMNS: Column<IStaticPage>[] = [
     {
         Header: () => <Translate TranslateKey='tables.static_pages.actions' />,
         accessor: "id",
-        maxWidth: 180,
         disableSortBy: true,
         Cell: ({ row }) => <StaticPagesTableActions data={row.original} />,
     }
