@@ -1,35 +1,19 @@
-import { IQuestion, QuestionsTypes } from "../types/HistoryQuestion";
 import api from "./axiosConfig"
 
-const _parseQuestionWithOptions = (question: any) => {
-    return {
-        ...question,
-        en: {
-            question: question.en.question,
-            options: question.en.options === '[]' ? null : JSON.parse(question.en.options)
-        },
-        ar: {
-            question: question.ar.question,
-            options: question.ar.options === '[]' ? null : JSON.parse(question.ar.options)
-        }
-    }
-
-}
-
-const getQuestions = async (page: number, per_page: number) => {
+const getPages = async (page: number, per_page: number) => {
     try {
-        const { data } = await api.get(`/admin/history-questions?per_page=${per_page}&page=${page}`);
+        const { data } = await api.get(`/admin/pages?per_page=${per_page}&page=${page}`);
         if (data.data) {
             return {
                 status: true,
-                data: data.data.map(_parseQuestionWithOptions),
-                totalQuestionsCount: data.meta.total
+                data: data.data,
+                totalPagesCount: data.meta.total
             }
         } else {
             return {
                 status: false,
                 data: [],
-                totalQuestionsCount: 0
+                totalPagesCount: 0
             }
         }
     } catch (error: any) {
@@ -42,57 +26,13 @@ const getQuestions = async (page: number, per_page: number) => {
     }
 }
 
-const createQuestion = async (question: IQuestion) => {
+const createPage = async (page: IStaticPage) => {
     try {
-        const { data } = await api.post("/admin/history-questions", { ...question, id: null });
-        if (data.status) {
-            return {
-                status: true,
-                data: _parseQuestionWithOptions(data.data.question)
-            }
-        } else {
-            return {
-                status: false,
-                message: "something went wrong"
-            }
-        }
-    } catch (error: any) {
-        if (error.name === "AxiosError") {
-            return {
-                status: false,
-                message: error.response.data.message
-            }
-        }
-    }
-}
+        const { data } = await api.post("/admin/pages", {
+            ...page,
+            id: null,
+        });
 
-const updateQuestion = async (question: IQuestion) => {
-    try {
-        const { data } = await api.post(`/admin/history-questions/${question.id}`, { ...question, id: null });
-        if (data.status) {
-            return {
-                status: true,
-                data: _parseQuestionWithOptions(data.data.question)
-            }
-        } else {
-            return {
-                status: false,
-                message: "something went wrong"
-            }
-        }
-    } catch (error: any) {
-        if (error.name === "AxiosError") {
-            return {
-                status: false,
-                message: error.response.data.message
-            }
-        }
-    }
-}
-
-const deleteQuestion = async (id: string) => {
-    try {
-        const { data } = await api.delete(`/admin/history-questions/${id}`);
         if (data.status) {
             return {
                 status: true,
@@ -113,11 +53,81 @@ const deleteQuestion = async (id: string) => {
     }
 }
 
-const HistoryQuestionsAPI = {
-    getQuestions,
-    createQuestion,
-    deleteQuestion,
-    updateQuestion
+const updatePage = async (page: IStaticPage) => {
+    try {
+        const { data } = await api.post(`/admin/pages/${page.id}`, { ...page, id: null });
+        if (data.status) {
+            return {
+                status: true,
+            }
+        } else {
+            return {
+                status: false,
+                message: "something went wrong"
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
 }
 
-export default HistoryQuestionsAPI;
+const updatePageActiveState = async (id: string, is_active: boolean) => {
+    try {
+        const { data } = await api.post(`/admin/pages/${id}/update-status`, { is_active });
+        if (data.status) {
+            return {
+                status: true,
+            }
+        } else {
+            return {
+                status: false,
+                message: "something went wrong"
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
+const deletePage = async (id: string) => {
+    try {
+        const { data } = await api.delete(`/admin/pages/${id}`);
+        if (data.status) {
+            return {
+                status: true,
+            }
+        } else {
+            return {
+                status: false,
+                message: "something went wrong"
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
+const PagesAPI = {
+    getPages,
+    createPage,
+    deletePage,
+    updatePage,
+    updatePageActiveState
+}
+
+export default PagesAPI;

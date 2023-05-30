@@ -6,7 +6,7 @@ type TStaticPageInSingleLang = {
 interface IStaticPage {
     id: string,
     slug: string,
-    is_active: boolean,
+    status: boolean,
     icon: string,
     ar: TStaticPageInSingleLang,
     en: TStaticPageInSingleLang,

@@ -1,12 +1,10 @@
-import React, { useEffect, ReactNode, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './style'
 import { H5 } from '../tiny/Typography/style'
 import { Column } from 'react-table'
 import Table from '../Table'
 import TableWithFilter from '../TableWithFilter'
 import Button from '../tiny/Button'
-import { GrAdd } from 'react-icons/gr'
-import { useLang } from '../../context/LanguageContext'
 import TablePagination from '../TablePagination'
 
 interface IProps<T extends Record<string, any>> {
@@ -16,6 +14,7 @@ interface IProps<T extends Record<string, any>> {
     filterValue?: string,
     addNew?: () => void,
     updated_at?: string,
+    isLoading?: boolean,
     pagination?: {
         totalCount: number,
         pageSize: number,
@@ -25,7 +24,7 @@ interface IProps<T extends Record<string, any>> {
     }
 }
 
-const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at, pagination }: IProps<T>) => {
+const TableSection = <T extends Record<string, any>,>({ title, columns, data, filterValue, addNew, updated_at, pagination, isLoading }: IProps<T>) => {
     const [forceRender, setForceRender] = useState(true);
 
     useEffect(() => {
@@ -35,20 +34,10 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
         })
     }, [updated_at])
 
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(false);
-    }, [data])
-
-    useEffect(() => {
-        setIsLoading(true);
-    }, [pagination?.activePage, pagination?.pageSize])
-
     const nextPage = () => {
         if (pagination) {
             if (pagination.activePage + 1 <= Math.ceil(pagination.totalCount / pagination.pageSize)) {
-                pagination.setActivePage(pagination.activePage + 1 )
+                pagination.setActivePage(pagination.activePage + 1)
             }
         }
     }
@@ -63,13 +52,13 @@ const TableSection = <T extends Record<string, any>,>({ title, columns, data, fi
         if (pagination) {
             if (Math.floor(pagination.totalCount / newPageSize) > 0) {
                 pagination.setActivePage(Math.floor(pagination.totalCount / newPageSize))
-            }else{
+            } else {
                 pagination.setActivePage(1)
             }
             pagination.setPageSize(newPageSize);
         }
     }
-    
+
     return (
         <Style>
             <div className="section_head">

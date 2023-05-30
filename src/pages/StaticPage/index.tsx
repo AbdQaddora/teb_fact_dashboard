@@ -6,12 +6,13 @@ import TextEditor from '../../components/TextEditor'
 import Button from '../../components/tiny/Button'
 import ImageInput from '../../components/tiny/ImageInput'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { addStaticPage, getAllPages, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
+import { addStaticPage, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
 import { PATHS } from '../../router'
 import pageSchema from '../../validation/static_page'
 import { toast } from 'react-toastify'
+import Loading from '../../components/tiny/Loading'
 
 const defaultValues: IStaticPage = {
     ar: {
@@ -24,28 +25,45 @@ const defaultValues: IStaticPage = {
     },
     icon: "",
     id: "",
-    is_active: true,
+    status: true,
     slug: ""
 }
 
+const isEmptyPage = (page: IStaticPage) => {
+    if (page.ar.description === defaultValues.ar.description
+        && page.ar.title === defaultValues.ar.title
+        && page.en.title === defaultValues.en.title
+        && page.en.description === defaultValues.en.description) {
+        return true;
+    }
+    return false;
+}
 const StaticPage = () => {
     const { t } = useTranslation("", { keyPrefix: "static_page" })
     const { pathname } = useLocation();
-    const { id } = useParams();
     const navigate = useNavigate();
-    const { pages, is_initial_data_fetched } = useAppSelector(selectStaticPages);
+    const { page, page_requests_state } = useAppSelector(selectStaticPages);
+    console.log({ page })
     const dispatch = useAppDispatch();
 
-    const [data, setData] = useState<IStaticPage>(defaultValues);
+    const [data, setData] = useState<IStaticPage>(page);
 
     useEffect(() => {
-        dispatch(getAllPages(is_initial_data_fetched));
-        setData(pages.find(page => page.id === id) || defaultValues);
-    }, [pages])
-    
+        if (isEmptyPage(page) && pathname !== PATHS.NEW_STATIC_PAGE) {
+            // or get page py id
+            navigate(PATHS.STATIC_PAGES);
+        }
+    }, [])
+
     useEffect(() => {
-        console.log(data)
-    }, [data])
+        setData(page);
+    }, [page])
+
+    useEffect(() => {
+        if (page_requests_state.error) {
+            toast.error(page_requests_state.error)
+        }
+    }, [page_requests_state.error])
 
     const handelSubmit = () => {
         // VALIDATION
@@ -60,14 +78,15 @@ const StaticPage = () => {
             try {
                 if (pathname === PATHS.NEW_STATIC_PAGE) {
                     // *ADD
-                    dispatch(addStaticPage(data))
-                    toast.success(t("success_add_msg"));
+                    dispatch(addStaticPage(data, () => {
+                        toast.success(t("success_add_msg"));
+                    }))
                 } else {
                     // *UPDATE
-                    dispatch(updateStaticPage(data))
-                    toast.success(t("success_update_msg"));
+                    dispatch(updateStaticPage(data, () => {
+                        toast.success(t("success_update_msg"));
+                    }))
                 }
-                navigate(PATHS.STATIC_PAGES);
             } catch (error) {
                 toast.error(t("errors.something_went_wrong"));
 
@@ -79,8 +98,11 @@ const StaticPage = () => {
         })
     }
 
-
     const setState = (obj: any) => { setData(prev => ({ ...prev, ...obj })) }
+
+    if (page_requests_state.loading) {
+        return <Loading />
+    }
 
     return (
         <Style>
