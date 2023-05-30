@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import Style from './style'
 import { useDropzone } from 'react-dropzone';
 import { MdModeEdit } from 'react-icons/md';
@@ -13,13 +13,11 @@ interface IProps {
     text?: string
 }
 const ImageInput = ({ onChange, className = "", margin, height, width, text, value }: IProps) => {
-    const [image, setImage] = useState(value);
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const reader = new FileReader();
 
         reader.onload = () => {
             const base64 = reader.result;
-            setImage(base64 as string);
             onChange(base64 as string);
         };
 
@@ -36,7 +34,7 @@ const ImageInput = ({ onChange, className = "", margin, height, width, text, val
 
     return (
         <Style {...{ margin, height, width, className }}>
-            {!image && <div className='upload_input' {...getRootProps()}>
+            {!value && <div className='upload_input' {...getRootProps()}>
                 <input {...getInputProps()} />
                 {text ? <p>{text}</p> :
                     isDragActive ?
@@ -44,14 +42,14 @@ const ImageInput = ({ onChange, className = "", margin, height, width, text, val
                         <p>Drag and drop uploaded image, or click to select files</p>
                 }
             </div>}
-            {image && <div className='input_with_image' {...getRootProps()}>
+            {value && <div className='input_with_image' {...getRootProps()}>
                 <input {...getInputProps()} />
                 <div className="edit_icon_container">
                     <MdModeEdit className='edit_icon' />
                 </div>
                 <img
                     className='upload_image'
-                    src={image}
+                    src={value}
                     alt="uploaded file" />
             </div>
             }

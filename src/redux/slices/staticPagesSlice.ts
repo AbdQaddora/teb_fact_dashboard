@@ -58,6 +58,9 @@ export const staticPagesSlice = createSlice({
         selectPageById: (state, action: PayloadAction<{ id: string }>) => {
             state.page = state.pages.find(page => page.id === action.payload.id) || state.page
         },
+        _setPage: (state, action: PayloadAction<{ page: IStaticPage }>) => {
+            state.page = action.payload.page || state.page;
+        },
         _updateSelectedPage: (state, action: PayloadAction<{ new_page: IStaticPage }>) => {
             state.page = action.payload.new_page
             state.updated_at = `${Date.now()}`
@@ -125,6 +128,7 @@ export const {
 
 const { _addPage,
     _deletePage,
+    _setPage,
     _setAllPages,
     _updatePage,
     _updatePageActiveState,
@@ -149,10 +153,10 @@ export const getAllPages = (page: number, per_page: number) => (dispatch: AppDis
             if (res?.status) {
                 dispatch(_setAllPages({ pages: res.data, totalPagesCount: res.totalPagesCount }));
             } else {
-                dispatch(_setPagesRequestError(res?.message))
+                dispatch(_setPagesRequestError({ error: res?.message }))
             }
         }).catch((error) => {
-            dispatch(_setPagesRequestError(error?.message))
+            dispatch(_setPagesRequestError({ error: error?.message }))
         })
         .finally(() => {
             dispatch(_endPagesRequest())
@@ -168,10 +172,10 @@ export const addStaticPage = (page: IStaticPage, onResolve: () => void) => (disp
                 dispatch(_addPage({ page }));
                 onResolve();
             } else {
-                dispatch(_setPageRequestError(res?.message))
+                dispatch(_setPageRequestError({ error: res?.message }))
             }
         }).catch((error) => {
-            dispatch(_setPageRequestError(error?.message))
+            dispatch(_setPageRequestError({ error: error?.message }))
         })
         .finally(() => {
             dispatch(_endPageRequest())
@@ -188,10 +192,10 @@ export const updateStaticPage = (new_page: IStaticPage, onResolve: () => void) =
                 dispatch(_updatePage({ new_page }))
                 dispatch(_updateSelectedPage({ new_page }))
             } else {
-                dispatch(_setPageRequestError(res?.message))
+                dispatch(_setPageRequestError({ error: res?.message }))
             }
         }).catch((error) => {
-            dispatch(_setPageRequestError(error?.message))
+            dispatch(_setPageRequestError({ error: error?.message }))
         })
         .finally(() => {
             dispatch(_endPageRequest())
@@ -207,11 +211,10 @@ export const deleteStaticPage = (id: string) => (dispatch: AppDispatch) => {
             if (res?.status) {
                 dispatch(_deletePage({ id }))
             } else {
-                toast.error(res?.message)
-                dispatch(_setPagesRequestError(res?.message))
+                dispatch(_setPagesRequestError({ error: res?.message }))
             }
         }).catch((error) => {
-            dispatch(_setPagesRequestError(error?.message))
+            dispatch(_setPagesRequestError({ error: error?.message }))
         })
         .finally(() => {
             dispatch(_endPagesRequest())
@@ -225,15 +228,29 @@ export const updatePageActiveState = (id: string, status: boolean) => (dispatch:
             if (res?.status) {
                 dispatch(_updatePageActiveState({ id, status }))
             } else {
-                dispatch(_setPagesRequestError(res?.message))
+                dispatch(_setPagesRequestError({ error: res?.message }))
             }
         }).catch((error) => {
-            dispatch(_setPagesRequestError(error?.message))
+            dispatch(_setPagesRequestError({ error: error?.message }))
+        })
+}
+
+export const getPageByID = (id: string) => (dispatch: AppDispatch) => {
+    // TODO: API CALL TO FLIP THE PAGE ACTIVE STATE
+    dispatch(_startPageRequest())
+    PagesAPI.getPageByID(id)
+        .then((res) => {
+            if (res?.status) {
+                dispatch(_setPage({ page: res.data }))
+            } else {
+                dispatch(_setPageRequestError({ error: res?.message }))
+            }
+        }).catch((error) => {
+            dispatch(_setPageRequestError({ error: error?.message }))
         })
         .finally(() => {
-            dispatch(_endPagesRequest())
+            dispatch(_endPageRequest())
         })
-
 }
 
 

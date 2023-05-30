@@ -11,7 +11,7 @@ const STATIC_PAGES_COLUMNS: Column<IStaticPage>[] = [
         Cell: ({ value }) => <img
             width={40}
             height={40}
-            style={{ borderRadius: "4px" }}
+            style={{ borderRadius: "4px", objectFit: 'cover' }}
             src={value}
             alt='icon'
         />,
@@ -21,8 +21,9 @@ const STATIC_PAGES_COLUMNS: Column<IStaticPage>[] = [
     {
         Header: () => <Translate TranslateKey='tables.static_pages.title' />,
         accessor: "ar",
-        maxWidth: 200,
-        minWidth: 150,
+        maxWidth: 300,
+        width:"auto",
+        minWidth: 220,
         Cell: ({ row }) => <TitleCell data={row.original} />,
     },
     {

@@ -23,15 +23,15 @@ const Style = styled.div`
 
     @keyframes loading {
             0%{
-                background-color: ${props => props.theme.colors.primary.main};
+                background-color: ${props => props.theme.colors.background.dark};
             }
 
             50%{
-                background-color: ${props => props.theme.colors.primary.states.p130};
+                background-color: ${props => props.theme.colors.background.dark2};
             }
 
             100%{
-                background-color: ${props => props.theme.colors.primary.main};
+                background-color: ${props => props.theme.colors.background.dark};
             }
     }
 

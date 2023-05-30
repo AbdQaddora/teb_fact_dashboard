@@ -6,9 +6,9 @@ import TextEditor from '../../components/TextEditor'
 import Button from '../../components/tiny/Button'
 import ImageInput from '../../components/tiny/ImageInput'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { addStaticPage, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
+import { addStaticPage, getPageByID, selectStaticPages, updateStaticPage } from '../../redux/slices/staticPagesSlice'
 import { PATHS } from '../../router'
 import pageSchema from '../../validation/static_page'
 import { toast } from 'react-toastify'
@@ -41,17 +41,16 @@ const isEmptyPage = (page: IStaticPage) => {
 const StaticPage = () => {
     const { t } = useTranslation("", { keyPrefix: "static_page" })
     const { pathname } = useLocation();
-    const navigate = useNavigate();
+    const { id } = useParams();
     const { page, page_requests_state } = useAppSelector(selectStaticPages);
-    console.log({ page })
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const [data, setData] = useState<IStaticPage>(page);
 
     useEffect(() => {
         if (isEmptyPage(page) && pathname !== PATHS.NEW_STATIC_PAGE) {
-            // or get page py id
-            navigate(PATHS.STATIC_PAGES);
+            dispatch(getPageByID(id as string))
         }
     }, [])
 
@@ -62,8 +61,11 @@ const StaticPage = () => {
     useEffect(() => {
         if (page_requests_state.error) {
             toast.error(page_requests_state.error)
+            if (isEmptyPage(page) && pathname !== PATHS.NEW_STATIC_PAGE) {
+                navigate(PATHS.STATIC_PAGES)
+            }
         }
-    }, [page_requests_state.error])
+    }, [page_requests_state])
 
     const handelSubmit = () => {
         // VALIDATION

@@ -26,6 +26,30 @@ const getPages = async (page: number, per_page: number) => {
     }
 }
 
+const getPageByID = async (id: string) => {
+    try {
+        const { data } = await api.get(`/admin/pages/${id}`);
+        if (data.data) {
+            return {
+                status: true,
+                data: data.data,
+            }
+        } else {
+            return {
+                status: false,
+                message: "page not found",
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
 const createPage = async (page: IStaticPage) => {
     try {
         const { data } = await api.post("/admin/pages", {
@@ -55,7 +79,11 @@ const createPage = async (page: IStaticPage) => {
 
 const updatePage = async (page: IStaticPage) => {
     try {
-        const { data } = await api.post(`/admin/pages/${page.id}`, { ...page, id: null });
+        const { data } = await api.post(`/admin/pages/${page.id}`, {
+            ...page,
+            icon: page.icon.startsWith("data") ? page.icon : null,
+            id: null
+        });
         if (data.status) {
             return {
                 status: true,
@@ -76,9 +104,9 @@ const updatePage = async (page: IStaticPage) => {
     }
 }
 
-const updatePageActiveState = async (id: string, is_active: boolean) => {
+const updatePageActiveState = async (id: string, status: boolean) => {
     try {
-        const { data } = await api.post(`/admin/pages/${id}/update-status`, { is_active });
+        const { data } = await api.post(`/admin/pages/${id}/update-status`, { status });
         if (data.status) {
             return {
                 status: true,
@@ -124,6 +152,7 @@ const deletePage = async (id: string) => {
 
 const PagesAPI = {
     getPages,
+    getPageByID,
     createPage,
     deletePage,
     updatePage,
