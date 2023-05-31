@@ -44,8 +44,36 @@ const getConsultations = async (page: number, per_page: number) => {
     }
 }
 
+const getLatestConsultations = async (page: number, per_page: number) => {
+    try {
+        const { data } = await api.get(`/admin/last-consultations?per_page=${per_page}&page=${page}`);
+        if (data.data.last_consultations) {
+            return {
+                status: true,
+                data: mapConsultations(data.data.last_consultations),
+                // totalConsultationsCount: data.meta.total
+                totalConsultationsCount: data.data.last_consultations.length
+            }
+        } else {
+            return {
+                status: false,
+                message: "requested data not exist",
+                totalPagesCount: 0
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
 const ConsultationsAPI = {
     getConsultations,
+    getLatestConsultations,
 }
 
 export default ConsultationsAPI;

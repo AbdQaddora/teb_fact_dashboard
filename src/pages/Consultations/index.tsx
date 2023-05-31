@@ -7,23 +7,27 @@ import ConsultationsAPI from '../../api/consultations';
 import { toast } from 'react-toastify';
 
 const Consultations = () => {
-  const [latestConsultations, setLatestConsultations] = useState<IConsultation[]>([]);
-  const { t } = useTranslation("", { keyPrefix: "latest_consultations" })
+  const { t } = useTranslation("", { keyPrefix: "latest_consultations" });
+
+  const [consultations, setConsultations] = useState<IConsultation[]>([]);
   const [pageSize, setPageSize] = useState(10);
   const [activePage, setActivePage] = useState(1);
   const [totalConsultationsCount, setTotalConsultationsCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     ConsultationsAPI.getConsultations(activePage, pageSize)
       .then((res) => {
-        console.log({ res })
         if (res?.status && res?.data) {
-          setLatestConsultations(res?.data)
+          setConsultations(res?.data);
           setTotalConsultationsCount(res.totalConsultationsCount)
         } else {
-          console.log({ error: res?.message })
           toast.error(res?.message)
         }
+      }).catch((error) => {
+        toast.error(error?.message)
+      }).finally(() => {
+        setIsLoading(false);
       })
   }, [pageSize, activePage])
 
@@ -34,7 +38,8 @@ const Consultations = () => {
       <TableSection
         title={t("subTitle")}
         columns={LATEST_CONSULTATIONS_COLUMNS}
-        data={latestConsultations}
+        data={consultations}
+        isLoading={isLoading}
         pagination={{
           activePage,
           pageSize,
