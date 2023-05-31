@@ -1,1 +1,1 @@
-type ConsultationType = "new" | "open" | "close";
+type ConsultationType = "new" | "open" | "closed";

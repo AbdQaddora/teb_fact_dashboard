@@ -3,17 +3,7 @@ import ConsultationTypeBadge from '../components/tiny/ConsultationTypeBadge';
 import Translate from '../components/tiny/Translate';
 import NameAndAvatarCell from '../components/tiny/NameAndAvatar';
 
-export interface IDataLatestConsultation {
-    id: string,
-    patient_name: string,
-    patient_avatar: string,
-    patient_email: string;
-    consultation: string;
-    state: string;
-    date: string;
-}
-
-const LATEST_CONSULTATIONS_COLUMNS: Column<IDataLatestConsultation>[] = [
+const LATEST_CONSULTATIONS_COLUMNS: Column<IConsultation>[] = [
     {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.name' />,
         accessor: "patient_name",
