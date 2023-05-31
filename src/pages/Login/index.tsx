@@ -77,6 +77,7 @@ const Login = () => {
           />
 
           <Input
+            type='password'
             fullWidth
             margin="15px 0 10px"
             value={data.password}
