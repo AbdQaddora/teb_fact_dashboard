@@ -4,15 +4,17 @@ import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
 import { useLang } from '../../context/LanguageContext';
+import TableLoading from '../TableLoading';
 
 const emptyData: Record<string, any>[] = [];
 const emptyColumns: readonly Column<object>[] = [];
 interface IProps<T extends Record<string, any>> {
     data: T[],
     columns: Column<T>[],
+    isLoading?: boolean
 }
 
-const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => {
+const Table = <T extends Record<string, any>,>({ data, columns, isLoading }: IProps<T>) => {
     const { lang: { langName } } = useLang();
     const dataAfterMemo: T[] = useMemo(() => data, [langName])
     const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
@@ -30,6 +32,8 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
         prepareRow,
     } = tableInstance;
 
+    console.log({ rows })
+    console.log({ data })
     return (
         <>
             <TableContainer>
@@ -56,7 +60,7 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                             </tr>
                         })}
                     </thead>
-                    <tbody {...getTableBodyProps()}>
+                    {isLoading ? <TableLoading columns={columns} /> : <tbody {...getTableBodyProps()}>
                         {rows.length > 0 ? rows.map(row => {
                             prepareRow(row);
                             return <tr className='table_body_row'{...row.getRowProps()}>
@@ -69,9 +73,10 @@ const Table = <T extends Record<string, any>,>({ data, columns }: IProps<T>) => 
                                 })}>{cell.render("Cell")}</td>)}
                             </tr>
                         }) : <tr>
-                            <td>NO DATA</td>
-                        </tr>}
-                    </tbody>
+                            <td>No Data</td>
+                        </tr>}</tbody>
+                    }
+
                 </Style>
             </TableContainer>
         </>

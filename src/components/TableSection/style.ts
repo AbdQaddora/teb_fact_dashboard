@@ -21,52 +21,7 @@ const Style = styled.div`
         }
     }
 
-    @keyframes loading {
-            0%{
-                background-color: ${props => props.theme.colors.background.dark};
-            }
 
-            50%{
-                background-color: ${props => props.theme.colors.background.dark2};
-            }
-
-            100%{
-                background-color: ${props => props.theme.colors.background.dark};
-            }
-    }
-
-    .loading_table{
-        border-collapse: collapse;
-        width: 100% !important;
-        
-        .table_header{
-            background-color: ${props => props.theme.colors.text.primary};
-            th{ 
-                flex-grow: 1;
-                padding: 10px 8px;
-                text-align: start;
-                line-height: 30px;
-                text-transform: capitalize;
-                font-weight: 500;
-                color: ${props => props.theme.colors.neutral.n100};
-                user-select: none;
-                .order_icon{
-                    margin-inline-end: 5px;
-                }
-            }
-        }
-
-        .loading_td{
-            border-radius: 4px;
-            height: 45px;
-            opacity: 0.8;
-            margin: 1px;
-            animation-name: loading;
-            animation-iteration-count: infinite;
-            animation-duration: 2s;
-            animation-timing-function:ease-in-out ;
-        }
-    }
 `
 
 export default Style;

@@ -4,13 +4,15 @@ import Style, { TableContainer } from './style';
 import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
 import { useLang } from '../../context/LanguageContext';
+import TableLoading from '../TableLoading';
 
 interface IProps<T extends Record<string, any>> {
     data: T[],
     columns: Column<T>[],
     filterValue: string,
+    isLoading?: boolean
 }
-const TableWithFilter = <T extends Record<string, any>,>({ data, columns, filterValue }: IProps<T>) => {
+const TableWithFilter = <T extends Record<string, any>,>({ data, columns, filterValue, isLoading }: IProps<T>) => {
     const dataAfterMemo: T[] = useMemo(() => data, [])
     const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
 
@@ -61,20 +63,22 @@ const TableWithFilter = <T extends Record<string, any>,>({ data, columns, filter
                             </tr>
                         })}
                     </thead>
-                    <tbody {...getTableBodyProps()}>
-                        {page.map(row => {
-                            prepareRow(row);
-                            return <tr className='table_body_row'{...row.getRowProps()}>
-                                {row.cells.map(cell => <td {...cell.getCellProps({
-                                    style: {
-                                        minWidth: cell.column.minWidth ? `${cell.column.minWidth}px` : "unset",
-                                        maxWidth: cell.column.maxWidth ? `${cell.column.maxWidth}px` : "unset",
-                                        width: cell.column.width ? `${cell.column.width}px` : "unset",
-                                    }
-                                })}>{cell.render("Cell")}</td>)}
-                            </tr>
-                        })}
-                    </tbody>
+                    {isLoading ? <TableLoading columns={columns} /> :
+                        <tbody {...getTableBodyProps()}>
+                            {page.map(row => {
+                                prepareRow(row);
+                                return <tr className='table_body_row'{...row.getRowProps()}>
+                                    {row.cells.map(cell => <td {...cell.getCellProps({
+                                        style: {
+                                            minWidth: cell.column.minWidth ? `${cell.column.minWidth}px` : "unset",
+                                            maxWidth: cell.column.maxWidth ? `${cell.column.maxWidth}px` : "unset",
+                                            width: cell.column.width ? `${cell.column.width}px` : "unset",
+                                        }
+                                    })}>{cell.render("Cell")}</td>)}
+                                </tr>
+                            })}
+                        </tbody>
+                    }
                 </Style>
             </TableContainer>
             <TablePagination {...{ nextPage, pageCount, pageIndex, pageSize, previousPage, setPageSize, }} />

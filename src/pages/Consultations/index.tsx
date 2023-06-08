@@ -43,7 +43,8 @@ const Consultations = () => {
         pagination={{
           activePage,
           pageSize,
-          setActivePage,
+          next: () => { },
+          previous: () => { },
           setPageSize,
           totalCount: totalConsultationsCount
         }}

@@ -33,7 +33,7 @@ const TablePagination = ({ pageIndex, pageCount, pageSize, nextPage, previousPag
                 <div className="page_size_select">
                     <Select
                         value={{ value: pageSize, label: pageSize }}
-                        onChange={(val) => { setPageSize(val?.value || 10) }}
+                        onChange={(val) => setPageSize(val?.value as number)}
                         options={pageSizeOptions}
                         theme={(theme) => ({
                             ...theme,

@@ -1,7 +1,8 @@
-import React, { createContext, useContext, ReactNode, useState } from 'react'
+import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react'
 import AuthAPI from '../../api/login';
 import { toast } from 'react-toastify';
 import { getAuthTokenFromLocalStorage, setAuthTokenInTheLocalStorage } from '../../util';
+import api, { setTokenInAxios } from '../../api/axiosConfig';
 interface IAuthContext {
     token: string,
     login: (email: string, password: string, rememberMe?: boolean) => Promise<boolean>
@@ -31,6 +32,7 @@ const AuthContextProvider = ({ children }: IProps) => {
                 setAuthTokenInTheLocalStorage(res?.data as string)
             }
             setToken(res?.data);
+            setTokenInAxios(res?.data);
             return true
         } else {
             if (res?.message) {
@@ -39,6 +41,24 @@ const AuthContextProvider = ({ children }: IProps) => {
             return false
         }
     }
+
+    const logout = () => {
+        setToken("");
+        setAuthTokenInTheLocalStorage("");
+        setTokenInAxios("");
+        AuthAPI.logout();
+    }
+
+    // check if token is valid or not
+    useEffect(() => {
+        api.get("/admin/home")
+            .then(() => { })
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    logout();
+                }
+            })
+    }, [])
 
     return (
         <AuthContext.Provider value={{ token, login }}>

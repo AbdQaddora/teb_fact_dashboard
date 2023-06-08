@@ -12,16 +12,37 @@ const LatestConsultations = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [pageSize, setPageSize] = useState(10);
     const [activePage, setActivePage] = useState(1);
+    const [updated_at, setUpdated_at] = useState(`${Date.now()}`);
     const [totalConsultationsCount, setTotalConsultationsCount] = useState(0);
 
+    const next = () => {
+        if (activePage + 1 <= Math.ceil(totalConsultationsCount / pageSize)) {
+            setActivePage(activePage + 1);
+        }
+    }
+
+    const previous = () => {
+        setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage)
+    }
+
+    const customSetPageSize = (newPageSize: number) => {
+        if (Math.floor(totalConsultationsCount / newPageSize) > 0) {
+            setActivePage(Math.floor(totalConsultationsCount / newPageSize));
+        } else {
+            setActivePage(1);
+        }
+
+        setPageSize(newPageSize);
+    }
 
     useEffect(() => {
         setIsLoading(true);
         ConsultationsAPI.getLatestConsultations(activePage, pageSize)
             .then((res) => {
+                console.log({ res })
                 if (res?.status && res?.data) {
                     setLatestConsultations(res?.data)
-                    console.log(res?.data)
+                    setUpdated_at(`${Date.now()}`)
                     setTotalConsultationsCount(res.totalConsultationsCount)
                 } else {
                     toast.error(res?.message)
@@ -39,11 +60,13 @@ const LatestConsultations = () => {
             columns={LATEST_CONSULTATIONS_COLUMNS}
             data={latestConsultations}
             isLoading={isLoading}
+            updated_at={updated_at}
             pagination={{
                 activePage,
                 pageSize,
-                setActivePage,
-                setPageSize,
+                next,
+                previous,
+                setPageSize: customSetPageSize,
                 totalCount: totalConsultationsCount
             }}
         />

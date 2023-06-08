@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getQuestions, selectHistoryQuestions } from '../../redux/slices/historyQuestionsSlice';
+import {
+    getQuestions,
+    nextPage,
+    previousPage,
+    selectHistoryQuestions,
+    setPageSize
+} from '../../redux/slices/historyQuestionsSlice';
 
 import Style from './style'
 import { H4 } from '../../components/tiny/Typography/style';
@@ -9,21 +15,24 @@ import TableSection from '../../components/TableSection';
 import HISTORY_QUESTIONS_COLUMNS from '../../constants/history_questions_columns';
 import Modal from '../../components/Modal';
 import HistoryQuestionModal from '../../components/modals/HistoryQuestionModal';
-import TablePagination from '../../components/TablePagination';
 
 const HistoryQuestions = () => {
     const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
     const { t } = useTranslation();
 
-    const { questions, updated_at, totalQuestionsCount } = useAppSelector(selectHistoryQuestions);
+    const { questions,
+        updated_at,
+        totalQuestionsCount,
+        activePage,
+        isLoading,
+        pageSize } = useAppSelector(selectHistoryQuestions);
+
     const dispatch = useAppDispatch();
 
-    const [pageSize, setPageSize] = useState(10);
-    const [activePage, setActivePage] = useState(1);
-
     useEffect(() => {
-        dispatch(getQuestions(activePage, pageSize));
+        dispatch(getQuestions());
     }, [pageSize, activePage])
+
 
     return (
         <>
@@ -41,11 +50,13 @@ const HistoryQuestions = () => {
                         title={t("history_questions.subTitle")}
                         columns={HISTORY_QUESTIONS_COLUMNS}
                         data={questions}
+                        isLoading={isLoading}
                         pagination={{
                             activePage,
                             pageSize,
-                            setActivePage,
-                            setPageSize,
+                            next: () => dispatch(nextPage()),
+                            previous: () => dispatch(previousPage()),
+                            setPageSize: (page_size) => dispatch(setPageSize(page_size)),
                             totalCount: totalQuestionsCount
                         }}
                     />

@@ -24,7 +24,6 @@ const InfoSection = () => {
     })
     const [endDate, setEndDate] = useState<Date>(new Date())
 
-    console.log({ startDate, endDate })
     return (
         <Style>
             <DateBicker

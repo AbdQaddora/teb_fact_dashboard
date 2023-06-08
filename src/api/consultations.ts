@@ -3,12 +3,12 @@ import api from "./axiosConfig"
 const mapConsultations = (res: any) => {
     const results: IConsultation[] = res.map((el: any) => {
         const consultation: IConsultation = {
+            id: String(el.id),
             consultation: el.notes,
             date: new Date(el.created_at).toLocaleDateString(),
-            id: el.id,
-            patient_avatar: el.patient.image,
+            patient_avatar: el.patient.profile_image,
             patient_email: el.patient.email,
-            patient_name: el.patient.name,
+            patient_name: el.patient.full_name,
             state: el.status === 0 ? "new" : el.status === 1 ? "open" : "closed"
         };
         return consultation;
@@ -20,12 +20,11 @@ const mapConsultations = (res: any) => {
 const getConsultations = async (page: number, per_page: number) => {
     try {
         const { data } = await api.get(`/admin/consultations?per_page=${per_page}&page=${page}`);
-        if (data.data.consultations) {
+        if (data.data) {
             return {
                 status: true,
-                data: mapConsultations(data.data.consultations),
-                // totalConsultationsCount: data.meta.total
-                totalConsultationsCount: data.data.consultations.length
+                data: mapConsultations(data.data),
+                totalConsultationsCount: data.meta.total
             }
         } else {
             return {
@@ -47,12 +46,11 @@ const getConsultations = async (page: number, per_page: number) => {
 const getLatestConsultations = async (page: number, per_page: number) => {
     try {
         const { data } = await api.get(`/admin/last-consultations?per_page=${per_page}&page=${page}`);
-        if (data.data.last_consultations) {
+        if (data.data) {
             return {
                 status: true,
-                data: mapConsultations(data.data.last_consultations),
-                // totalConsultationsCount: data.meta.total
-                totalConsultationsCount: data.data.last_consultations.length
+                data: mapConsultations(data.data),
+                totalConsultationsCount: data.meta.total
             }
         } else {
             return {
