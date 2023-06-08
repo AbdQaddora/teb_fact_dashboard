@@ -186,7 +186,11 @@
     },
     "ticket": {
         "title": "Ticket",
-        "btn": "Send Response"
+        "btn": "Send Response",
+        "btn_sending": "Sending ...",
+        "error_required": "You can't send empty reply message",
+        "error_unknown": "Something went wrong",
+        "success_reply":"Reply has been sent successfully"
     },
     "doctors": {
         "title": "Doctors",
