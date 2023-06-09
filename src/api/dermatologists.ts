@@ -1,3 +1,4 @@
+import { IDermatologist } from "../types/Dermatologist";
 import api from "./axiosConfig"
 
 const getDermatologists = async (page: number, per_page: number) => {
@@ -52,7 +53,7 @@ const searchInDermatologists = async (page: number, per_page: number, query: str
     }
 }
 
-const getDermatologistBtId = async (id: string) => {
+const getDermatologistById = async (id: string) => {
     try {
         const { data } = await api.get(`/admin/dermatologists/${id}`);
         if (data.status) {
@@ -76,10 +77,39 @@ const getDermatologistBtId = async (id: string) => {
     }
 }
 
+const updateDermatologist = async (dermatologist: IDermatologist) => {
+    try {
+        const { data } = await api.post(`/admin/dermatologists/${dermatologist.id}`, {
+            ...dermatologist,
+            profile_image: null,
+            university_certificate_image: null
+        });
+        if (data.status) {
+            return {
+                status: true,
+                data: data.data.dermatologist,
+            }
+        } else {
+            return {
+                status: false,
+                message: "requested data not exist",
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
 const DermatologistsAPI = {
     getDermatologists,
-    getDermatologistBtId,
-    searchInDermatologists
+    searchInDermatologists,
+    getDermatologistById,
+    updateDermatologist,
 }
 
 export default DermatologistsAPI;

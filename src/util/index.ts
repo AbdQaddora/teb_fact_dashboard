@@ -1,9 +1,9 @@
 export const stringToDate = (dateString: string) => {
     if (dateString) {
         const parts = dateString.split("-");
-        const day = parseInt(parts[0], 10);
+        const year = parseInt(parts[0], 10);
         const month = parseInt(parts[1], 10) - 1;
-        const year = parseInt(parts[2], 10);
+        const day = parseInt(parts[2], 10);
 
         return new Date(year, month, day);
     } else {
@@ -17,12 +17,12 @@ export const dateToString = (date: Date) => {
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
     
-        return `${day}-${month}-${year}`;
+        return `${year}-${month}-${day}`;
     }else{
         const day = new Date().getDate();
         const month = new Date().getMonth() + 1;
         const year = new Date().getFullYear();
-        return `${day}-${month}-${year}`;
+        return `${year}-${month}-${day}`;
     }
 
 }

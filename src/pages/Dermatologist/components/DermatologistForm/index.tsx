@@ -5,7 +5,7 @@ import Input from '../../../../components/tiny/Input'
 import Button from '../../../../components/tiny/Button'
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
-import { selectDermatologists } from '../../../../redux/slices/dermatologistsSlice'
+import { selectDermatologists, updateDermatologist } from '../../../../redux/slices/dermatologistsSlice'
 import Select from 'react-select'
 import dermatologistSchema from '../../../../validation/dermatologist'
 import { toast } from 'react-toastify'
@@ -38,7 +38,7 @@ const DermatologistForm = () => {
         dermatologistSchema
             .validate(localDermatologistData)
             .then(() => {
-                // dispatch(updateDermatologist(localDermatologistData))
+                dispatch(updateDermatologist(localDermatologistData))
             }).catch((error) => {
                 toast.error(error.message);
             })

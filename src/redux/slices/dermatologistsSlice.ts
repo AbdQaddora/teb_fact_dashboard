@@ -3,6 +3,7 @@ import { store, type AppDispatch, type RootState } from '../store'
 import DermatologistsAPI from '../../api/dermatologists';
 import { IDermatologist } from '../../types/Dermatologist';
 import { DermatologistProfileStatus } from '../../types/enums';
+import { toast } from 'react-toastify';
 
 // Define a type for the slice state
 interface IDermatologistsSlice {
@@ -130,7 +131,7 @@ export const searchInDermatologists = (query: string) => (dispatch: AppDispatch)
 
 export const getDermatologistBtId = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO GET THE DOCTOR
-    DermatologistsAPI.getDermatologistBtId(id)
+    DermatologistsAPI.getDermatologistById(id)
         .then((res) => {
             dispatch(_setDermatologist({
                 dermatologist: res?.data as IDermatologist
@@ -140,10 +141,20 @@ export const getDermatologistBtId = (id: string) => (dispatch: AppDispatch) => {
         })
 }
 
-// export const updateDermatologist = (new_dermatologist: IDermatologist) => (dispatch: AppDispatch) => {
-//     // TODO: API CALL TO UPDATE THE DOCTOR
-//     dispatch(_updateDermatologist({ new_dermatologist }))
-// }
+export const updateDermatologist = (new_dermatologist: IDermatologist) => (dispatch: AppDispatch) => {
+    // TODO: API CALL TO UPDATE THE DOCTOR
+    const { dermatologist } = store.getState().dermatologists;
+
+    DermatologistsAPI.updateDermatologist(new_dermatologist)
+        .then((res) => {
+            dispatch(_setDermatologist({
+                dermatologist: res?.data as IDermatologist
+            }))
+            toast.success("Dermatologist have been updated successfuly")
+        }).catch((error) => {
+            console.log(error)
+        })
+}
 
 export const deleteDermatologist = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO DELETE THE DOCTOR

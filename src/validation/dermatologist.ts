@@ -1,19 +1,19 @@
 import * as yup from 'yup';
 
 const dermatologistSchema = yup.object({
-    profile_status: yup.number().oneOf([0 , 1 , 2]),
+    profile_status: yup.number().oneOf([0, 1, 2]),
     full_name: yup.string().required(),
     profile_image: yup.string().required(),
-    rating: yup.number().min(1).max(5).required(),
+    rating: yup.number().min(0).max(5).notRequired(),
     email: yup.string().email().required(),
     gender: yup.string().oneOf(["male", "female"]).required(),
-    mobile_number: yup.string().matches(/^(\+?1[0-9]{10})$/, {
+    mobile_number: yup.string().matches(/^((?:[1-9][0-9 ().-]{5,28}[0-9])|(?:(00|0)( ){0,1}[1-9][0-9 ().-]{3,26}[0-9])|(?:(\+)( ){0,1}[1-9][0-9 ().-]{4,27}[0-9]))$/gm, {
         message: "Invalid phone number",
     }),
     date_of_birth: yup.string().test('date-format', 'Invalid date format (DD/MM/YYYY)', (value) => {
         if (!value) return false;
 
-        const [day, month, year] = value.split('-').map(Number);
+        const [year, month, day] = value.split('-').map(Number);
 
         if (year <= 1950 || year > new Date().getFullYear()) return false;
 
