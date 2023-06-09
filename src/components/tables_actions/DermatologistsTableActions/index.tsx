@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import { PATHS } from '../../../router'
 import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
-import RemoveDoctorModal from '../../modals/RemoveDoctorModal'
+import RemoveDermatologistModal from '../../modals/RemoveDermatologistModal'
 import { useAppDispatch } from '../../../hooks/redux'
 
 interface IProps {
@@ -14,13 +14,13 @@ interface IProps {
     avatar: string,
 }
 
-const DoctorsTableActions = ({ id, name, avatar }: IProps) => {
+const DermatologistsTableActions = ({ id, name, avatar }: IProps) => {
     const { t } = useTranslation();
     const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
     return (
         <>
             {isRemoveModalOpen && <Modal close={() => setIsRemoveModalOpen(false)}>
-                <RemoveDoctorModal
+                <RemoveDermatologistModal
                     close={() => setIsRemoveModalOpen(false)}
                     {...{ id, name, avatar }}
                 />
@@ -38,4 +38,4 @@ const DoctorsTableActions = ({ id, name, avatar }: IProps) => {
     )
 }
 
-export default DoctorsTableActions
+export default DermatologistsTableActions

@@ -32,7 +32,7 @@ const InfoSection = () => {
             />
             <div className="numbers_cards">
                 <Card
-                    label={t('doctors.label')}
+                    label={t('dermatologists.label')}
                     data='70'
                     icon={<FaUserNurse color='#FFF' fontSize={22} />} />
                 <Card

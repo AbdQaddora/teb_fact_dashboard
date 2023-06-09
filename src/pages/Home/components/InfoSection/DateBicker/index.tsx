@@ -35,7 +35,6 @@ const DateBicker = ({ setStartDate, setEndDate }: IProps) => {
 
     const handleSelect = (ranges: any) => {
         setSelectedDateRange(ranges.selection);
-        console.log(ranges.selection);
     };
 
     return (

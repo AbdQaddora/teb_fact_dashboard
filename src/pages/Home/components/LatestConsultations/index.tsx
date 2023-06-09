@@ -39,7 +39,6 @@ const LatestConsultations = () => {
         setIsLoading(true);
         ConsultationsAPI.getLatestConsultations(activePage, pageSize)
             .then((res) => {
-                console.log({ res })
                 if (res?.status && res?.data) {
                     setLatestConsultations(res?.data)
                     setUpdated_at(`${Date.now()}`)

@@ -13,7 +13,7 @@ interface IProps {
     close: () => void;
 }
 
-const RemoveDoctorModal = ({ id, close }: IProps) => {
+const RemoveDermatologistModal = ({ id, close }: IProps) => {
     const dispatch = useAppDispatch();
     const { t } = useTranslation("", { keyPrefix: "modals.remove_history_question_modal" });
     const handelRemove = () => {
@@ -40,4 +40,4 @@ const RemoveDoctorModal = ({ id, close }: IProps) => {
     )
 }
 
-export default RemoveDoctorModal
+export default RemoveDermatologistModal

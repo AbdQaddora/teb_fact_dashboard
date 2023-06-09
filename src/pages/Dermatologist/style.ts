@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Style = styled.div`
     padding-top: 1rem;
-    .doctor_info_section{
+    .dermatologist_info_section{
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 1rem;

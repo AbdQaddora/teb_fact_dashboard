@@ -9,6 +9,12 @@ const Style = styled.div`
         height: 40px;
         border-radius: 50%;
     }
+
+    p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `
 
 export default Style;

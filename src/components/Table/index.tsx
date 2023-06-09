@@ -32,8 +32,6 @@ const Table = <T extends Record<string, any>,>({ data, columns, isLoading }: IPr
         prepareRow,
     } = tableInstance;
 
-    console.log({ rows })
-    console.log({ data })
     return (
         <>
             <TableContainer>

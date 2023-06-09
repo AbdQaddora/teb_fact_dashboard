@@ -17,7 +17,7 @@ const Style = styled.div`
         margin-bottom: 0.8rem;
     }
 
-    .doctor_secondary_info{
+    .dermatologist_secondary_info{
         display: flex;
         flex-direction: column;
         align-items: center;

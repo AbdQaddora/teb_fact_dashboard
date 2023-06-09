@@ -116,7 +116,6 @@ export const updateQuestion = (new_question: IQuestion) => (dispatch: AppDispatc
 }
 
 export const deleteQuestion = (id: string) => (dispatch: AppDispatch) => {
-    const { activePage, pageSize, totalQuestionsCount } = store.getState().historyQuestions;
 
     HistoryQuestionsAPI.deleteQuestion(id)
         .then((res) => {

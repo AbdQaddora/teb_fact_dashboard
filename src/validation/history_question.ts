@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { QuestionsTypes } from '../types/HistoryQuestion';
+import { QuestionsTypes } from '../types/enums';
 
 const questionSchema = yup.object({
     type: yup.number().oneOf([0, 1, 2, 3]),

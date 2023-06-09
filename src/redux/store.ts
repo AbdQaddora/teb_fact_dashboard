@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import historyQuestionsReducer from './slices/historyQuestionsSlice';
 import staticPagesReducer from './slices/staticPagesSlice';
-import doctorsReducer from './slices/doctorsSlice';
+import dermatologistsReducer from './slices/dermatologistsSlice';
 
 export const store = configureStore({
     reducer: {
         historyQuestions: historyQuestionsReducer,
         staticPages: staticPagesReducer,
-        doctors: doctorsReducer
+        dermatologists: dermatologistsReducer
     },
 })
 

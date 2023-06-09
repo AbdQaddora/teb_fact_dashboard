@@ -5,8 +5,8 @@ import Loading from '../components/tiny/Loading';
 
 export const PATHS = {
     CONSULTATIONS: "/consultations",
-    DOCTOR: "/doctor",
-    DOCTORS: "/doctors",
+    DOCTOR: "/dermatologist",
+    DOCTORS: "/dermatologists",
     HOME: "/",
     LOGIN: "/login",
     TICKET: "/ticket",
@@ -20,8 +20,8 @@ export const PATHS = {
 const Login = lazy(() => import('../pages/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const Consultations = lazy(() => import('../pages/Consultations'));
-const Doctor = lazy(() => import('../pages/Doctor'));
-const Doctors = lazy(() => import('../pages/Doctors'));
+const Dermatologist = lazy(() => import('../pages/Dermatologist'));
+const Dermatologists = lazy(() => import('../pages/Dermatologists'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Ticket = lazy(() => import('../pages/Ticket'));
 const Tickets = lazy(() => import('../pages/Tickets'));
@@ -44,10 +44,10 @@ const Router = () => {
                 <Consultations />
             </DashboardLayout>} />
             <Route path={PATHS.DOCTOR + "/:id"} element={<DashboardLayout>
-                <Doctor />
+                <Dermatologist />
             </DashboardLayout>} />
             <Route path={PATHS.DOCTORS} element={<DashboardLayout>
-                <Doctors />
+                <Dermatologists />
             </DashboardLayout>} />
             <Route path={PATHS.TICKET + "/:id"} element={<DashboardLayout>
                 <Ticket />

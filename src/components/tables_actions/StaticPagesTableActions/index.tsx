@@ -41,7 +41,7 @@ const StaticPagesTableActions = ({ data }: IProps) => {
                 </Link>
                 <Button
                     color={data.status ? 'danger' : 'secondary'} onClick={onFlipState}
-                >{t(data.status ? 'doctor.deactivate' : 'doctor.activate')}</Button>
+                >{t(data.status ? 'dermatologist.deactivate' : 'dermatologist.activate')}</Button>
                 <Button
                     color='danger'
                     onClick={() => setIsRemoveModalOpen(true)}

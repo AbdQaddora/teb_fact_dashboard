@@ -39,7 +39,7 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
             <SideMenuLink
                 onClick={closeMobileMenu}
                 icon={<FaUserNurse />}
-                text={t("doctors")}
+                text={t("dermatologists")}
                 to='DOCTORS'
             />
             <SideMenuLink

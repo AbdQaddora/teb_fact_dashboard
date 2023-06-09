@@ -22,7 +22,7 @@
         }
     },
     "modals": {
-        "remove_doctor_modal": {
+        "remove_dermatologist_modal": {
             "question1": "هل أنت متأكد أنك تريد حذف حساب الطبيب \"",
             "question2": "\"؟",
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
@@ -70,7 +70,7 @@
     "sideMenu": {
         "dashboard": "لوحة التحكم",
         "consultations": "الاستشارات",
-        "doctors": "الأطباء",
+        "dermatologists": "الأطباء",
         "tickets": "المراسلات",
         "static_pages": "الصفحات الثابتة",
         "history_questions": "أسئلة التاريخ المرضي",
@@ -98,10 +98,10 @@
             "actions": "افعال",
             "response": "رد"
         },
-        "doctors": {
+        "dermatologists": {
             "name": "الاسم",
             "email": "البريد الالكتروني",
-            "phone": "الهاتف",
+            "consultations_count": "الاستشارات المنجزة",
             "max_open_consultations": "الحد الأقصى للاستشارات",
             "graduation_year": "سنة التخرج",
             "graduation_GPA": "معدل التخرج",
@@ -135,7 +135,7 @@
     "home": {
         "latest_consultations": "أحدث الاستشارات",
         "cards": {
-            "doctors": {
+            "dermatologists": {
                 "label": "عدد الأطباء"
             },
             "patients": {
@@ -193,13 +193,13 @@
         "error_unknown": "حدث خطأ ما",
         "success_reply": "تم إرسال الرد بنجاح"
     },
-    "doctors": {
+    "dermatologists": {
         "title": "الاطباء",
         "subTitle": "كل الاطباء",
         "search": "ابحث عن الأطباء"
     },
-    "doctor": {
-        "doctor": "الطبيب",
+    "dermatologist": {
+        "dermatologist": "الطبيب",
         "name": "الاسم",
         "email": "البريد الالكتروني",
         "phone": "رقم الموبايل",
