@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux'
 import { selectDermatologists } from '../../../../redux/slices/dermatologistsSlice'
 import Select from 'react-select'
-import { dateToString } from '../../../../util'
 import dermatologistSchema from '../../../../validation/dermatologist'
 import { toast } from 'react-toastify'
 import { IDermatologist } from '../../../../types/Dermatologist'
@@ -35,6 +34,7 @@ const DermatologistForm = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(localDermatologistData)
         dermatologistSchema
             .validate(localDermatologistData)
             .then(() => {
@@ -53,7 +53,7 @@ const DermatologistForm = () => {
                 <div className="grid">
                     <Input
                         onChange={onTextInputsChange}
-                        name="name"
+                        name="full_name"
                         value={localDermatologistData.full_name}
                         placeholder={t("name") || ""}
                         fullWidth
@@ -95,7 +95,7 @@ const DermatologistForm = () => {
 
                     <Input
                         onChange={onTextInputsChange}
-                        name="phone"
+                        name="mobile_number"
                         value={localDermatologistData.mobile_number}
                         placeholder={t("phone") || ""}
                         type='phone'
@@ -104,6 +104,7 @@ const DermatologistForm = () => {
 
                     <Input
                         onDateChange={(value) => {
+                            console.log({ date: value })
                             setLocalDermatologistDate(prev => ({ ...prev, date_of_birth: value }))
                         }}
                         placeholder={t("date_of_birth") || ""}
@@ -123,7 +124,7 @@ const DermatologistForm = () => {
 
                     <Input
                         onChange={onTextInputsChange}
-                        name="graduation_gpa"
+                        name="university_gpa"
                         value={localDermatologistData.university_gpa}
                         placeholder={t("graduation_GPA") || ""}
                         type='text'
@@ -132,7 +133,7 @@ const DermatologistForm = () => {
 
                     <Input
                         onChange={onTextInputsChange}
-                        name="max_open_consultations"
+                        name="maximum_no_of_open_consultations"
                         value={localDermatologistData.maximum_no_of_open_consultations}
                         placeholder={t("max_open_consultations") || ""}
                         type='text'

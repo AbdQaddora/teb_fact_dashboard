@@ -13,7 +13,7 @@ const dermatologistSchema = yup.object({
     date_of_birth: yup.string().test('date-format', 'Invalid date format (DD/MM/YYYY)', (value) => {
         if (!value) return false;
 
-        const [day, month, year] = value.split('/').map(Number);
+        const [day, month, year] = value.split('-').map(Number);
 
         if (year <= 1950 || year > new Date().getFullYear()) return false;
 

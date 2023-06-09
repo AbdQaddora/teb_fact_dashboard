@@ -26,15 +26,15 @@ const Input = ({ placeholder, error = false, className = "", height, value, full
         }
     }, [value])
 
-    if (rest.type === "date" && onDateChange && value) {
+    if (rest.type === "date" && onDateChange) {
         return <Style {...{ height, disabled, fullWidth, margin, error }} className={!isEmpty ? `not_empty ${className}` : className}>
             <DatePicker
                 selected={stringToDate(value as string)}
                 className="date"
-                value={value as string}
+                value={value ? value as string : new Date().toLocaleDateString()}
                 id={id}
                 onChange={(value) => onDateChange(dateToString(value as Date))} />
-            <label htmlFor={id}>{placeholder}</label>
+            <label className='date_label' htmlFor={id}>{placeholder}</label>
         </Style>
     }
 

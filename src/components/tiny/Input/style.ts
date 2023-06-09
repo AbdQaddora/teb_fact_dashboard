@@ -31,6 +31,10 @@ const Style = styled.div<IProps>`
         background-color: ${props => props.theme.colors.background.paper};
     }
 
+    label.date_label{
+        padding-inline-end:25px;
+    }
+
     &.not_empty label , input:focus + label{
         top: 0;
     }
