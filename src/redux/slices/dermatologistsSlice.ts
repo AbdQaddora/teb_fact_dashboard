@@ -60,9 +60,10 @@ export const dermatologistsSlice = createSlice({
             state.updated_at = `${Date.now()}`
         },
         _flipDermatologistActiveState: (state, action: PayloadAction<{ id: string }>) => {
+            state.dermatologist.profile_status = state.dermatologist.profile_status === DermatologistProfileStatus.Authorized ? DermatologistProfileStatus.NotAuthorized : DermatologistProfileStatus.Authorized;
             state.dermatologists = state.dermatologists = state.dermatologists.map(dermatologist => {
                 if (dermatologist.id === action.payload.id) {
-                    dermatologist.profile_status = dermatologist.profile_status === 2 ? 1 : 2;
+                    dermatologist.profile_status = dermatologist.profile_status === DermatologistProfileStatus.Authorized ? DermatologistProfileStatus.NotAuthorized : DermatologistProfileStatus.Authorized;
                 }
                 return dermatologist;
             });
@@ -133,9 +134,11 @@ export const getDermatologistBtId = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO GET THE DOCTOR
     DermatologistsAPI.getDermatologistById(id)
         .then((res) => {
-            dispatch(_setDermatologist({
-                dermatologist: res?.data as IDermatologist
-            }))
+            if (res?.status) {
+                dispatch(_setDermatologist({
+                    dermatologist: res?.data as IDermatologist
+                }))
+            }
         }).catch((error) => {
             console.log(error)
         })
@@ -143,27 +146,52 @@ export const getDermatologistBtId = (id: string) => (dispatch: AppDispatch) => {
 
 export const updateDermatologist = (new_dermatologist: IDermatologist) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO UPDATE THE DOCTOR
-    const { dermatologist } = store.getState().dermatologists;
-
     DermatologistsAPI.updateDermatologist(new_dermatologist)
         .then((res) => {
-            dispatch(_setDermatologist({
-                dermatologist: res?.data as IDermatologist
-            }))
-            toast.success("Dermatologist have been updated successfuly")
+            if (res?.status) {
+                dispatch(_setDermatologist({
+                    dermatologist: res?.data as IDermatologist
+                }))
+                toast.success("Dermatologist have been updated successfully")
+            } else {
+                toast.error(res?.message)
+            }
         }).catch((error) => {
-            console.log(error)
+            toast.error(error.message)
         })
 }
 
 export const deleteDermatologist = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO DELETE THE DOCTOR
-    dispatch(_deleteDermatologist({ id }))
+    DermatologistsAPI.deleteDermatologist(id)
+        .then((res) => {
+            if (res?.status) {
+                dispatch(_deleteDermatologist({ id }))
+                toast.success("Dermatologist have been deleted successfully")
+            } else {
+                toast.error(res?.message)
+            }
+        }).catch((error) => {
+            toast.error(error.message)
+        })
 }
 
 export const flipDermatologistActiveState = (id: string) => (dispatch: AppDispatch) => {
     // TODO: API CALL TO FLIP THE DOCTOR ACTIVE STATE
-    dispatch(_flipDermatologistActiveState({ id }))
+    const { dermatologist } = store.getState().dermatologists;
+
+    DermatologistsAPI.updateDermatologist({
+        ...dermatologist,
+        profile_status: dermatologist.profile_status === DermatologistProfileStatus.Authorized ? DermatologistProfileStatus.NotAuthorized : DermatologistProfileStatus.Authorized
+    }).then((res) => {
+        if (res?.status) {
+            dispatch(_flipDermatologistActiveState({ id }))
+        } else {
+            toast.error(res?.message)
+        }
+    }).catch((error) => {
+        toast.error(error.message)
+    })
 }
 
 

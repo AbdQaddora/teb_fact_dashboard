@@ -105,11 +105,35 @@ const updateDermatologist = async (dermatologist: IDermatologist) => {
     }
 }
 
+const deleteDermatologist = async (id: string) => {
+    try {
+        const { data } = await api.delete(`/admin/dermatologists/${id}`);
+        if (data.status) {
+            return {
+                status: true,
+            }
+        } else {
+            return {
+                status: false,
+                message: "requested data not exist",
+            }
+        }
+    } catch (error: any) {
+        if (error.name === "AxiosError") {
+            return {
+                status: false,
+                message: error.response.data.message
+            }
+        }
+    }
+}
+
 const DermatologistsAPI = {
     getDermatologists,
     searchInDermatologists,
     getDermatologistById,
     updateDermatologist,
+    deleteDermatologist,
 }
 
 export default DermatologistsAPI;

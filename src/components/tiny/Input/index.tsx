@@ -29,6 +29,8 @@ const Input = ({ placeholder, error = false, className = "", height, value, full
     if (rest.type === "date" && onDateChange) {
         return <Style {...{ height, disabled, fullWidth, margin, error }} className={!isEmpty ? `not_empty ${className}` : className}>
             <DatePicker
+                showMonthDropdown
+                showYearDropdown
                 selected={stringToDate(value as string)}
                 className="date"
                 value={value ? value as string : new Date().toLocaleDateString()}
