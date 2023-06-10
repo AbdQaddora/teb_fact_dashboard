@@ -1,21 +1,23 @@
+import { dateToString } from "../util";
 import api from "./axiosConfig"
 
-const getInfo = async (start_date: string, end_date: string) => {
+const getInfo = async (start_date: Date, end_date: Date) => {
     try {
-        const { data } = await api.post('/admin/home', {
-            start_date,
-            end_date
-        });
+        const { data } = await api.get(`/admin/home?start_date=${dateToString(start_date)}&end_date=${dateToString(end_date)}`);
         if (data.data) {
             return {
                 status: true,
-                data: data.data.data,
+                chart: data.data.data.chart,
+                data: {
+                    dermatologists: data.data.data.dermatologists,
+                    consultations: data.data.data.consultations,
+                    patients: data.data.data.patients,
+                }
             }
         } else {
             return {
                 status: false,
                 message: "requested data not exist",
-                totalPagesCount: 0
             }
         }
     } catch (error: any) {
@@ -28,8 +30,8 @@ const getInfo = async (start_date: string, end_date: string) => {
     }
 }
 
-const ConsultationsAPI = {
+const StatisticsAPI = {
     getInfo,
 }
 
-export default ConsultationsAPI;
+export default StatisticsAPI;

@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import Style from './style'
-import Select, { SingleValue } from 'react-select';
 
 import {
     Chart as ChartJS,
@@ -13,7 +12,7 @@ import {
     Legend,
 } from 'chart.js';
 
-import { Line, Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -25,25 +24,6 @@ ChartJS.register(
     Legend,
 );
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-const mockData = {
-    labels,
-    datasets: [
-        {
-            label: 'This year',
-            data: labels.map(() => Math.round(Math.random() * 1000)),
-            borderColor: '#3832A0',
-            backgroundColor: '#3832A0',
-        },
-        {
-            label: 'Last year',
-            data: labels.map(() => Math.round(Math.random() * 1000)),
-            borderColor: 'rgb(192, 72, 125)',
-            backgroundColor: 'rgb(255, 116, 177)',
-        }
-    ],
-};
-
 const options = {
     responsive: true,
     plugins: {
@@ -52,10 +32,29 @@ const options = {
         },
     },
 };
+interface IData {
+    data: number[],
+    label: string
+}
+interface IProps {
+    datasets: IData[]
+    labels: string[],
+    colors?: string[]
+}
 
-const Chart = () => {
-    const data: typeof mockData = useMemo(() => mockData, []);
+const Chart = ({ datasets, labels, colors }: IProps) => {
+    const data = useMemo(() => {
+        const mockData = {
+            labels,
+            datasets: datasets.map((el, index) => ({
+                ...el,
+                borderColor: colors ? colors[index] : "#3832A0",
+                backgroundColor: colors ? colors[index] : "#3832A0",
+            })),
+        };
 
+        return mockData;
+    }, [datasets, labels, colors]);
 
     return (
         <Style>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from './style'
 import Card from './Card'
 import Chart from './Chart'
@@ -13,9 +13,21 @@ import { AiFillMessage } from 'react-icons/ai';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import DateBicker from './DateBicker'
+import StatisticsAPI from '../../../../api/statistics'
 
 const InfoSection = () => {
     const { t } = useTranslation("", { keyPrefix: "home.cards" });
+    const [statisticsNumbers, setStatisticsNumbers] = useState({
+        dermatologists: 0,
+        consultations: 0,
+        patients: 0,
+    });
+
+    const [chartData, setChartData] = useState({
+        labels: [],
+        consultations: [],
+        patients: [],
+    });
 
     const [startDate, setStartDate] = useState<Date>(() => {
         const now = new Date();
@@ -24,6 +36,16 @@ const InfoSection = () => {
     })
     const [endDate, setEndDate] = useState<Date>(new Date())
 
+
+    useEffect(() => {
+        StatisticsAPI.getInfo(startDate, endDate)
+            .then((res) => {
+                if (res?.status && res.data) {
+                    setStatisticsNumbers(res.data)
+                    setChartData(res.chart)
+                }
+            })
+    }, [startDate, endDate])
     return (
         <Style>
             <DateBicker
@@ -33,18 +55,31 @@ const InfoSection = () => {
             <div className="numbers_cards">
                 <Card
                     label={t('dermatologists.label')}
-                    data='70'
+                    data={statisticsNumbers.dermatologists + ""}
                     icon={<FaUserNurse color='#FFF' fontSize={22} />} />
                 <Card
                     label={t('patients.label')}
-                    data='1,6k'
+                    data={statisticsNumbers.patients + ""}
                     icon={<HiUsers color='#FFF' fontSize={22} />} />
                 <Card
                     label={t('consultations.label')}
-                    data='23k'
+                    data={statisticsNumbers.consultations + ""}
                     icon={<AiFillMessage color='#FFF' fontSize={22} />} />
             </div>
-            <Chart />
+            <Chart
+                labels={chartData.labels}
+                datasets={[
+                    {
+                        data: chartData.consultations,
+                        label: "consultations"
+                    },
+                    {
+                        data: chartData.patients,
+                        label: "patients"
+                    },
+                ]}
+                colors={["#3832A0" , "#FF74B1"]}
+            />
         </Style>
     )
 }
