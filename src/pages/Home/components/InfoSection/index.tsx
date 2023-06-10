@@ -17,6 +17,7 @@ import StatisticsAPI from '../../../../api/statistics'
 
 const InfoSection = () => {
     const { t } = useTranslation("", { keyPrefix: "home.cards" });
+    const [isLoading, setIsLoading] = useState(false);
     const [statisticsNumbers, setStatisticsNumbers] = useState({
         dermatologists: 0,
         consultations: 0,
@@ -38,13 +39,14 @@ const InfoSection = () => {
 
 
     useEffect(() => {
+        setIsLoading(true);
         StatisticsAPI.getInfo(startDate, endDate)
             .then((res) => {
                 if (res?.status && res.data) {
                     setStatisticsNumbers(res.data)
                     setChartData(res.chart)
                 }
-            })
+            }).finally(() => setIsLoading(false))
     }, [startDate, endDate])
     return (
         <Style>
@@ -54,14 +56,17 @@ const InfoSection = () => {
             />
             <div className="numbers_cards">
                 <Card
+                    isLoading={isLoading}
                     label={t('dermatologists.label')}
                     data={statisticsNumbers.dermatologists + ""}
                     icon={<FaUserNurse color='#FFF' fontSize={22} />} />
                 <Card
+                    isLoading={isLoading}
                     label={t('patients.label')}
                     data={statisticsNumbers.patients + ""}
                     icon={<HiUsers color='#FFF' fontSize={22} />} />
                 <Card
+                    isLoading={isLoading}
                     label={t('consultations.label')}
                     data={statisticsNumbers.consultations + ""}
                     icon={<AiFillMessage color='#FFF' fontSize={22} />} />
@@ -78,7 +83,7 @@ const InfoSection = () => {
                         label: "patients"
                     },
                 ]}
-                colors={["#3832A0" , "#FF74B1"]}
+                colors={["#3832A0", "#FF74B1"]}
             />
         </Style>
     )

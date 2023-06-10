@@ -18,6 +18,30 @@ const Style = styled.div`
         justify-content: center;
         border-radius: 50%;
     }
+
+    .loading{
+        animation-name: loading;
+        animation-iteration-count: infinite;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes loading {
+        0%{
+            opacity: 0.5;
+            transform: scale(1);
+        }
+
+        50%{
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        100%{
+            opacity: 0.5;
+            transform: scale(1);
+        }
+    }
 `
 
 export default Style;
