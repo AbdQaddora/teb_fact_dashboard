@@ -6,7 +6,11 @@ const Style = styled.div`
     margin: 1rem 0;
     border-radius: 8px;
     border: 1px solid ${props => props.theme.colors.other.divider};
-
+    .head{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     .numbers_cards{
         overflow: auto;
         display: grid;

@@ -133,6 +133,7 @@
     },
     "home": {
         "latest_consultations": "Latest consultations",
+        "statistics": "Statistics",
         "cards": {
             "dermatologists": {
                 "label": "total dermatologists"
@@ -190,7 +191,7 @@
         "btn_sending": "Sending ...",
         "error_required": "You can't send empty reply message",
         "error_unknown": "Something went wrong",
-        "success_reply":"Reply has been sent successfully"
+        "success_reply": "Reply has been sent successfully"
     },
     "dermatologists": {
         "title": "Dermatologists",

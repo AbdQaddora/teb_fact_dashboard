@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
+import { dateToUsString } from '../../../../../util';
 
 ChartJS.register(
     CategoryScale,
@@ -45,7 +46,7 @@ interface IProps {
 const Chart = ({ datasets, labels, colors }: IProps) => {
     const data = useMemo(() => {
         const mockData = {
-            labels,
+            labels:labels.map(el => dateToUsString(el)),
             datasets: datasets.map((el, index) => ({
                 ...el,
                 borderColor: colors ? colors[index] : "#3832A0",

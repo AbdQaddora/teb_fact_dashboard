@@ -56,6 +56,7 @@ const DateBicker = ({ setStartDate, setEndDate }: IProps) => {
                                 moveRangeOnFirstSelection={false}
                                 ranges={[selectedDateRange]}
                                 direction="horizontal"
+                                maxDate={new Date()}
                             />
                         </div>
                         <div className="range_small" dir='ltr'>

@@ -134,6 +134,7 @@
     },
     "home": {
         "latest_consultations": "أحدث الاستشارات",
+        "statistics": "الأحصائيات",
         "cards": {
             "dermatologists": {
                 "label": "عدد الأطباء"

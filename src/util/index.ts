@@ -12,19 +12,29 @@ export const stringToDate = (dateString: string) => {
 }
 
 export const dateToString = (date: Date) => {
-    if(date){
+    if (date) {
         const day = date.getDate();
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
-    
+
         return `${year}-${month}-${day}`;
-    }else{
+    } else {
         const day = new Date().getDate();
         const month = new Date().getMonth() + 1;
         const year = new Date().getFullYear();
         return `${year}-${month}-${day}`;
     }
+}
 
+export const dateToUsString = (dateString: string) => {
+    const date = stringToDate(dateString);
+    const newDate = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        // year: "numeric",
+    });
+
+    return newDate;
 }
 
 export const getAuthTokenFromLocalStorage = () => {

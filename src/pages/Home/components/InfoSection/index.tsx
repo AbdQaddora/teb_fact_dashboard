@@ -14,9 +14,10 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import DateBicker from './DateBicker'
 import StatisticsAPI from '../../../../api/statistics'
+import { H5 } from '../../../../components/tiny/Typography/style'
 
 const InfoSection = () => {
-    const { t } = useTranslation("", { keyPrefix: "home.cards" });
+    const { t } = useTranslation("", { keyPrefix: "home" });
     const [isLoading, setIsLoading] = useState(false);
     const [statisticsNumbers, setStatisticsNumbers] = useState({
         dermatologists: 0,
@@ -50,24 +51,27 @@ const InfoSection = () => {
     }, [startDate, endDate])
     return (
         <Style>
-            <DateBicker
-                setStartDate={(date) => setStartDate(date)}
-                setEndDate={(date) => setEndDate(date)}
-            />
+            <div className="head">
+                <H5>{t("statistics")}</H5>
+                <DateBicker
+                    setStartDate={(date) => setStartDate(date)}
+                    setEndDate={(date) => setEndDate(date)}
+                />
+            </div>
             <div className="numbers_cards">
                 <Card
                     isLoading={isLoading}
-                    label={t('dermatologists.label')}
+                    label={t('cards.dermatologists.label')}
                     data={statisticsNumbers.dermatologists + ""}
                     icon={<FaUserNurse color='#FFF' fontSize={22} />} />
                 <Card
                     isLoading={isLoading}
-                    label={t('patients.label')}
+                    label={t('cards.patients.label')}
                     data={statisticsNumbers.patients + ""}
                     icon={<HiUsers color='#FFF' fontSize={22} />} />
                 <Card
                     isLoading={isLoading}
-                    label={t('consultations.label')}
+                    label={t('cards.consultations.label')}
                     data={statisticsNumbers.consultations + ""}
                     icon={<AiFillMessage color='#FFF' fontSize={22} />} />
             </div>
