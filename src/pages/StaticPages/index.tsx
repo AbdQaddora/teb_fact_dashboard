@@ -32,6 +32,25 @@ const StaticPages = () => {
         }
     }, [pages_requests_state.error])
 
+    const next = () => {
+        if (activePage + 1 <= Math.ceil(totalPagesCount / pageSize)) {
+            setActivePage(activePage + 1);
+        }
+    }
+
+    const previous = () => {
+        setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage)
+    }
+
+    const customSetPageSize = (newPageSize: number) => {
+        if (Math.floor(totalPagesCount / newPageSize) > 0) {
+            setActivePage(Math.floor(totalPagesCount / newPageSize));
+        } else {
+            setActivePage(1);
+        }
+
+        setPageSize(newPageSize);
+    }
     return (
         <Style>
             <div>
@@ -46,8 +65,9 @@ const StaticPages = () => {
                     pagination={{
                         activePage,
                         pageSize,
-                        setActivePage,
-                        setPageSize,
+                        next,
+                        previous,
+                        setPageSize: customSetPageSize,
                         totalCount: totalPagesCount
                     }}
                 />
