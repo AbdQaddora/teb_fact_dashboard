@@ -1,3 +1,4 @@
+import { colors } from "react-select/dist/declarations/src/theme";
 import styled from "styled-components";
 
 const Style = styled.div`
@@ -16,7 +17,7 @@ const Style = styled.div`
     }
 
     .left{
-        background: radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%);
+        background: radial-gradient(50% 50% at 50% 50%, ${props => props.theme.colors.primary.main} 0%, ${props => props.theme.colors.primary.dark} 100%);
     }
 
     .remember_me{

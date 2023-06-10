@@ -4,6 +4,7 @@ import Button from '../../../../../components/tiny/Button';
 import { dateToString } from '../../../../../util';
 import Modal from '../../../../../components/Modal';
 import Style from './style';
+import { useTheme } from '../../../../../context/ThemeContext';
 
 interface IProps {
     setStartDate: (date: Date) => void,
@@ -22,6 +23,9 @@ const DateBicker = ({ setStartDate, setEndDate }: IProps) => {
         endDate: new Date(),
         key: "selection"
     });
+
+    const { theme: { colors } } = useTheme();
+
 
     const [isDateModalOpen, setIsDateModalOpen] = useState(false);
 
@@ -50,7 +54,7 @@ const DateBicker = ({ setStartDate, setEndDate }: IProps) => {
                         <div className="range_large" dir='ltr'>
                             <DateRangePicker
                                 className='date_range'
-                                rangeColors={['#3832A0']}
+                                rangeColors={[colors.primary.dark]}
                                 onChange={handleSelect}
                                 months={2}
                                 moveRangeOnFirstSelection={false}
@@ -62,7 +66,7 @@ const DateBicker = ({ setStartDate, setEndDate }: IProps) => {
                         <div className="range_small" dir='ltr'>
                             <DateRange
                                 className='date_range'
-                                rangeColors={['#3832A0']}
+                                rangeColors={[colors.primary.dark]}
                                 onChange={handleSelect}
                                 moveRangeOnFirstSelection={false}
                                 ranges={[selectedDateRange]}

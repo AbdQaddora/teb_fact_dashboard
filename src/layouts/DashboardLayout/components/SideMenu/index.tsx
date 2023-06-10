@@ -9,6 +9,8 @@ import { MdDashboard } from 'react-icons/md';
 import { AiFillFileText } from 'react-icons/ai';
 import { BiMessageAltEdit } from 'react-icons/bi';
 import { FaUserNurse } from 'react-icons/fa';
+import { IoMdSettings } from 'react-icons/io';
+
 // Translation
 import { useTranslation } from 'react-i18next';
 import LanguageController from '../LanguageController';
@@ -60,7 +62,13 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
                 text={t("history_questions")}
                 to='HISTORY_QUESTIONS'
             />
-
+            <SideMenuLink
+                onClick={closeMobileMenu}
+                icon={<IoMdSettings />}
+                text={t("settings")}
+                to='SETTINGS'
+            />
+            <div className="divider"></div>
             <LanguageController closeMobileMenu={closeMobileMenu} />
         </Style>
     )

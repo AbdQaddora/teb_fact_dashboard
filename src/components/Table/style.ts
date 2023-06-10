@@ -5,7 +5,7 @@ const Style = styled.table`
     border-collapse: collapse;
 
     .table_header{
-        background-color: ${props => props.theme.colors.text.primary};
+        background-color: ${props => props.theme.colors.background.dark};
         th{ 
             padding: 10px 8px;
             text-align: start;

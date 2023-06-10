@@ -12,6 +12,7 @@ const Style = styled.div<IProps>`
     width: var(--side-menu-width);
     padding: 1rem;
     background-color: ${props => props.theme.colors.background.dark};
+
     @media (max-width:920px){
         z-index: 998;
         transition: 0.3s all ease-in-out;

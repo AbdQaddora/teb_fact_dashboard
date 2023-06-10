@@ -13,6 +13,10 @@ interface IColors {
         main: string,
         second: string
     },
+    success: {
+        main: string,
+        second: string
+    },
     primary: {
         main: string,
         contrast: string,
@@ -27,6 +31,7 @@ interface IColors {
     secondary: {
         main: string,
         contrast: string,
+        dark: string,
         states: {
             p8: string,
             p50: string,

@@ -9,16 +9,17 @@ import AuthContextProvider from './context/AuthContext';
 
 // theming and style
 import { ThemeProvider } from 'styled-components';
-import defaultTheme from './style/theme';
 import GlobalStyle from './style';
 
 // tostas
 import NotificationsContainer from './components/NotificationsContainer';
+import { useTheme } from './context/ThemeContext';
 
 const App = () => {
+  const { theme } = useTheme();
   return (
     <div className="App">
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={theme}>
         <LanguageContextProvider>
           <AuthContextProvider>
             <Provider store={store}>

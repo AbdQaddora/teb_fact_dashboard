@@ -8,6 +8,7 @@ export const PATHS = {
     DOCTOR: "/dermatologist",
     DOCTORS: "/dermatologists",
     HOME: "/",
+    SETTINGS: "/settings",
     LOGIN: "/login",
     TICKET: "/ticket",
     TICKETS: "/tickets",
@@ -25,6 +26,7 @@ const Dermatologists = lazy(() => import('../pages/Dermatologists'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Ticket = lazy(() => import('../pages/Ticket'));
 const Tickets = lazy(() => import('../pages/Tickets'));
+const Settings = lazy(() => import('../pages/Settings'));
 const StaticPages = lazy(() => import('../pages/StaticPages'));
 const StaticPage = lazy(() => import('../pages/StaticPage'));
 const HistoryQuestions = lazy(() => import('../pages/HistoryQuestions'));
@@ -54,6 +56,9 @@ const Router = () => {
             </DashboardLayout>} />
             <Route path={PATHS.TICKETS} element={<DashboardLayout>
                 <Tickets />
+            </DashboardLayout>} />
+            <Route path={PATHS.SETTINGS} element={<DashboardLayout>
+                <Settings />
             </DashboardLayout>} />
             {/* STATIC PAGES TABLE */}
             <Route path={PATHS.STATIC_PAGES} element={<DashboardLayout>

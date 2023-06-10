@@ -15,9 +15,12 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import DateBicker from './DateBicker'
 import StatisticsAPI from '../../../../api/statistics'
 import { H5 } from '../../../../components/tiny/Typography/style'
+import { useTheme } from '../../../../context/ThemeContext'
 
 const InfoSection = () => {
     const { t } = useTranslation("", { keyPrefix: "home" });
+    const { theme: { colors } } = useTheme();
+
     const [isLoading, setIsLoading] = useState(false);
     const [statisticsNumbers, setStatisticsNumbers] = useState({
         dermatologists: 0,
@@ -37,8 +40,6 @@ const InfoSection = () => {
         return now;
     })
     const [endDate, setEndDate] = useState<Date>(new Date())
-
-
     useEffect(() => {
         setIsLoading(true);
         StatisticsAPI.getInfo(startDate, endDate)
@@ -87,7 +88,7 @@ const InfoSection = () => {
                         label: "patients"
                     },
                 ]}
-                colors={["#3832A0", "#FF74B1"]}
+                colors={[colors.primary.main, colors.secondary.main]}
             />
         </Style>
     )
