@@ -3,6 +3,16 @@
 import 'styled-components';
 
 interface IColors {
+    logo: {
+        colorA: {
+            light: string,
+            dark: string,
+        },
+        colorB: {
+            light: string,
+            dark: string,
+        },
+    }
     text: {
         primary: string,
         secondary: string,

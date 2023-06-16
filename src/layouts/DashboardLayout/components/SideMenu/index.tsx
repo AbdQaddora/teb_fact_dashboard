@@ -5,7 +5,7 @@ import SideMenuLink from '../SideMenuLink'
 import Style from './style'
 // icons
 import { BsFillPeopleFill, BsQuestionCircleFill } from 'react-icons/bs';
-import { MdDashboard } from 'react-icons/md';
+import { MdDashboard , MdSick } from 'react-icons/md';
 import { AiFillFileText } from 'react-icons/ai';
 import { BiMessageAltEdit } from 'react-icons/bi';
 import { FaUserNurse } from 'react-icons/fa';
@@ -43,6 +43,12 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
                 icon={<FaUserNurse />}
                 text={t("dermatologists")}
                 to='DOCTORS'
+            />
+            <SideMenuLink
+                onClick={closeMobileMenu}
+                icon={<MdSick />}
+                text={t("patients")}
+                to='PATIENTS'
             />
             <SideMenuLink
                 onClick={closeMobileMenu}

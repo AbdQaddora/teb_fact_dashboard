@@ -6,7 +6,7 @@ import { PATHS } from '../../../router'
 import { useTranslation } from 'react-i18next'
 import Modal from '../../Modal'
 import RemoveDermatologistModal from '../../modals/RemoveDermatologistModal'
-import { useAppDispatch } from '../../../hooks/redux'
+import RemovePatientModal from '../../modals/RemovePatientModal'
 
 interface IProps {
     id: string,
@@ -14,19 +14,20 @@ interface IProps {
     avatar: string,
 }
 
-const DermatologistsTableActions = ({ id, name, avatar }: IProps) => {
+const PatientsTableActions = ({ id, name, avatar }: IProps) => {
     const { t } = useTranslation();
     const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+
     return (
         <>
             {isRemoveModalOpen && <Modal close={() => setIsRemoveModalOpen(false)}>
-                <RemoveDermatologistModal
+                <RemovePatientModal
                     close={() => setIsRemoveModalOpen(false)}
                     {...{ id, name, avatar }}
                 />
             </Modal>}
             <Style>
-                <Link to={`${PATHS.DOCTORS}/${id}`}>
+                <Link to={`${PATHS.PATIENTS}/${id}`}>
                     <Button>{t("components.table_actions.edit")}</Button>
                 </Link>
                 <Button
@@ -38,4 +39,4 @@ const DermatologistsTableActions = ({ id, name, avatar }: IProps) => {
     )
 }
 
-export default DermatologistsTableActions
+export default PatientsTableActions

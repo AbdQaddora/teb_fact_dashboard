@@ -2,6 +2,16 @@ import { DefaultTheme } from "styled-components";
 
 const greenTheme: DefaultTheme = {
     colors: {
+        logo: {
+            colorA: {
+                light: "#9AA8C2",
+                dark: "#4C515B",
+            },
+            colorB: {
+                light: "#0D7A2E",
+                dark: "#155426",
+            },
+        },
         danger: {
             main: "#BF1324",
             second: "#8c232d"

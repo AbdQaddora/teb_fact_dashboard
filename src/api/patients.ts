@@ -1,20 +1,19 @@
-import { IDermatologist } from "../types/Dermatologist";
 import api from "./axiosConfig"
 
-const getDermatologists = async (page: number, per_page: number) => {
+const getPatients = async (page: number, per_page: number) => {
     try {
-        const { data } = await api.get(`/admin/dermatologists?per_page=${per_page}&page=${page}`);
+        const { data } = await api.get(`/admin/patients?per_page=${per_page}&page=${page}`);
         if (data.data) {
             return {
                 status: true,
                 data: data.data,
-                totalDermatologistsCount: data.meta.total
+                totalPatientsCount: data.meta.total
             }
         } else {
             return {
                 status: false,
                 message: "requested data not exist",
-                totalDermatologistsCount: 0
+                totalPatientsCount: 0
             }
         }
     } catch (error: any) {
@@ -27,20 +26,20 @@ const getDermatologists = async (page: number, per_page: number) => {
     }
 }
 
-const searchInDermatologists = async (page: number, per_page: number, query: string) => {
+const searchInPatients = async (page: number, per_page: number, query: string) => {
     try {
-        const { data } = await api.get(`/admin/dermatologists?per_page=${per_page}&page=${page}&name=${query}`);
+        const { data } = await api.get(`/admin/patients?per_page=${per_page}&page=${page}&name=${query}`);
         if (data.data) {
             return {
                 status: true,
                 data: data.data,
-                totalDermatologistsCount: data.meta.total
+                totalPatientsCount: data.meta.total
             }
         } else {
             return {
                 status: false,
                 message: "requested data not exist",
-                totalDermatologistsCount: 0
+                totalPatientsCount: 0
             }
         }
     } catch (error: any) {
@@ -53,13 +52,13 @@ const searchInDermatologists = async (page: number, per_page: number, query: str
     }
 }
 
-const getDermatologistById = async (id: string) => {
+const getPatientById = async (id: string) => {
     try {
-        const { data } = await api.get(`/admin/dermatologists/${id}`);
+        const { data } = await api.get(`/admin/patients/${id}`);
         if (data.status) {
             return {
                 status: true,
-                data: data.data,
+                data: data.data.patient,
             }
         } else {
             return {
@@ -77,17 +76,20 @@ const getDermatologistById = async (id: string) => {
     }
 }
 
-const updateDermatologist = async (dermatologist: IDermatologist) => {
+const updatePatient = async (patient: IPatient) => {
     try {
-        const { data } = await api.post(`/admin/dermatologists/${dermatologist.id}`, {
-            ...dermatologist,
+        const { data } = await api.post(`/admin/patients/${patient.id}`, {
+            ...patient,
+            open_consultations: null,
+            consultations_count: null,
+            created_at: null,
+            email_verified_at: null,
             profile_image: null,
-            university_certificate_image: null
         });
         if (data.status) {
             return {
                 status: true,
-                data: data.data.dermatologist,
+                data: data.data.patient,
             }
         } else {
             return {
@@ -105,9 +107,9 @@ const updateDermatologist = async (dermatologist: IDermatologist) => {
     }
 }
 
-const deleteDermatologist = async (id: string) => {
+const deletePatient = async (id: string) => {
     try {
-        const { data } = await api.delete(`/admin/dermatologists/${id}`);
+        const { data } = await api.delete(`/admin/patients/${id}`);
         if (data.status) {
             return {
                 status: true,
@@ -128,12 +130,12 @@ const deleteDermatologist = async (id: string) => {
     }
 }
 
-const DermatologistsAPI = {
-    getDermatologists,
-    searchInDermatologists,
-    getDermatologistById,
-    updateDermatologist,
-    deleteDermatologist,
+const PatientsAPI = {
+    getPatients,
+    searchInPatients,
+    getPatientById,
+    updatePatient,
+    deletePatient,
 }
 
-export default DermatologistsAPI;
+export default PatientsAPI;

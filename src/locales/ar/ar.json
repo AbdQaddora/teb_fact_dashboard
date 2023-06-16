@@ -28,6 +28,12 @@
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
             "btn": "أخذف"
         },
+        "remove_patient_modal": {
+            "question1": "هل أنت متأكد أنك تريد حذف حساب المريض \"",
+            "question2": "\"؟",
+            "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
+            "btn": "أخذف"
+        },
         "remove_history_question_modal": {
             "question": "هل أنت متأكد أنك تريد حذف هذا السؤال؟",
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
@@ -71,6 +77,7 @@
         "dashboard": "لوحة التحكم",
         "consultations": "الاستشارات",
         "dermatologists": "الأطباء",
+        "patients": "المرضى",
         "tickets": "المراسلات",
         "static_pages": "الصفحات الثابتة",
         "settings": "الاعدادات",
@@ -94,7 +101,7 @@
         "tickets": {
             "name": "الاسم",
             "email": "البريد الالكتروني",
-            "phone": "الهاتف",
+            "phone": "الموبايل",
             "message": "الرسالة",
             "actions": "افعال",
             "response": "رد"
@@ -107,6 +114,14 @@
             "graduation_year": "سنة التخرج",
             "graduation_GPA": "معدل التخرج",
             "rating": "التقييم",
+            "actions": "افعال"
+        },
+        "patients": {
+            "name": "الاسم",
+            "email": "البريد الالكتروني",
+            "mobile_number": "الموبايل",
+            "consultations_count": "الاستشارات",
+            "open_consultations": "الاستشارات الحالية",
             "actions": "افعال"
         },
         "history_question": {
@@ -198,7 +213,12 @@
     "dermatologists": {
         "title": "الاطباء",
         "subTitle": "كل الاطباء",
-        "search": "ابحث عن الأطباء"
+        "search": "ابحث عن الأطباء باستخدام الاسم"
+    },
+    "patients": {
+        "title": "المرضى",
+        "subTitle": "كل المرضى",
+        "search": "ابحث عن المرضى من خلال الاسم"
     },
     "dermatologist": {
         "dermatologist": "الطبيب",
@@ -214,6 +234,18 @@
         "deactivate": "تعطيل",
         "save": "حفظ التغيرات",
         "no_certificate_yet": "لم يقدم شهادته لنا حتى الان"
+    },
+    "patient": {
+        "patient": "المريض",
+        "name": "الاسم",
+        "email": "البريد الالكتروني",
+        "phone": "رقم الموبايل",
+        "gender": "الجنس",
+        "date_of_birth": "تاريخ الميلاد",
+        "open_consultations": "الاستشارات الحالية",
+        "consultations_count": "عدد الاستشارات",
+        "delete": "حذف",
+        "save": "حفظ التغيرات"
     },
     "history_questions": {
         "title": "التاريخ المرضي",

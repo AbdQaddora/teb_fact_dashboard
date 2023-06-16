@@ -196,22 +196,22 @@ export const flipDermatologistActiveState = (id: string) => (dispatch: AppDispat
 
 
 export const nextPage = () => (dispatch: AppDispatch) => {
-    const { activePage, pageSize, totalQuestionsCount } = store.getState().historyQuestions;
+    const { activePage, pageSize, totalDermatologistsCount } = store.getState().dermatologists;
 
-    if (activePage + 1 <= Math.ceil(totalQuestionsCount / pageSize)) {
+    if (activePage + 1 <= Math.ceil(totalDermatologistsCount / pageSize)) {
         dispatch(_setActivePage(activePage + 1));
     }
 }
 
 export const previousPage = () => (dispatch: AppDispatch) => {
-    const { activePage } = store.getState().historyQuestions;
+    const { activePage } = store.getState().dermatologists;
     dispatch(_setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage));
 }
 
 export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
-    const { totalQuestionsCount } = store.getState().historyQuestions;
-    if (Math.floor(totalQuestionsCount / newPageSize) > 0) {
-        dispatch(_setActivePage(Math.floor(totalQuestionsCount / newPageSize)));
+    const { totalDermatologistsCount } = store.getState().dermatologists;
+    if (Math.floor(totalDermatologistsCount / newPageSize) > 0) {
+        dispatch(_setActivePage(Math.floor(totalDermatologistsCount / newPageSize)));
     } else {
         dispatch(_setActivePage(1));
     }

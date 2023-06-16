@@ -18,7 +18,7 @@ const Dermatologists = () => {
   const { t } = useTranslation("", { keyPrefix: "dermatologists" })
 
   const [filter, setFilter] = useState<string>("");
-  const debouncedQuery = useDebounce<string>(filter, 500)
+  const debouncedQuery = useDebounce<string>(filter, 500);
 
   const handelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
@@ -31,13 +31,16 @@ const Dermatologists = () => {
   }, [])
 
   useEffect(() => {
+    dispatch(getDermatologists())
+  }, [activePage, pageSize])
+
+  useEffect(() => {
     if (debouncedQuery) {
       dispatch(searchInDermatologists(debouncedQuery))
     } else {
       dispatch(getDermatologists())
     }
   }, [debouncedQuery])
-
 
   return (
     <Style>

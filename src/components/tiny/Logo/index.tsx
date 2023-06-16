@@ -1,7 +1,6 @@
 import React from 'react'
 import Style from './style'
 
-import logoImage from '../../../assets/images/logo.svg';
 import { useTheme } from '../../../context/ThemeContext';
 interface IProps {
     width?: string,
@@ -12,10 +11,10 @@ interface IProps {
 
 const Logo = ({ className = "", ...rest }: IProps) => {
     const { theme: { colors } } = useTheme();
-    const main = colors.secondary.main;
-    const mainDark = colors.secondary.dark;
-    const secondDark = colors.primary.dark;
-    const second = colors.primary.main;
+    const main = colors.logo.colorA.light;
+    const mainDark = colors.logo.colorA.dark;
+    const secondDark = colors.logo.colorB.dark;
+    const second = colors.logo.colorB.light;
 
 
     return (

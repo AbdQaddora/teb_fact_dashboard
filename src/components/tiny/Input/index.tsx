@@ -18,10 +18,12 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = ({ placeholder, error = false, className = "", height, value, fullWidth, margin, disabled, onDateChange, ...rest }: IProps) => {
     const id = useId();
     const [isEmpty, setIsEmpty] = useState(true);
+
     useEffect(() => {
-        if (value && isEmpty) {
+        if ((value || value === 0) && isEmpty) {
             setIsEmpty(false);
         } else if (!value && !isEmpty) {
+            console.log(value)
             setIsEmpty(true);
         }
     }, [value])

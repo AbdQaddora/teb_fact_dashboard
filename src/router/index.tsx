@@ -7,6 +7,8 @@ export const PATHS = {
     CONSULTATIONS: "/consultations",
     DOCTOR: "/dermatologist",
     DOCTORS: "/dermatologists",
+    PATIENTS: "/patients",
+    PATIENT: "/patient",
     HOME: "/",
     SETTINGS: "/settings",
     LOGIN: "/login",
@@ -23,6 +25,8 @@ const Home = lazy(() => import('../pages/Home'));
 const Consultations = lazy(() => import('../pages/Consultations'));
 const Dermatologist = lazy(() => import('../pages/Dermatologist'));
 const Dermatologists = lazy(() => import('../pages/Dermatologists'));
+const Patients = lazy(() => import('../pages/Patients'));
+const Patient = lazy(() => import('../pages/Patient'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Ticket = lazy(() => import('../pages/Ticket'));
 const Tickets = lazy(() => import('../pages/Tickets'));
@@ -45,11 +49,17 @@ const Router = () => {
             <Route path={PATHS.CONSULTATIONS} element={<DashboardLayout>
                 <Consultations />
             </DashboardLayout>} />
-            <Route path={PATHS.DOCTOR + "/:id"} element={<DashboardLayout>
+            <Route path={PATHS.DOCTORS + "/:id"} element={<DashboardLayout>
                 <Dermatologist />
             </DashboardLayout>} />
             <Route path={PATHS.DOCTORS} element={<DashboardLayout>
                 <Dermatologists />
+            </DashboardLayout>} />
+            <Route path={PATHS.PATIENTS} element={<DashboardLayout>
+                <Patients />
+            </DashboardLayout>} />
+            <Route path={PATHS.PATIENTS + "/:id"} element={<DashboardLayout>
+                <Patient />
             </DashboardLayout>} />
             <Route path={PATHS.TICKET + "/:id"} element={<DashboardLayout>
                 <Ticket />
