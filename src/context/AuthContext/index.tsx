@@ -1,16 +1,19 @@
 import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react'
-import AuthAPI from '../../api/login';
+import AuthAPI from '../../api/auth';
 import { toast } from 'react-toastify';
 import { getAuthTokenFromLocalStorage, setAuthTokenInTheLocalStorage } from '../../util';
 import api, { setTokenInAxios } from '../../api/axiosConfig';
 interface IAuthContext {
     token: string,
-    login: (email: string, password: string, rememberMe?: boolean) => Promise<boolean>
+    login: (email: string, password: string, rememberMe?: boolean) => Promise<boolean>,
+    logout: () => void
+
 }
 
 const initialContextState: IAuthContext = {
     token: "",
-    login: () => new Promise(() => { })
+    login: () => new Promise(() => { }),
+    logout: () => { }
 }
 
 const AuthContext = createContext<IAuthContext>(initialContextState);
@@ -61,7 +64,7 @@ const AuthContextProvider = ({ children }: IProps) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ token, login }}>
+        <AuthContext.Provider value={{ token, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

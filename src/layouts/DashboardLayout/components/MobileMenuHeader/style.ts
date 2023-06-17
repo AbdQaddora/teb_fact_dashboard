@@ -7,7 +7,7 @@ const Style = styled.div`
     padding: 1rem;
     height: 70px;
     background-color: ${props => props.theme.colors.background.dark};
-    .mobile_logo{
+    .mobile_logo, .mobile_logo > svg{
         max-height: 45px;
     }
 

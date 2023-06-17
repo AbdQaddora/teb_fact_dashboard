@@ -80,7 +80,7 @@
         "patients": "المرضى",
         "tickets": "المراسلات",
         "static_pages": "الصفحات الثابتة",
-        "settings": "الاعدادات",
+        "settings": "الإعدادات",
         "history_questions": "أسئلة التاريخ المرضي",
         "language": "اللغة"
     },
@@ -250,5 +250,29 @@
     "history_questions": {
         "title": "التاريخ المرضي",
         "subTitle": "اسئلة التاريخ المرضي"
+    },
+    "settings": {
+        "title":"الإعدادات",
+        "change_theme": {
+            "title": "الوان لوحة التحكم"
+        },
+        "reset_password": {
+            "title": "تغيير كلمة المرور",
+            "old_password_placeholder": "كلمة المرور الحالية",
+            "new_password_placeholder": "كلمة المرور الجديدة",
+            "confirm_password_placeholder": "تأكيد كلمة المرور",
+            "reset_password_btn": "تغيير كلمة المرور",
+            "errors": {
+                "old_password_is_required": "كلمة المرور القديمة حقل اجباري",
+                "password_min_error": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+                "password_small_letter_error": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+                "password_capital_letter_error": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+                "password_number_error": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+                "password_special_characters_error": "يجب أن تحتوي كلمة المرور على رمز واحد على الأقل",
+                "new_password_is_required": "كلمة المرور الجديدة حقل اجباري",
+                "passwords_match_error": "كلمات السر لا تتطابق!",
+                "confirm_password_is_required": "تأكيد كلمة المرور حقل اجباري"
+            }
+        }
     }
 }
