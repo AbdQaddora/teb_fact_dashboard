@@ -1,5 +1,5 @@
 import { IQuestion } from "../types/HistoryQuestion";
-import api from "./axiosConfig"
+import api from "./config/axiosConfig"
 
 const _parseQuestionWithOptions = (question: any) => {
     return {

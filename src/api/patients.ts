@@ -1,4 +1,4 @@
-import api from "./axiosConfig"
+import api from "./config/axiosConfig"
 
 const getPatients = async (page: number, per_page: number) => {
     try {

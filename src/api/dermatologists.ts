@@ -1,5 +1,5 @@
 import { IDermatologist } from "../types/Dermatologist";
-import api from "./axiosConfig"
+import api from "./config/axiosConfig"
 
 const getDermatologists = async (page: number, per_page: number) => {
     try {

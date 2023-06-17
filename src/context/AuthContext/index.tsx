@@ -2,7 +2,7 @@ import React, { createContext, useContext, ReactNode, useState, useEffect } from
 import AuthAPI from '../../api/auth';
 import { toast } from 'react-toastify';
 import { getAuthTokenFromLocalStorage, setAuthTokenInTheLocalStorage } from '../../util';
-import api, { setTokenInAxios } from '../../api/axiosConfig';
+import api, { setTokenInAxios } from '../../api/config/axiosConfig';
 interface IAuthContext {
     token: string,
     login: (email: string, password: string, rememberMe?: boolean) => Promise<boolean>,

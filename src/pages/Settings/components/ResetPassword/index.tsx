@@ -23,9 +23,9 @@ const ResetPassword = () => {
         }).then(() => {
             AuthAPI.changePassword(oldPassword, newPassword)
                 .then((res) => {
-                    if(res?.status){
+                    if (res?.status) {
                         toast.success(res.message);
-                    }else{
+                    } else {
                         toast.error(res?.message);
                     }
                 })
@@ -36,7 +36,7 @@ const ResetPassword = () => {
 
     return (
         <Style className='settings_section'>
-            <H5 margin='0 0 0.5rem'>{t("title")}:</H5>
+            <H5 margin='0 0 1rem'>{t("title")}:</H5>
             <form onSubmit={handelSubmit}>
                 <Input
                     margin='0 0 0.5rem'

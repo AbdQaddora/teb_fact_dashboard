@@ -1,5 +1,5 @@
 import { dateToString } from "../util";
-import api from "./axiosConfig"
+import api from "./config/axiosConfig"
 
 const getInfo = async (start_date: Date, end_date: Date) => {
     try {

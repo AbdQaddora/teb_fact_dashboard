@@ -1,4 +1,4 @@
-import api from "./axiosConfig"
+import api from "./config/axiosConfig"
 
 const mapConsultations = (res: any) => {
     const results: IConsultation[] = res.map((el: any) => {

@@ -252,7 +252,7 @@
         "subTitle": "اسئلة التاريخ المرضي"
     },
     "settings": {
-        "title":"الإعدادات",
+        "title": "الإعدادات",
         "change_theme": {
             "title": "الوان لوحة التحكم"
         },
@@ -272,6 +272,31 @@
                 "new_password_is_required": "كلمة المرور الجديدة حقل اجباري",
                 "passwords_match_error": "كلمات السر لا تتطابق!",
                 "confirm_password_is_required": "تأكيد كلمة المرور حقل اجباري"
+            }
+        },
+        "contact": {
+            "title": "معلومات الاتصال",
+            "email_placeholder": "البريد الإلكتروني",
+            "mobile_number_placeholder": "رقم الجوال",
+            "facebook_placeholder": "فيسبوك",
+            "instagram_placeholder": "إنستجرام",
+            "website_placeholder": "الموقع الإلكتروني",
+            "whatsapp_placeholder": "واتساب",
+            "twitter_placeholder": "تويتر",
+            "update_btn": "تحديث معلومات الاتصال",
+            "errors": {
+                "email_is_required": "يرجى إدخال عنوان البريد الإلكتروني الخاص بك",
+                "invalid_email": "عنوان البريد الإلكتروني الذي أدخلته غير صالح",
+                "mobile_number_is_required": "يرجى إدخال رقم الجوال الخاص بك",
+                "invalid_facebook_url": "رابط الفيسبوك الذي أدخلته غير صالح",
+                "facebook_url_is_required": "يرجى إدخال رابط الفيسبوك الخاص بك",
+                "invalid_instagram_url": "رابط الإنستجرام الذي أدخلته غير صالح",
+                "instagram_url_is_required": "يرجى إدخال رابط الإنستجرام الخاص بك",
+                "invalid_website_url": "رابط الموقع الإلكتروني الذي أدخلته غير صالح",
+                "website_url_is_required": "يرجى إدخال رابط الموقع الإلكتروني الخاص بك",
+                "invalid_whatsapp_url": "رابط الواتساب الذي أدخلته غير صالح",
+                "whatsapp_url_is_required": "يرجى إدخال رابط الواتساب الخاص بك",
+                "invalid_twitter_url": "رابط تويتر الذي أدخلته غير صالح"
             }
         }
     }

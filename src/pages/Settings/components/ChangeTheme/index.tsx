@@ -9,7 +9,7 @@ const ChangeTheme = () => {
   const { t } = useTranslation("", { keyPrefix: "settings.change_theme" })
   return (
     <Style className='settings_section'>
-      <H5 margin='0 0 0.5rem'>{t("title")}:</H5>
+      <H5 margin='0 0 1rem'>{t("title")}:</H5>
       <div className="themes_buttons">
         <div
           onClick={() => { changeTheme('default') }}

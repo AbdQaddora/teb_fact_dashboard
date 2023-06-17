@@ -251,7 +251,7 @@
         "subTitle": "Medical history questions"
     },
     "settings": {
-        "title":"Settings",
+        "title": "Settings",
         "change_theme": {
             "title": "Dashboard theme"
         },
@@ -271,6 +271,31 @@
                 "new_password_is_required": "new password is a required field",
                 "passwords_match_error": "passwords don't match!",
                 "confirm_password_is_required": "confirm password is a required field"
+            }
+        },
+        "contact": {
+            "title": "Contact info",
+            "email_placeholder": "Email",
+            "mobile_number_placeholder": "Mobile number",
+            "facebook_placeholder": "Facebook",
+            "instagram_placeholder": "Instagram",
+            "website_placeholder": "Website",
+            "whatsapp_placeholder": "Whatsapp",
+            "twitter_placeholder": "Twitter",
+            "update_btn": "Update contact info",
+            "errors": {
+                "email_is_required": "Please enter your email address",
+                "invalid_email": "The email address you entered is not valid",
+                "mobile_number_is_required": "Please enter your mobile number",
+                "invalid_facebook_url": "The facebook URL you entered is not valid",
+                "facebook_url_is_required": "Please enter your facebook URL",
+                "invalid_instagram_url": "The instagram URL you entered is not valid",
+                "instagram_url_is_required": "Please enter your instagram URL",
+                "invalid_website_url": "The website URL you entered is not valid",
+                "website_url_is_required": "Please enter your website URL",
+                "invalid_whatsapp_url": "The whatsapp URL you entered is not valid",
+                "whatsapp_url_is_required": "Please enter your whatsapp URL",
+                "invalid_twitter_url": "The twitter URL you entered is not valid"
             }
         }
     }

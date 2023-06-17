@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuthTokenFromLocalStorage } from "../util";
+import { getAuthTokenFromLocalStorage } from "../../util";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
