@@ -5,6 +5,7 @@ import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import TablePagination from '../TablePagination';
 import { useLang } from '../../context/LanguageContext';
 import TableLoading from '../TableLoading';
+import { useTranslation } from 'react-i18next';
 
 const emptyData: Record<string, any>[] = [];
 const emptyColumns: readonly Column<object>[] = [];
@@ -18,7 +19,7 @@ const Table = <T extends Record<string, any>,>({ data, columns, isLoading }: IPr
     const { lang: { langName } } = useLang();
     const dataAfterMemo: T[] = useMemo(() => data, [langName])
     const columnsAfterMemo = useMemo(() => columns, [columns]) as readonly Column<object>[];
-
+    const { t } = useTranslation("", { keyPrefix: "components.table_no_data" });
     const tableInstance = useTable({
         data: dataAfterMemo || emptyData,
         columns: columnsAfterMemo || emptyColumns
@@ -71,7 +72,7 @@ const Table = <T extends Record<string, any>,>({ data, columns, isLoading }: IPr
                                 })}>{cell.render("Cell")}</td>)}
                             </tr>
                         }) : <tr>
-                            <td className="no_data" colSpan={columns.length}>No Data</td>
+                            <td className="no_data" colSpan={columns.length}>{t("no_data")}</td>
                         </tr>}</tbody>
                     }
 

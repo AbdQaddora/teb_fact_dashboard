@@ -1,5 +1,8 @@
 {
     "components": {
+        "table_no_data": {
+            "no_data": "لا يوجد بيانات في هذا الجدول"
+        },
         "table_pagination": {
             "rows_per_page": "عدد الصفوف في الصفحة :",
             "of": "من"
