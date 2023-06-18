@@ -16,7 +16,7 @@ const STATIC_PAGES_COLUMNS: Column<IStaticPage>[] = [
             alt='icon'
         />,
         disableSortBy: true,
-        width: 100
+        minWidth: 100
     },
     {
         Header: () => <Translate TranslateKey='tables.static_pages.title' />,

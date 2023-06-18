@@ -71,7 +71,7 @@ const Table = <T extends Record<string, any>,>({ data, columns, isLoading }: IPr
                                 })}>{cell.render("Cell")}</td>)}
                             </tr>
                         }) : <tr>
-                            <td>No Data</td>
+                            <td className="no_data" colSpan={columns.length}>No Data</td>
                         </tr>}</tbody>
                     }
 

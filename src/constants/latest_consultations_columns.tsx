@@ -8,19 +8,25 @@ const LATEST_CONSULTATIONS_COLUMNS: Column<IConsultation>[] = [
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.name' />,
         accessor: "patient_name",
         Cell: ({ row }) => <NameAndAvatarCell name={row.original.patient_name} avatar={row.original.patient_avatar} />,
+        minWidth: 150,
         maxWidth: 200
     },
     {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.email' />,
         accessor: "patient_email",
-        maxWidth: 250
+        Cell: ({ value }) => <p style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
+        }}>{value}</p>,
+        width: 150
     },
     {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.consultation' />,
         accessor: "consultation",
         Cell: ({ value }) => <>{value.split(" ").slice(0, 20).join(" ")}...</>,
+        minWidth: 350,
         maxWidth: 700,
-        minWidth: 450,
     },
     {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.state' />,
@@ -28,10 +34,11 @@ const LATEST_CONSULTATIONS_COLUMNS: Column<IConsultation>[] = [
         Cell: ({ cell: { value } }: CellProps<any>) => {
             return <ConsultationTypeBadge type={value} />
         },
-        maxWidth: 100
+        width: 100
     }, {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.date' />,
         accessor: "date",
+        minWidth: 80,
         maxWidth: 100
     },
 ];

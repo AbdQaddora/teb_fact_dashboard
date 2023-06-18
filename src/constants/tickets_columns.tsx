@@ -8,18 +8,19 @@ const TICKETS_COLUMNS: Column<ITicket>[] = [
     {
         Header: () => <Translate TranslateKey='tables.tickets.name' />,
         accessor: "full_name",
+        minWidth: 150,
         maxWidth: 200
     },
     {
         Header: () => <Translate TranslateKey='tables.tickets.email' />,
         accessor: "email",
-        maxWidth: 250
+        Cell: ({ value }) => <p style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
+        }}>{value}</p>,
+        width: 150
     },
-    // {
-    //     Header: () => <Translate TranslateKey='tables.tickets.phone' />,
-    //     accessor: "is_read",
-    //     maxWidth: 100
-    // },
     {
         Header: () => <Translate TranslateKey='tables.tickets.message' />,
         accessor: "message",
@@ -31,6 +32,7 @@ const TICKETS_COLUMNS: Column<ITicket>[] = [
         Header: () => <Translate TranslateKey='tables.tickets.actions' />,
         accessor: "id",
         maxWidth: 150,
+        minWidth: 100,
         disableSortBy: true,
         Cell: ({ value }) => <Link to={PATHS.TICKET + "/" + value}>
             <Button>

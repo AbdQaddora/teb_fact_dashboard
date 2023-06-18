@@ -33,6 +33,12 @@ const Style = styled.table`
             ${props => props.theme.typography.body2}
         }
     }
+
+    .no_data{
+        height: 100px;
+        background-color: ${props => props.theme.colors.other.divider};
+        text-align: center;
+    }
 `
 
 export const TableContainer = styled.div`
