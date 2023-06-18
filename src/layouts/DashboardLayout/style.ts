@@ -9,8 +9,9 @@ const Style = styled.div<IProps>`
     --side-menu-width:${SIDE_MENU_WIDTH};
     padding-inline-start: var(--side-menu-width);
     .content{
-            padding: 1rem;
-            background-color: ${props => props.theme.colors.background.default};
+        padding: 1rem;
+        min-height: 100dvh;
+        background-color: ${props => props.theme.colors.background.default};
     }
     
     @media (max-width:920px){

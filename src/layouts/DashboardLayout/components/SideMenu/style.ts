@@ -8,11 +8,14 @@ const Style = styled.div<IProps>`
     position: fixed;
     inset-inline-start: 0;
     top: 0;
-    min-height: 100dvh;
+    height: 100dvh;
     width: var(--side-menu-width);
     padding: 1rem;
     background-color: ${props => props.theme.colors.background.dark};
-
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
     @media (max-width:920px){
         z-index: 998;
         transition: 0.3s all ease-in-out;

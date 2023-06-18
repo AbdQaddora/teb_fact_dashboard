@@ -98,6 +98,7 @@
         "static_pages": "Static pages",
         "history_questions": "History questions",
         "settings": "Settings",
+        "logout": "Logout",
         "language": "Language"
     },
     "tables": {
