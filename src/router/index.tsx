@@ -14,6 +14,7 @@ export const PATHS = {
     LOGIN: "/login",
     TICKET: "/ticket",
     TICKETS: "/tickets",
+    ADVERTISEMENTS: "/advertisements",
     STATIC_PAGES: "/static-pages",
     STATIC_PAGE: "/static-page",
     NEW_STATIC_PAGE: "/static-page-new",
@@ -27,13 +28,14 @@ const Dermatologist = lazy(() => import('../pages/Dermatologist'));
 const Dermatologists = lazy(() => import('../pages/Dermatologists'));
 const Patients = lazy(() => import('../pages/Patients'));
 const Patient = lazy(() => import('../pages/Patient'));
-const NotFound = lazy(() => import('../pages/NotFound'));
 const Ticket = lazy(() => import('../pages/Ticket'));
 const Tickets = lazy(() => import('../pages/Tickets'));
+const Advertisements = lazy(() => import('../pages/Advertisements'));
 const Settings = lazy(() => import('../pages/Settings'));
 const StaticPages = lazy(() => import('../pages/StaticPages'));
 const StaticPage = lazy(() => import('../pages/StaticPage'));
 const HistoryQuestions = lazy(() => import('../pages/HistoryQuestions'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 const Router = () => {
     return (
@@ -66,6 +68,9 @@ const Router = () => {
             </DashboardLayout>} />
             <Route path={PATHS.TICKETS} element={<DashboardLayout>
                 <Tickets />
+            </DashboardLayout>} />
+            <Route path={PATHS.ADVERTISEMENTS} element={<DashboardLayout>
+                <Advertisements />
             </DashboardLayout>} />
             <Route path={PATHS.SETTINGS} element={<DashboardLayout>
                 <Settings />

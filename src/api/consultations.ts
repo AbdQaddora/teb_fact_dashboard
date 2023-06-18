@@ -30,14 +30,15 @@ const getConsultations = async (page: number, per_page: number) => {
             return {
                 status: false,
                 message: "requested data not exist",
-                totalPagesCount: 0
+                totalConsultationsCount: 0
             }
         }
     } catch (error: any) {
         if (error.name === "AxiosError") {
             return {
                 status: false,
-                message: error.response.data.message
+                message: error.response.data.message,
+                totalConsultationsCount: 0
             }
         }
     }
@@ -56,7 +57,7 @@ const getLatestConsultations = async (page: number, per_page: number) => {
             return {
                 status: false,
                 message: "requested data not exist",
-                totalPagesCount: 0
+                totalConsultationsCount: 0
             }
         }
     } catch (error: any) {

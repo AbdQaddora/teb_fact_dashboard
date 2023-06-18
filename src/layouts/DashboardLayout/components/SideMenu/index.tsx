@@ -10,6 +10,7 @@ import { AiFillFileText } from 'react-icons/ai';
 import { BiMessageAltEdit } from 'react-icons/bi';
 import { FaUserNurse } from 'react-icons/fa';
 import { IoMdSettings } from 'react-icons/io';
+import { RiAdvertisementFill } from 'react-icons/ri';
 
 // Translation
 import { useTranslation } from 'react-i18next';
@@ -55,6 +56,12 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
                 icon={<BiMessageAltEdit />}
                 text={t("tickets")}
                 to='TICKETS'
+            />
+            <SideMenuLink
+                onClick={closeMobileMenu}
+                icon={<RiAdvertisementFill />}
+                text={t("advertisements")}
+                to='ADVERTISEMENTS'
             />
             <SideMenuLink
                 onClick={closeMobileMenu}

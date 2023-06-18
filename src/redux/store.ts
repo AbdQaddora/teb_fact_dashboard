@@ -3,6 +3,7 @@ import historyQuestionsReducer from './slices/historyQuestionsSlice';
 import staticPagesReducer from './slices/staticPagesSlice';
 import dermatologistsReducer from './slices/dermatologistsSlice';
 import patientsReducer from './slices/patientsSlice';
+import advertisementsReducer from './slices/advertisementsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         staticPages: staticPagesReducer,
         dermatologists: dermatologistsReducer,
         patients: patientsReducer,
+        advertisements:advertisementsReducer
     },
 })
 

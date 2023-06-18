@@ -8,9 +8,9 @@ interface IProps<T extends Record<string, any>> {
 const TableLoading = <T extends Record<string, any>,>({ columns }: IProps<T>) => {
     return (
         <Style>
-            {[...Array(10)].map(el => {
-                return <tr>
-                    {columns.map(el => <td style={{
+            {[...Array(10)].map((el , index) => {
+                return <tr key={index}>
+                    {columns.map((el , index) => <td key={index} style={{
                         minWidth: el.minWidth ? `${el.minWidth}px` : undefined,
                         maxWidth: el.maxWidth ? `${el.minWidth}px` : undefined,
                         width: el.width ? el.width as string : undefined

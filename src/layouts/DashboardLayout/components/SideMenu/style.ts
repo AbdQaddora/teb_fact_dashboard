@@ -8,7 +8,7 @@ const Style = styled.div<IProps>`
     position: fixed;
     inset-inline-start: 0;
     top: 0;
-    height: 100dvh;
+    min-height: 100dvh;
     width: var(--side-menu-width);
     padding: 1rem;
     background-color: ${props => props.theme.colors.background.dark};

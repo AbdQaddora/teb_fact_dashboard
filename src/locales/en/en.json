@@ -28,6 +28,11 @@
             "subTitle": "This action is permanently action and you can't go back",
             "btn": "Delete"
         },
+        "remove_advertisement_modal": {
+            "question": "Are you sure you want to delete this advertisement",
+            "subTitle": "This action is permanently action and you can't go back",
+            "btn": "Delete"
+        },
         "remove_patient_modal": {
             "question1": "Are you sure you want to delete patient \"",
             "question2": "\" account?",
@@ -71,6 +76,16 @@
                 "arabic_options_min": "the minimum number of answer options in arabic is 2",
                 "arabic_options_max": "the maximum number of answer options in arabic is 7"
             }
+        },
+        "advertisement_modal": {
+            "save_btn": "Save Changes",
+            "add_btn": "Add advertisement",
+            "link_placeholder": "Advertisement link",
+            "errors": {
+                "advertisement_image_is_required": "Advertisement image is required.",
+                "invalid_advertisement_link": "Advertisement link is invalid.",
+                "advertisement_link_is_required": "Advertisement link is required."
+            }
         }
     },
     "sideMenu": {
@@ -79,6 +94,7 @@
         "dermatologists": "Dermatologists",
         "patients": "Patients",
         "tickets": "Tickets",
+        "advertisements": "Advertisements",
         "static_pages": "Static pages",
         "history_questions": "History questions",
         "settings": "Settings",
@@ -131,6 +147,11 @@
             "icon": "icon",
             "title": "title",
             "description": "description",
+            "actions": "actions"
+        },
+        "advertisements": {
+            "image": "AD image",
+            "link": "AD link",
             "actions": "actions"
         }
     },
@@ -249,6 +270,10 @@
     "history_questions": {
         "title": "Medical history",
         "subTitle": "Medical history questions"
+    },
+    "advertisements": {
+        "title": "Advertisements",
+        "subTitle": "Advertisements"
     },
     "settings": {
         "title": "Settings",

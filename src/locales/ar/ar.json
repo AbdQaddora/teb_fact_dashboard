@@ -28,6 +28,11 @@
             "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
             "btn": "أخذف"
         },
+        "remove_advertisement_modal": {
+            "question": "هل أنت متأكد أنك تريد حذف هذا الإعلان؟",
+            "subTitle": "هذا الإجراء هو عمل دائم ولا يمكنك التراجع عنه",
+            "btn": "أخذف"
+        },
         "remove_patient_modal": {
             "question1": "هل أنت متأكد أنك تريد حذف حساب المريض \"",
             "question2": "\"؟",
@@ -71,6 +76,16 @@
                 "arabic_options_min": "الحد الأدنى لعدد خيارات الإجابة باللغة العربية هو 2",
                 "arabic_options_max": "الحد الأقصى لعدد خيارات الإجابة باللغة العربية هو 7"
             }
+        },
+        "advertisement_modal": {
+            "save_btn": "حفظ التغييرات",
+            "add_btn": "اضافة الإعلان",
+            "link_placeholder": "رابط الاعلان",
+            "errors": {
+                "advertisement_image_is_required": "ادخل صورة الإعلان.",
+                "invalid_advertisement_link": "رابط الإعلان غير صالح.",
+                "advertisement_link_is_required": "ادخل رابط الإعلان."
+            }
         }
     },
     "sideMenu": {
@@ -79,6 +94,7 @@
         "dermatologists": "الأطباء",
         "patients": "المرضى",
         "tickets": "المراسلات",
+        "advertisements": "الإعلانات",
         "static_pages": "الصفحات الثابتة",
         "settings": "الإعدادات",
         "history_questions": "أسئلة التاريخ المرضي",
@@ -132,6 +148,11 @@
             "icon": "الأيقونة",
             "title": "العنوان",
             "description": "الوصف",
+            "actions": "افعال"
+        },
+        "advertisements": {
+            "image": "صورة الإعلان",
+            "link": "رابط الإعلان",
             "actions": "افعال"
         }
     },
@@ -250,6 +271,10 @@
     "history_questions": {
         "title": "التاريخ المرضي",
         "subTitle": "اسئلة التاريخ المرضي"
+    },
+    "advertisements": {
+        "title": "الإعلانات",
+        "subTitle": "الإعلانات"
     },
     "settings": {
         "title": "الإعدادات",
