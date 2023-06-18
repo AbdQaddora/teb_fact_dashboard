@@ -18,7 +18,7 @@ import { H5 } from '../../../../components/tiny/Typography/style'
 import { useTheme } from '../../../../context/ThemeContext'
 
 const InfoSection = () => {
-    const { t } = useTranslation("", { keyPrefix: "home" });
+    const { t } = useTranslation("");
     const { theme: { colors } } = useTheme();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +53,7 @@ const InfoSection = () => {
     return (
         <Style>
             <div className="head">
-                <H5>{t("statistics")}</H5>
+                <H5>{t("home.statistics")}</H5>
                 <DateBicker
                     setStartDate={(date) => setStartDate(date)}
                     setEndDate={(date) => setEndDate(date)}
@@ -62,17 +62,17 @@ const InfoSection = () => {
             <div className="numbers_cards">
                 <Card
                     isLoading={isLoading}
-                    label={t('cards.dermatologists.label')}
+                    label={t('home.cards.dermatologists.label')}
                     data={statisticsNumbers.dermatologists + ""}
                     icon={<FaUserNurse color='#FFF' fontSize={22} />} />
                 <Card
                     isLoading={isLoading}
-                    label={t('cards.patients.label')}
+                    label={t('home.cards.patients.label')}
                     data={statisticsNumbers.patients + ""}
                     icon={<HiUsers color='#FFF' fontSize={22} />} />
                 <Card
                     isLoading={isLoading}
-                    label={t('cards.consultations.label')}
+                    label={t('home.cards.consultations.label')}
                     data={statisticsNumbers.consultations + ""}
                     icon={<AiFillMessage color='#FFF' fontSize={22} />} />
             </div>
@@ -81,11 +81,11 @@ const InfoSection = () => {
                 datasets={[
                     {
                         data: chartData.consultations,
-                        label: "consultations"
+                        label: t("components.chart.consultations")
                     },
                     {
                         data: chartData.patients,
-                        label: "patients"
+                        label: t("components.chart.patients")
                     },
                 ]}
                 colors={[colors.primary.main, colors.secondary.main]}

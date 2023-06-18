@@ -12,6 +12,10 @@
             "remove": "حذف",
             "response": "رد"
         },
+        "chart": {
+            "consultations": "الإستشارات",
+            "patients": "المرضى"
+        },
         "consultation_type_badge": {
             "new": "جديد",
             "open": "مفتوح",

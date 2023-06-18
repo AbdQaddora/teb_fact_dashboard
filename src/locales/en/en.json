@@ -1,7 +1,7 @@
 {
     "components": {
         "table_no_data": {
-            "no_data":"There is no data in this table"
+            "no_data": "There is no data in this table"
         },
         "table_pagination": {
             "rows_per_page": "Rows per page :",
@@ -11,6 +11,10 @@
             "edit": "edit",
             "remove": "remove",
             "response": "Response"
+        },
+        "chart": {
+            "consultations": "Consultations",
+            "patients": "Patients"
         },
         "consultation_type_badge": {
             "new": "New",
