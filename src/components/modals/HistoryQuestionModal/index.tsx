@@ -149,6 +149,7 @@ const HistoryQuestionModal = ({ close, data }: IProps) => {
                 && <>
                     <div className="divider" />
                     <CreatableSelect
+                        isDisabled={Boolean(data)}
                         placeholder={t('answer_options_in_arabic')}
                         isClearable
                         isMulti
@@ -169,6 +170,7 @@ const HistoryQuestionModal = ({ close, data }: IProps) => {
                         })}
                     />
                     <CreatableSelect
+                        isDisabled={Boolean(data)}
                         className='english_select'
                         placeholder={t('answer_options_in_english')}
                         isClearable
