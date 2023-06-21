@@ -9,7 +9,7 @@ const mapConsultations = (res: any) => {
             patient_avatar: el.patient.profile_image,
             patient_email: el.patient.email,
             patient_name: el.patient.full_name,
-            state: el.status === 0 ? "new" : el.status === 1 ? "open" : "closed"
+            state: el.status === 0 ? "new" : el.status === 1 ? "open" :el.status === 2 ?  "closed" : "cancelled"
         };
         return consultation;
     })

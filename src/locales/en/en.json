@@ -19,7 +19,8 @@
         "consultation_type_badge": {
             "new": "New",
             "open": "Open",
-            "closed": "Closed"
+            "closed": "Closed",
+            "cancelled": "Cancelled"
         },
         "textEditor": {
             "small": "Small",

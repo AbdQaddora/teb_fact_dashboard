@@ -19,7 +19,8 @@
         "consultation_type_badge": {
             "new": "جديد",
             "open": "مفتوح",
-            "closed": "مغلق"
+            "closed": "مغلق",
+            "cancelled": "ملغاة"
         },
         "textEditor": {
             "small": "صغير",

@@ -15,6 +15,9 @@ const Style = styled.span`
     &.closed{
         background-color: #111827;
     }
+    &.cancelled{
+        background-color: #999;
+    }
 `
 
 export default Style;
