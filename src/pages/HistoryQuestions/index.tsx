@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-    getQuestions,
-    nextPage,
-    previousPage,
-    selectHistoryQuestions,
-    setPageSize
+    HISTORY_QUESTIONS_ACTIONS, selectHistoryQuestions
 } from '../../redux/slices/historyQuestionsSlice';
 
 import Style from './style'
@@ -25,14 +21,16 @@ const HistoryQuestions = () => {
         totalQuestionsCount,
         activePage,
         isLoading,
-        pageSize } = useAppSelector(selectHistoryQuestions);
+        pageSize,
+        is_initial_data_fetched } = useAppSelector(selectHistoryQuestions);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getQuestions());
-    }, [pageSize, activePage])
-
+        if (!is_initial_data_fetched) {
+            dispatch(HISTORY_QUESTIONS_ACTIONS.getQuestions());
+        }
+    }, [])
 
     return (
         <>
@@ -54,9 +52,9 @@ const HistoryQuestions = () => {
                         pagination={{
                             activePage,
                             pageSize,
-                            next: () => dispatch(nextPage()),
-                            previous: () => dispatch(previousPage()),
-                            setPageSize: (page_size) => dispatch(setPageSize(page_size)),
+                            next: () => dispatch(HISTORY_QUESTIONS_ACTIONS.nextPage()),
+                            previous: () => dispatch(HISTORY_QUESTIONS_ACTIONS.previousPage()),
+                            setPageSize: (page_size) => dispatch(HISTORY_QUESTIONS_ACTIONS.setPageSize(page_size)),
                             totalCount: totalQuestionsCount
                         }}
                     />

@@ -7,12 +7,12 @@ import Input from '../../components/tiny/Input';
 import { useDebounce } from 'usehooks-ts'
 
 
-import { getDermatologists, nextPage, previousPage, searchInDermatologists, selectDermatologists, setPageSize } from '../../redux/slices/dermatologistsSlice';
+import { DERMATOLOGIST_ACTIONS, selectDermatologists } from '../../redux/slices/dermatologistsSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import Style from './style';
 const Dermatologists = () => {
-  const { dermatologists, updated_at, activePage, pageSize, isLoading, totalDermatologistsCount } = useAppSelector(selectDermatologists);
+  const { dermatologists, updated_at, activePage, pageSize, isLoading, totalDermatologistsCount, is_initial_data_fetched } = useAppSelector(selectDermatologists);
   const dispatch = useAppDispatch();
 
   const { t } = useTranslation("", { keyPrefix: "dermatologists" })
@@ -25,20 +25,17 @@ const Dermatologists = () => {
   }
 
   useEffect(() => {
-    if (dermatologists.length === 0) {
-      dispatch(getDermatologists())
+    if (is_initial_data_fetched) {
+      dispatch(DERMATOLOGIST_ACTIONS.getDermatologists())
     }
   }, [])
 
-  useEffect(() => {
-    dispatch(getDermatologists())
-  }, [activePage, pageSize])
 
   useEffect(() => {
     if (debouncedQuery) {
-      dispatch(searchInDermatologists(debouncedQuery))
+      dispatch(DERMATOLOGIST_ACTIONS.searchInDermatologists(debouncedQuery))
     } else {
-      dispatch(getDermatologists())
+      dispatch(DERMATOLOGIST_ACTIONS.getDermatologists())
     }
   }, [debouncedQuery])
 
@@ -63,9 +60,9 @@ const Dermatologists = () => {
         pagination={{
           activePage,
           pageSize,
-          next: () => dispatch(nextPage()),
-          previous: () => dispatch(previousPage()),
-          setPageSize: (page_size) => dispatch(setPageSize(page_size)),
+          next: () => dispatch(DERMATOLOGIST_ACTIONS.nextPage()),
+          previous: () => dispatch(DERMATOLOGIST_ACTIONS.previousPage()),
+          setPageSize: (page_size) => dispatch(DERMATOLOGIST_ACTIONS.setPageSize(page_size)),
           totalCount: totalDermatologistsCount
         }}
       />

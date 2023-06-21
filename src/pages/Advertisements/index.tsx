@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { AdvertisementsActions, selectAdvertisements } from '../../redux/slices/advertisementsSlice';
+import { ADVERTISEMENTS_ACTIONS, selectAdvertisements } from '../../redux/slices/advertisementsSlice';
 import Modal from '../../components/Modal';
 import Style from './style';
 import { H4 } from '../../components/tiny/Typography/style';
@@ -18,13 +18,16 @@ const Advertisements = () => {
         totalAdvertisementsCount,
         activePage,
         isLoading,
-        pageSize } = useAppSelector(selectAdvertisements);
+        pageSize,
+        is_initial_data_fetched } = useAppSelector(selectAdvertisements);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(AdvertisementsActions.getAdvertisements());
-    }, [pageSize, activePage])
+        if (!is_initial_data_fetched) {
+            dispatch(ADVERTISEMENTS_ACTIONS.getAdvertisements());
+        }
+    }, [])
 
     return (
         <>
@@ -46,9 +49,9 @@ const Advertisements = () => {
                         pagination={{
                             activePage,
                             pageSize,
-                            next: () => dispatch(AdvertisementsActions.nextPage()),
-                            previous: () => dispatch(AdvertisementsActions.previousPage()),
-                            setPageSize: (page_size) => dispatch(AdvertisementsActions.setPageSize(page_size)),
+                            next: () => dispatch(ADVERTISEMENTS_ACTIONS.nextPage()),
+                            previous: () => dispatch(ADVERTISEMENTS_ACTIONS.previousPage()),
+                            setPageSize: (page_size) => dispatch(ADVERTISEMENTS_ACTIONS.setPageSize(page_size)),
                             totalCount: totalAdvertisementsCount
                         }}
                     />

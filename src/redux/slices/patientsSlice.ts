@@ -6,6 +6,7 @@ import PatientsAPI from '../../api/patients';
 // Define a type for the slice state
 interface IPatientsSlice {
     patients: IPatientColumns[],
+    is_initial_data_fetched: boolean,
     patient: IPatient,
     updated_at: string,
     pageSize: number,
@@ -30,6 +31,7 @@ const initialPatient: IPatient = {
 
 // Define the initial state using that type
 const initialState: IPatientsSlice = {
+    is_initial_data_fetched: false,
     patients: [],
     patient: initialPatient,
     updated_at: `${Date.now()}`,
@@ -49,6 +51,7 @@ export const PatientsSlice = createSlice({
         _setPatients: (state, action: PayloadAction<{ patients: IPatientColumns[], totalPatientsCount: number }>) => {
             state.patients = [...action.payload.patients];
             state.totalPatientsCount = action.payload.totalPatientsCount
+            state.is_initial_data_fetched = true;
             state.updated_at = `${Date.now()}`
         },
         _deletePatient: (state, action: PayloadAction<{ id: string }>) => {
@@ -144,11 +147,16 @@ export const updatePatient = (new_patient: IPatient) => (dispatch: AppDispatch) 
 }
 
 export const deletePatient = (id: string) => (dispatch: AppDispatch) => {
+    const { activePage, pageSize, totalPatientsCount } = store.getState().patients;
+
     PatientsAPI.deletePatient(id)
         .then((res) => {
             if (res?.status) {
                 dispatch(_deletePatient({ id }))
                 toast.success("patient have been deleted successfully")
+                if (totalPatientsCount % pageSize === 1 && activePage === Math.ceil(totalPatientsCount / pageSize)) {
+                    dispatch(previousPage())
+                }
             } else {
                 toast.error(res?.message)
             }
@@ -157,28 +165,43 @@ export const deletePatient = (id: string) => (dispatch: AppDispatch) => {
         })
 }
 
+
 export const nextPage = () => (dispatch: AppDispatch) => {
     const { activePage, pageSize, totalPatientsCount } = store.getState().patients;
-
     if (activePage + 1 <= Math.ceil(totalPatientsCount / pageSize)) {
         dispatch(_setActivePage(activePage + 1));
+        dispatch(getPatients());
     }
 }
 
 export const previousPage = () => (dispatch: AppDispatch) => {
     const { activePage } = store.getState().patients;
-    dispatch(_setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage));
+    const new_active_page = activePage - 1 > 0 ? activePage - 1 : activePage;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+        dispatch(getPatients());
+    }
 }
 
 export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
-    const { totalPatientsCount } = store.getState().patients;
-    if (Math.floor(totalPatientsCount / newPageSize) > 0) {
-        dispatch(_setActivePage(Math.floor(totalPatientsCount / newPageSize)));
-    } else {
-        dispatch(_setActivePage(1));
+    const { totalPatientsCount, activePage } = store.getState().patients;
+    const new_active_page = Math.floor(totalPatientsCount / newPageSize) > 0 ? Math.floor(totalPatientsCount / newPageSize) : 1;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
     }
-
     dispatch(_setPageSize(newPageSize));
+    dispatch(getPatients());
+}
+
+export const PATIENTS_ACTIONS = {
+    getPatients,
+    getPatientBtId,
+    deletePatient,
+    updatePatient,
+    searchInPatients,
+    nextPage,
+    previousPage,
+    setPageSize
 }
 
 

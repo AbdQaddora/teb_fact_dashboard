@@ -7,7 +7,7 @@ import Modal from '../../Modal'
 import { useAppDispatch } from '../../../hooks/redux'
 import AdvertisementModal from '../../modals/AdvertisementModal'
 import RemoveAdvertisementModal from '../../modals/RemoveAdvertisementModal'
-import { AdvertisementsActions } from '../../../redux/slices/advertisementsSlice'
+import { ADVERTISEMENTS_ACTIONS } from '../../../redux/slices/advertisementsSlice'
 
 interface IProps {
     data: IAdvertisement
@@ -21,7 +21,7 @@ const AdvertisementsTableActions = ({ data }: IProps) => {
     const dispatch = useAppDispatch();
 
     const onFlipState = () => {
-        dispatch(AdvertisementsActions.flipAdvertisementActiveState(data.id))
+        dispatch(ADVERTISEMENTS_ACTIONS.flipAdvertisementActiveState(data.id))
     }
 
     return (

@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { store, type AppDispatch, type RootState } from '../store'
 import { toast } from 'react-toastify';
 import AdvertisementsAPI from '../../api/advertisements';
+import { bool } from 'yup';
 
 // Define a type for the slice state
 interface IAdvertisementsSlice {
     advertisements: IAdvertisement[],
+    is_initial_data_fetched: boolean,
     updated_at: string,
     pageSize: number,
     activePage: number,
@@ -16,6 +18,7 @@ interface IAdvertisementsSlice {
 // Define the initial state using that type
 const initialState: IAdvertisementsSlice = {
     advertisements: [],
+    is_initial_data_fetched: false,
     updated_at: `${Date.now()}`,
     activePage: 1,
     isLoading: false,
@@ -30,6 +33,7 @@ export const advertisementsSlice = createSlice({
         _setAdvertisements: (state, action: PayloadAction<{ advertisements: IAdvertisement[], totalAdvertisementsCount: number }>) => {
             state.advertisements = [...action.payload.advertisements];
             state.totalAdvertisementsCount = action.payload.totalAdvertisementsCount
+            state.is_initial_data_fetched = true;
             state.updated_at = `${Date.now()}`
         },
         _addNewAdvertisement: (state, action: PayloadAction<{ advertisement: IAdvertisement }>) => {
@@ -121,19 +125,6 @@ export const addNewAdvertisement = (advertisement: IAdvertisement) => (dispatch:
         })
 }
 
-// export const getAdvertisementBtId = (id: string) => (dispatch: AppDispatch) => {
-//     AdvertisementsAPI.getAdvertisementByID(id)
-//         .then((res) => {
-//             if (res?.status) {
-//                 dispatch(_setAdvertisement({
-//                     advertisement: res?.data as IAdvertisement
-//                 }))
-//             }
-//         }).catch((error) => {
-//             console.log(error)
-//         })
-// }
-
 export const updateAdvertisement = (new_advertisement: IAdvertisement) => (dispatch: AppDispatch) => {
     AdvertisementsAPI.updateAdvertisement(new_advertisement)
         .then((res) => {
@@ -151,11 +142,16 @@ export const updateAdvertisement = (new_advertisement: IAdvertisement) => (dispa
 }
 
 export const deleteAdvertisement = (id: string) => (dispatch: AppDispatch) => {
+    const { activePage, pageSize, totalAdvertisementsCount } = store.getState().advertisements;
+
     AdvertisementsAPI.deleteAdvertisement(id)
         .then((res) => {
             if (res?.status) {
-                dispatch(_deleteAdvertisement({ id }))
-                toast.success(res?.message)
+                toast.success(res?.message);
+                dispatch(_deleteAdvertisement({ id }));
+                if (totalAdvertisementsCount % pageSize === 1 && activePage === Math.ceil(totalAdvertisementsCount / pageSize)) {
+                    dispatch(previousPage())
+                }
             } else {
                 toast.error(res?.message)
             }
@@ -181,35 +177,35 @@ export const flipAdvertisementActiveState = (id: string) => (dispatch: AppDispat
         toast.error(error.message)
     })
 }
-
-
 export const nextPage = () => (dispatch: AppDispatch) => {
     const { activePage, pageSize, totalAdvertisementsCount } = store.getState().advertisements;
-
     if (activePage + 1 <= Math.ceil(totalAdvertisementsCount / pageSize)) {
         dispatch(_setActivePage(activePage + 1));
+        dispatch(getAdvertisements());
     }
 }
 
 export const previousPage = () => (dispatch: AppDispatch) => {
     const { activePage } = store.getState().advertisements;
-    dispatch(_setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage));
+    const new_active_page = activePage - 1 > 0 ? activePage - 1 : activePage;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+        dispatch(getAdvertisements());
+    }
 }
 
 export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
-    const { totalAdvertisementsCount } = store.getState().advertisements;
-    if (Math.floor(totalAdvertisementsCount / newPageSize) > 0) {
-        dispatch(_setActivePage(Math.floor(totalAdvertisementsCount / newPageSize)));
-    } else {
-        dispatch(_setActivePage(1));
+    const { totalAdvertisementsCount, activePage } = store.getState().advertisements;
+    const new_active_page = Math.floor(totalAdvertisementsCount / newPageSize) > 0 ? Math.floor(totalAdvertisementsCount / newPageSize) : 1;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
     }
-
     dispatch(_setPageSize(newPageSize));
+    dispatch(getAdvertisements());
 }
 
-export const AdvertisementsActions = {
+export const ADVERTISEMENTS_ACTIONS = {
     getAdvertisements,
-    // getAdvertisementBtId,
     updateAdvertisement,
     addNewAdvertisement,
     deleteAdvertisement,

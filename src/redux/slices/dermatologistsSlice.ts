@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 // Define a type for the slice state
 interface IDermatologistsSlice {
     dermatologists: IDermatologistColumns[],
+    is_initial_data_fetched: boolean,
     dermatologist: IDermatologist,
     updated_at: string,
     pageSize: number,
@@ -34,6 +35,7 @@ const initialDermatologist: IDermatologist = {
 
 // Define the initial state using that type
 const initialState: IDermatologistsSlice = {
+    is_initial_data_fetched: false,
     dermatologists: [],
     dermatologist: initialDermatologist,
     updated_at: `${Date.now()}`,
@@ -52,6 +54,7 @@ export const dermatologistsSlice = createSlice({
         },
         _setDermatologists: (state, action: PayloadAction<{ dermatologists: IDermatologistColumns[], totalDermatologistsCount: number }>) => {
             state.dermatologists = [...action.payload.dermatologists];
+            state.is_initial_data_fetched = true;
             state.totalDermatologistsCount = action.payload.totalDermatologistsCount
             state.updated_at = `${Date.now()}`
         },
@@ -162,12 +165,16 @@ export const updateDermatologist = (new_dermatologist: IDermatologist) => (dispa
 }
 
 export const deleteDermatologist = (id: string) => (dispatch: AppDispatch) => {
-    // TODO: API CALL TO DELETE THE DOCTOR
+    const { activePage, pageSize, totalDermatologistsCount } = store.getState().dermatologists;
+
     DermatologistsAPI.deleteDermatologist(id)
         .then((res) => {
             if (res?.status) {
                 dispatch(_deleteDermatologist({ id }))
                 toast.success("Dermatologist have been deleted successfully")
+                if (totalDermatologistsCount % pageSize === 1 && activePage === Math.ceil(totalDermatologistsCount / pageSize)) {
+                    dispatch(previousPage())
+                }
             } else {
                 toast.error(res?.message)
             }
@@ -194,30 +201,42 @@ export const flipDermatologistActiveState = (id: string) => (dispatch: AppDispat
     })
 }
 
-
 export const nextPage = () => (dispatch: AppDispatch) => {
     const { activePage, pageSize, totalDermatologistsCount } = store.getState().dermatologists;
-
     if (activePage + 1 <= Math.ceil(totalDermatologistsCount / pageSize)) {
         dispatch(_setActivePage(activePage + 1));
+        dispatch(getDermatologists());
     }
 }
 
 export const previousPage = () => (dispatch: AppDispatch) => {
     const { activePage } = store.getState().dermatologists;
-    dispatch(_setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage));
+    const new_active_page = activePage - 1 > 0 ? activePage - 1 : activePage;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+        dispatch(getDermatologists());
+    }
 }
 
 export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
-    const { totalDermatologistsCount } = store.getState().dermatologists;
-    if (Math.floor(totalDermatologistsCount / newPageSize) > 0) {
-        dispatch(_setActivePage(Math.floor(totalDermatologistsCount / newPageSize)));
-    } else {
-        dispatch(_setActivePage(1));
+    const { totalDermatologistsCount, activePage } = store.getState().dermatologists;
+    const new_active_page = Math.floor(totalDermatologistsCount / newPageSize) > 0 ? Math.floor(totalDermatologistsCount / newPageSize) : 1;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
     }
-
     dispatch(_setPageSize(newPageSize));
+    dispatch(getDermatologists());
 }
 
-
+export const DERMATOLOGIST_ACTIONS = {
+    getDermatologists,
+    getDermatologistBtId,
+    updateDermatologist,
+    deleteDermatologist,
+    searchInDermatologists,
+    flipDermatologistActiveState,
+    setPageSize,
+    nextPage,
+    previousPage
+}
 export default dermatologistsSlice.reducer

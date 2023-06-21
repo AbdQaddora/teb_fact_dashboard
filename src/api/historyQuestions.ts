@@ -96,6 +96,7 @@ const deleteQuestion = async (id: string) => {
         if (data.status) {
             return {
                 status: true,
+                message: data.message
             }
         } else {
             return {

@@ -7,6 +7,7 @@ import { useAppSelector } from '../../hooks/redux';
 
 // Define a type for the slice state
 interface IHistoryQuestionsSlice {
+    is_initial_data_fetched: boolean,
     questions: IQuestion[],
     updated_at: string,
     pageSize: number,
@@ -17,6 +18,7 @@ interface IHistoryQuestionsSlice {
 
 // Define the initial state using that type
 const initialState: IHistoryQuestionsSlice = {
+    is_initial_data_fetched: false,
     questions: [],
     updated_at: `${Date.now()}`,
     pageSize: 10,
@@ -32,6 +34,7 @@ export const historyQuestionsSlice = createSlice({
         _getQuestions: (state, action: PayloadAction<{ questions: IQuestion[], totalQuestionsCount: number }>) => {
             state.totalQuestionsCount = action.payload.totalQuestionsCount;
             state.questions = [...action.payload.questions];
+            state.is_initial_data_fetched = true;
             state.updated_at = `${Date.now()}`;
         },
         _addQuestion: (state, action: PayloadAction<{ question: IQuestion }>) => {
@@ -76,7 +79,7 @@ const {
     _setActivePage,
     _setPageSize,
     _startLoading,
-    _endLoading
+    _endLoading,
 } = historyQuestionsSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
@@ -116,12 +119,16 @@ export const updateQuestion = (new_question: IQuestion) => (dispatch: AppDispatc
 }
 
 export const deleteQuestion = (id: string) => (dispatch: AppDispatch) => {
+    const { activePage, pageSize, totalQuestionsCount } = store.getState().historyQuestions;
 
     HistoryQuestionsAPI.deleteQuestion(id)
         .then((res) => {
             if (res?.status) {
+                if (totalQuestionsCount % pageSize === 1 && activePage === Math.ceil(totalQuestionsCount / pageSize)) {
+                    dispatch(previousPage())
+                }
                 dispatch(_deleteQuestion({ id }));
-                
+                toast.success(res?.message);
             } else {
                 toast.error(res?.message)
             }
@@ -130,26 +137,39 @@ export const deleteQuestion = (id: string) => (dispatch: AppDispatch) => {
 
 export const nextPage = () => (dispatch: AppDispatch) => {
     const { activePage, pageSize, totalQuestionsCount } = store.getState().historyQuestions;
-
     if (activePage + 1 <= Math.ceil(totalQuestionsCount / pageSize)) {
         dispatch(_setActivePage(activePage + 1));
+        dispatch(getQuestions());
     }
 }
 
 export const previousPage = () => (dispatch: AppDispatch) => {
     const { activePage } = store.getState().historyQuestions;
-    dispatch(_setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage));
+    const new_active_page = activePage - 1 > 0 ? activePage - 1 : activePage;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+        dispatch(getQuestions());
+    }
 }
 
 export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
-    const { totalQuestionsCount } = store.getState().historyQuestions;
-    if (Math.floor(totalQuestionsCount / newPageSize) > 0) {
-        dispatch(_setActivePage(Math.floor(totalQuestionsCount / newPageSize)));
-    } else {
-        dispatch(_setActivePage(1));
+    const { totalQuestionsCount, activePage } = store.getState().historyQuestions;
+    const new_active_page = Math.floor(totalQuestionsCount / newPageSize) > 0 ? Math.floor(totalQuestionsCount / newPageSize) : 1;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
     }
-
     dispatch(_setPageSize(newPageSize));
+    dispatch(getQuestions());
+}
+
+export const HISTORY_QUESTIONS_ACTIONS = {
+    getQuestions,
+    addQuestion,
+    updateQuestion,
+    deleteQuestion,
+    nextPage,
+    previousPage,
+    setPageSize,
 }
 
 export default historyQuestionsSlice.reducer

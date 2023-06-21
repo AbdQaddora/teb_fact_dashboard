@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { AppDispatch, RootState } from '../store'
+import { store, type AppDispatch, type RootState } from '../store'
 
 // mock
 import PagesAPI from '../../api/staticPages';
@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 // Define a type for the slice state
 interface IStaticPagesSlice {
     page: IStaticPage,
+    is_initial_data_fetched: boolean,
     page_requests_state: {
         loading: boolean,
         error: string
@@ -18,7 +19,9 @@ interface IStaticPagesSlice {
         error: string
     }
     updated_at: string,
-    totalPagesCount: number
+    totalPagesCount: number,
+    activePage: number,
+    pageSize: number,
 }
 
 const defaultPageValues: IStaticPage = {
@@ -38,6 +41,7 @@ const defaultPageValues: IStaticPage = {
 // Define the initial state using that type
 const initialState: IStaticPagesSlice = {
     page: defaultPageValues,
+    is_initial_data_fetched: false,
     page_requests_state: {
         error: "",
         loading: false,
@@ -48,7 +52,9 @@ const initialState: IStaticPagesSlice = {
         loading: false,
     },
     updated_at: `${Date.now()}`,
-    totalPagesCount: 0
+    totalPagesCount: 0,
+    activePage: 1,
+    pageSize: 10,
 }
 
 export const staticPagesSlice = createSlice({
@@ -79,6 +85,7 @@ export const staticPagesSlice = createSlice({
         _setAllPages: (state, action: PayloadAction<{ pages: IStaticPage[], totalPagesCount: number }>) => {
             state.pages = [...action.payload.pages];
             state.totalPagesCount = action.payload.totalPagesCount;
+            state.is_initial_data_fetched = true;
             state.updated_at = `${Date.now()}`
         },
         _addPage: (state, action: PayloadAction<{ page: IStaticPage }>) => {
@@ -118,7 +125,13 @@ export const staticPagesSlice = createSlice({
         },
         _setPagesRequestError: (state, action: PayloadAction<{ error: string }>) => {
             state.pages_requests_state.error = action.payload.error;
-        }
+        },
+        _setActivePage: (state, action: PayloadAction<number>) => {
+            state.activePage = action.payload;
+        },
+        _setPageSize: (state, action: PayloadAction<number>) => {
+            state.pageSize = action.payload;
+        },
     },
 })
 
@@ -138,17 +151,21 @@ const { _addPage,
     _setPagesRequestError,
     _startPageRequest,
     _startPagesRequest,
-    _updateSelectedPage
+    _updateSelectedPage,
+    _setActivePage,
+    _setPageSize,
 } = staticPagesSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectStaticPages = (state: RootState) => state.staticPages
 
 // custom reducers
-export const getAllPages = (page: number, per_page: number) => (dispatch: AppDispatch) => {
+export const getAllPages = () => (dispatch: AppDispatch) => {
+    const { activePage, pageSize } = store.getState().patients;
+
     // TODO: API CALL TO GET ALL PAGES
     dispatch(_startPagesRequest())
-    PagesAPI.getPages(page, per_page)
+    PagesAPI.getPages(activePage, pageSize)
         .then((res) => {
             if (res?.status) {
                 dispatch(_setAllPages({ pages: res.data, totalPagesCount: res.totalPagesCount }));
@@ -204,12 +221,16 @@ export const updateStaticPage = (new_page: IStaticPage, onResolve: () => void) =
 }
 
 export const deleteStaticPage = (id: string) => (dispatch: AppDispatch) => {
-    // TODO: API CALL TO DELETE THE PAGE
+    const { activePage, pageSize, totalPagesCount } = store.getState().staticPages;
+
     dispatch(_startPagesRequest())
     PagesAPI.deletePage(id)
         .then((res) => {
             if (res?.status) {
                 dispatch(_deletePage({ id }))
+                if (totalPagesCount % pageSize === 1 && activePage === Math.ceil(totalPagesCount / pageSize)) {
+                    dispatch(previousPage())
+                }
             } else {
                 dispatch(_setPagesRequestError({ error: res?.message }))
             }
@@ -251,6 +272,44 @@ export const getPageByID = (id: string) => (dispatch: AppDispatch) => {
         .finally(() => {
             dispatch(_endPageRequest())
         })
+}
+
+export const nextPage = () => (dispatch: AppDispatch) => {
+    const { activePage, pageSize, totalPagesCount } = store.getState().staticPages;
+    if (activePage + 1 <= Math.ceil(totalPagesCount / pageSize)) {
+        dispatch(_setActivePage(activePage + 1));
+        dispatch(getAllPages());
+    }
+}
+
+export const previousPage = () => (dispatch: AppDispatch) => {
+    const { activePage } = store.getState().staticPages;
+    const new_active_page = activePage - 1 > 0 ? activePage - 1 : activePage;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+        dispatch(getAllPages());
+    }
+}
+
+export const setPageSize = (newPageSize: number) => (dispatch: AppDispatch) => {
+    const { totalPagesCount, activePage } = store.getState().staticPages;
+    const new_active_page = Math.floor(totalPagesCount / newPageSize) > 0 ? Math.floor(totalPagesCount / newPageSize) : 1;
+    if (new_active_page !== activePage) {
+        dispatch(_setActivePage(new_active_page));
+    }
+    dispatch(_setPageSize(newPageSize));
+    dispatch(getAllPages());
+}
+
+export const STATIC_PAGES_ACTIONS = {
+    addStaticPage,
+    updateStaticPage,
+    getAllPages,
+    deleteStaticPage,
+    updatePageActiveState,
+    nextPage,
+    previousPage,
+    setPageSize
 }
 
 

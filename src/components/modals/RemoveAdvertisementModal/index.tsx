@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import noAvatar from '../../../assets/images/no_avatar.webp';
 import { useAppDispatch } from '../../../hooks/redux';
 
-import { AdvertisementsActions } from '../../../redux/slices/advertisementsSlice';
+import { ADVERTISEMENTS_ACTIONS } from '../../../redux/slices/advertisementsSlice';
 interface IProps {
     advertisement: IAdvertisement;
     close: () => void
@@ -18,7 +18,7 @@ const RemoveAdvertisementModal = ({ advertisement, close }: IProps) => {
     console.log({ advertisement })
     const { t } = useTranslation("", { keyPrefix: "modals.remove_advertisement_modal" });
     const handelRemove = () => {
-        dispatch(AdvertisementsActions.deleteAdvertisement(advertisement.id))
+        dispatch(ADVERTISEMENTS_ACTIONS.deleteAdvertisement(advertisement.id))
         close();
     }
 

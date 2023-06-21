@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Style from './style'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { _setPageSize, getPatients, nextPage, previousPage, searchInPatients, selectPatients } from '../../redux/slices/patientsSlice';
+import { PATIENTS_ACTIONS, selectPatients } from '../../redux/slices/patientsSlice';
 import PATIENTS_COLUMNS from '../../constants/patients_columns';
 import { H4 } from '../../components/tiny/Typography/style';
 import Input from '../../components/tiny/Input';
@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useDebounce } from 'usehooks-ts';
 
 const Patients = () => {
-    const { patients, updated_at, activePage, pageSize, isLoading, totalPatientsCount } = useAppSelector(selectPatients);
+    const { patients, updated_at, activePage, pageSize, isLoading, totalPatientsCount, is_initial_data_fetched } = useAppSelector(selectPatients);
     const dispatch = useAppDispatch();
 
     const { t } = useTranslation("", { keyPrefix: "patients" })
@@ -23,22 +23,19 @@ const Patients = () => {
     }
 
     useEffect(() => {
-        if (patients.length === 0) {
-            dispatch(getPatients())
+        if (is_initial_data_fetched) {
+            dispatch(PATIENTS_ACTIONS.getPatients())
         }
     }, [])
 
     useEffect(() => {
-        dispatch(getPatients())
-    }, [pageSize, activePage])
-
-    useEffect(() => {
         if (debouncedQuery) {
-            dispatch(searchInPatients(debouncedQuery))
+            dispatch(PATIENTS_ACTIONS.searchInPatients(debouncedQuery))
         } else {
-            dispatch(getPatients())
+            dispatch(PATIENTS_ACTIONS.getPatients())
         }
     }, [debouncedQuery])
+
     return (
         <Style>
             <H4 margin='1rem 0 2rem'>{t("title")}</H4>
@@ -60,9 +57,9 @@ const Patients = () => {
                 pagination={{
                     activePage,
                     pageSize,
-                    next: () => dispatch(nextPage()),
-                    previous: () => dispatch(previousPage()),
-                    setPageSize: (page_size) => dispatch(_setPageSize(page_size)),
+                    next: () => dispatch(PATIENTS_ACTIONS.nextPage()),
+                    previous: () => dispatch(PATIENTS_ACTIONS.previousPage()),
+                    setPageSize: (page_size) => dispatch(PATIENTS_ACTIONS.setPageSize(page_size)),
                     totalCount: totalPatientsCount
                 }}
             />

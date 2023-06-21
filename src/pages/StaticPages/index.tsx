@@ -6,51 +6,21 @@ import Style from './style'
 import { H4 } from '../../components/tiny/Typography/style';
 import TableSection from '../../components/TableSection';
 import STATIC_PAGES_COLUMNS from '../../constants/static_pages_columns';
-import { getAllPages, selectStaticPages } from '../../redux/slices/staticPagesSlice';
+import { STATIC_PAGES_ACTIONS, selectStaticPages } from '../../redux/slices/staticPagesSlice';
 
 import { PATHS } from '../../router';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const StaticPages = () => {
-    const { pages, updated_at, totalPagesCount, pages_requests_state } = useAppSelector(selectStaticPages);
+    const { pages, is_initial_data_fetched, updated_at, totalPagesCount, pages_requests_state, activePage, pageSize } = useAppSelector(selectStaticPages);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
-
-
-    const [pageSize, setPageSize] = useState(10);
-    const [activePage, setActivePage] = useState(1);
-
     useEffect(() => {
-        dispatch(getAllPages(activePage, pageSize));
-    }, [pageSize, activePage])
-
-    useEffect(() => {
-        if (pages_requests_state.error) {
-            toast.error(pages_requests_state.error)
+        if (!is_initial_data_fetched) {
+            dispatch(STATIC_PAGES_ACTIONS.getAllPages())
         }
-    }, [pages_requests_state.error])
-
-    const next = () => {
-        if (activePage + 1 <= Math.ceil(totalPagesCount / pageSize)) {
-            setActivePage(activePage + 1);
-        }
-    }
-
-    const previous = () => {
-        setActivePage(activePage - 1 > 0 ? activePage - 1 : activePage)
-    }
-
-    const customSetPageSize = (newPageSize: number) => {
-        if (Math.floor(totalPagesCount / newPageSize) > 0) {
-            setActivePage(Math.floor(totalPagesCount / newPageSize));
-        } else {
-            setActivePage(1);
-        }
-
-        setPageSize(newPageSize);
-    }
+    }, [])
     return (
         <Style>
             <div>
@@ -65,9 +35,9 @@ const StaticPages = () => {
                     pagination={{
                         activePage,
                         pageSize,
-                        next,
-                        previous,
-                        setPageSize: customSetPageSize,
+                        next: () => { dispatch(STATIC_PAGES_ACTIONS.nextPage()) },
+                        previous: () => { dispatch(STATIC_PAGES_ACTIONS.previousPage()) },
+                        setPageSize: (size: number) => { dispatch(STATIC_PAGES_ACTIONS.setPageSize(size)) },
                         totalCount: totalPagesCount
                     }}
                 />

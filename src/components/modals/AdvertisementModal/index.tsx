@@ -4,7 +4,7 @@ import ImageInput from '../../tiny/ImageInput'
 import Input from '../../tiny/Input'
 import Button from '../../tiny/Button'
 import { useAppDispatch } from '../../../hooks/redux'
-import { AdvertisementsActions } from '../../../redux/slices/advertisementsSlice'
+import { ADVERTISEMENTS_ACTIONS } from '../../../redux/slices/advertisementsSlice'
 import { useTranslation } from 'react-i18next'
 import AdvertisementSchema from '../../../validation/advertisement'
 import { toast } from 'react-toastify'
@@ -28,9 +28,9 @@ const AdvertisementModal = ({ close, data }: IProps) => {
         AdvertisementSchema.validate(advertisementData)
             .then(() => {
                 if (data) {
-                    dispatch(AdvertisementsActions.updateAdvertisement(advertisementData))
+                    dispatch(ADVERTISEMENTS_ACTIONS.updateAdvertisement(advertisementData))
                 } else {
-                    dispatch(AdvertisementsActions.addNewAdvertisement(advertisementData))
+                    dispatch(ADVERTISEMENTS_ACTIONS.addNewAdvertisement(advertisementData))
                 }
                 close();
             }).catch((error) => {
