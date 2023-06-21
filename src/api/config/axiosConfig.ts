@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuthTokenFromLocalStorage } from "../../util";
+import { getAuthTokenFromLocalStorage, getAuthTokenFromSessionStorage } from "../../util";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -13,7 +13,7 @@ export const setTokenInAxios = (token: string) => {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-setTokenInAxios(getAuthTokenFromLocalStorage())
+setTokenInAxios(getAuthTokenFromSessionStorage() || getAuthTokenFromLocalStorage())
 
 export const changeLocal = (local: string) => {
     api.defaults.headers.common['Accept-Language'] = local;

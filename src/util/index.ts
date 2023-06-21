@@ -46,7 +46,21 @@ export const getAuthTokenFromLocalStorage = () => {
 
     return ""
 }
+export const getAuthTokenFromSessionStorage = () => {
+    const item = sessionStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_TOKEN_KEY);
+
+    console.log({ tokenFromSession: item })
+    if (item) {
+        return item
+    }
+
+    return false
+}
 
 export const setAuthTokenInTheLocalStorage = (token: string) => {
     localStorage.setItem(import.meta.env.VITE_LOCAL_STORAGE_TOKEN_KEY, token);
+}
+
+export const setAuthTokenInTheSessionStorage = (token: string) => {
+    sessionStorage.setItem(import.meta.env.VITE_LOCAL_STORAGE_TOKEN_KEY, token);
 }

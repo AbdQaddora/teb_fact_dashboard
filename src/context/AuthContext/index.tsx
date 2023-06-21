@@ -1,7 +1,7 @@
 import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react'
 import AuthAPI from '../../api/auth';
 import { toast } from 'react-toastify';
-import { getAuthTokenFromLocalStorage, setAuthTokenInTheLocalStorage } from '../../util';
+import { getAuthTokenFromLocalStorage, getAuthTokenFromSessionStorage, setAuthTokenInTheLocalStorage, setAuthTokenInTheSessionStorage } from '../../util';
 import api, { setTokenInAxios } from '../../api/config/axiosConfig';
 interface IAuthContext {
     token: string,
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const AuthContextProvider = ({ children }: IProps) => {
-    const [token, setToken] = useState(getAuthTokenFromLocalStorage());
+    const [token, setToken] = useState(getAuthTokenFromSessionStorage() || getAuthTokenFromLocalStorage());
 
     const login = async (email: string, password: string, rememberMe?: boolean) => {
         const res = await AuthAPI.login(email, password);
@@ -33,6 +33,9 @@ const AuthContextProvider = ({ children }: IProps) => {
         if (res?.status) {
             if (rememberMe) {
                 setAuthTokenInTheLocalStorage(res?.data as string)
+            }else{
+                console.log("SET IN SESSION STORAGE");
+                setAuthTokenInTheSessionStorage(res?.data as string)
             }
             setToken(res?.data);
             setTokenInAxios(res?.data);
