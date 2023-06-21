@@ -36,7 +36,8 @@ const HistoryQuestionModal = ({ close, data }: IProps) => {
         { value: QuestionsTypes.Radio, label: t("multiple_choice") },
         { value: QuestionsTypes.Checkbox, label: t("select_one_or_more") },
     ];
-    const [questionType, setQuestionType] = useState<QuestionsTypes>(data?.type || QuestionsTypes.TrueFalse);
+
+    const [questionType, setQuestionType] = useState<QuestionsTypes>(data?.type === 0 ? data?.type : data?.type || QuestionsTypes.TrueFalse);
     const [question, setQuestion] = useState({
         en: data?.en.question || "",
         ar: data?.ar.question || ""
@@ -109,6 +110,7 @@ const HistoryQuestionModal = ({ close, data }: IProps) => {
         <Style>
             <H6 margin='0 0 0.5rem'>{t("question_type")}</H6>
             <Select
+                isDisabled={Boolean(data)}
                 value={{
                     value: questionType,
                     label: historyQuestionTypesOptions.find(el => el.value === questionType)?.label
