@@ -7,6 +7,7 @@ export enum QuestionsTypes {
 
 export enum DermatologistProfileStatus {
     NotVerified = 0,
-    NotAuthorized = 1,
-    Authorized = 2,
+    InComplete = 1,
+    NotAuthorized = 2,
+    Authorized = 3,
 }
