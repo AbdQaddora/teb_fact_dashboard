@@ -3,8 +3,6 @@ import Style from './style'
 import DermatologistCard from './components/DermatologistCard'
 import DermatologistForm from './components/DermatologistForm'
 
-// mock
-import mock_certificate from '../../assets/images/mock_certificate.jpg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getDermatologistBtId, selectDermatologists } from '../../redux/slices/dermatologistsSlice';
 import { Body1 } from '../../components/tiny/Typography/style';
@@ -28,7 +26,7 @@ const Dermatologist = () => {
       <DermatologistForm />
     </div>
 
-    {dermatologist.university_certificate_image ? <img src={mock_certificate}
+    {dermatologist.university_certificate_image ? <img src={dermatologist.university_certificate_image}
       alt="certificate"
       className="certificate" /> : <div className='no_certificate'>
       <Body1>{t("dermatologist")} {dermatologist.full_name} {t("no_certificate_yet")} ☹</Body1>
