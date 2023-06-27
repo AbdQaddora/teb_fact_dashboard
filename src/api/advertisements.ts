@@ -2,7 +2,7 @@ import api from "./config/axiosConfig"
 
 const getAdvertisements = async (page: number, per_page: number) => {
     try {
-        const { data } = await api.get(`/admin/advertisements?per_page=${per_page}&page=${page}`);
+        const { data } = await api.get(`/admin/sponsors?per_page=${per_page}&page=${page}`);
         if (data.data) {
             return {
                 status: true,
@@ -29,7 +29,7 @@ const getAdvertisements = async (page: number, per_page: number) => {
 
 const getAdvertisementByID = async (id: string) => {
     try {
-        const { data } = await api.get(`/admin/advertisements/${id}`);
+        const { data } = await api.get(`/admin/sponsors/${id}`);
         if (data.status) {
             return {
                 status: true,
@@ -53,7 +53,7 @@ const getAdvertisementByID = async (id: string) => {
 
 const createNewAdvertisement = async (advertisement: IAdvertisement) => {
     try {
-        const { data } = await api.post(`/admin/advertisements`, advertisement);
+        const { data } = await api.post(`/admin/sponsors`, advertisement);
         if (data.status) {
             return {
                 status: true,
@@ -78,7 +78,7 @@ const createNewAdvertisement = async (advertisement: IAdvertisement) => {
 const updateAdvertisement = async (new_advertisement: IAdvertisement) => {
     console.log(new_advertisement.image)
     try {
-        const { data } = await api.post(`/admin/advertisements/${new_advertisement.id}`, {
+        const { data } = await api.post(`/admin/sponsors/${new_advertisement.id}`, {
             ...new_advertisement,
             image: new_advertisement.image.startsWith("data:image") ? new_advertisement.image : null 
         });
@@ -106,7 +106,7 @@ const updateAdvertisement = async (new_advertisement: IAdvertisement) => {
 
 const deleteAdvertisement = async (id: string) => {
     try {
-        const { data } = await api.delete(`/admin/advertisements/${id}`);
+        const { data } = await api.delete(`/admin/sponsors/${id}`);
         if (data.status) {
             return {
                 status: true,
