@@ -13,11 +13,16 @@ import { toast } from 'react-toastify';
 import Loading from '../../components/tiny/Loading';
 import CheckBox from '../../components/tiny/CheckBox';
 
+// slider images
+import slider1 from "../../assets/images/slider_1.jpg";
+import slider2 from "../../assets/images/slider_2.jpg";
+import slider3 from "../../assets/images/slider_3.jpg";
+import slider4 from "../../assets/images/slider_4.jpg";
 const Login = () => {
   const { t } = useTranslation('', { keyPrefix: "login" })
   const auth = useAuth();
   const navigate = useNavigate();
-
+  const [activeImage, setActiveImage] = useState(Math.floor(Math.random() * 4));
   const [data, setData] = useState({
     email: "",
     password: ""
@@ -25,7 +30,13 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isRememberMeOn, setIsRememberMeOn] = useState(false);
+  useEffect(() => {
+    const temp = setInterval(() => {
+      setActiveImage(Math.floor(Math.random() * 4))
+    }, 10000)
 
+    return () => clearInterval(temp)
+  }, [])
   const handelChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }, [setData])
@@ -94,7 +105,12 @@ const Login = () => {
           <Button fullWidth>{t("btn")}</Button>
         </form>
       </div>
-      <div className="left"></div>
+      <div className="left">
+        {activeImage === 0 && <img src={slider1} alt={"slider 1"} className='left_image' />}
+        {activeImage === 1 && <img src={slider2} alt={"slider 2"} className='left_image' />}
+        {activeImage === 2 && <img src={slider3} alt={"slider 3"} className='left_image' />}
+        {activeImage === 3 && <img src={slider4} alt={"slider 4"} className='left_image' />}
+      </div>
     </Style>
   )
 }
