@@ -17,11 +17,11 @@ const Style = styled.div`
             outline-offset: 2px;
 
             &.default{
-                background-color: #3832A0;
+                background-color: #646C85;
             }
 
             &.default.active{
-                outline: 3px solid #3832A0;
+                outline: 3px solid #646C85;
             }
 
             &.green{
@@ -30,6 +30,14 @@ const Style = styled.div`
 
             &.green.active{
                 outline: 3px solid #155426;
+            }
+
+            &.tebFact{
+                background-color: #3832A0;
+            }
+
+            &.tebFact.active{
+                outline: 3px solid #3832A0;
             }
         }
     }

@@ -1,6 +1,5 @@
 import React from 'react'
 // components
-import Logo from '../../../../components/tiny/Logo'
 import SideMenuLink from '../SideMenuLink'
 import Style from './style'
 // icons
@@ -17,6 +16,9 @@ import { useTranslation } from 'react-i18next';
 import LanguageController from '../LanguageController';
 import { useLang } from '../../../../context/LanguageContext';
 import { useAuth } from '../../../../context/AuthContext';
+
+// logo
+import logo from "../../../../assets/images/logo.svg"
 interface IProps {
     isMobileMenuOpen: boolean;
     closeMobileMenu: () => void;
@@ -29,7 +31,7 @@ const SideMenu = ({ isMobileMenuOpen, closeMobileMenu }: IProps) => {
     return (
         <Style isMobileMenuOpen={isMobileMenuOpen} dir={lang.direction}>
             <div>
-                <Logo width='80%' margin="1rem 0" className='large_screen_logo' />
+                <img src={logo} alt="logo" className='large_screen_logo' />
                 <SideMenuLink
                     onClick={closeMobileMenu}
                     icon={<MdDashboard />}

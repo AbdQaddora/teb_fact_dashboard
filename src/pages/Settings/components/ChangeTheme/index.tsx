@@ -16,6 +16,10 @@ const ChangeTheme = () => {
           className={`theme_btn default ${activeTheme === "default" ? "active" : ""}`}
         ></div>
         <div
+          onClick={() => { changeTheme('tebFact') }}
+          className={`theme_btn tebFact ${activeTheme === "tebFact" ? "active" : ""}`}
+        ></div>
+        <div
           onClick={() => { changeTheme('green') }}
           className={`theme_btn green ${activeTheme === "green" ? "active" : ""}`}
         ></div>

@@ -8,12 +8,12 @@ import LanguageContextProvider from './context/LanguageContext';
 import AuthContextProvider from './context/AuthContext';
 
 // theming and style
-import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './style';
+import { ThemeProvider } from 'styled-components';
+import { useTheme } from './context/ThemeContext';
 
 // tostas
 import NotificationsContainer from './components/NotificationsContainer';
-import { useTheme } from './context/ThemeContext';
 
 const App = () => {
   const { theme } = useTheme();

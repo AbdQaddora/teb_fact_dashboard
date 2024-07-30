@@ -16,6 +16,12 @@ const Style = styled.div<IProps>`
     display: flex;
     flex-direction: column;
     justify-content:space-between;
+    .large_screen_logo{
+        height: 100px !important;
+        object-fit: cover;
+        width: 100%;
+    }
+        
     @media (max-width:920px){
         z-index: 998;
         transition: 0.3s all ease-in-out;

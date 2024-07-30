@@ -6,6 +6,7 @@ const api = axios.create({
     headers: {
         'Accept-Language': localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) ?
             JSON.parse(localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_LANGUAGE_KEY as string) || "").langName : 'en',
+        'Referrer-Policy': 'strict-origin-when-cross-origin'
     }
 });
 

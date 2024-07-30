@@ -1,9 +1,9 @@
 import React from 'react'
 import Style from './style'
-import Logo from '../../../../components/tiny/Logo'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { AiOutlineClose } from 'react-icons/ai'
-
+// logo
+import logo from "../../../../assets/images/logo.svg"
 interface IProps {
     toggleMenu: () => void,
     isMobileMenuOpen: boolean
@@ -15,7 +15,7 @@ const MobileMenuHeader = ({ toggleMenu, isMobileMenuOpen }: IProps) => {
                 {isMobileMenuOpen ? <AiOutlineClose /> : <BiDotsVerticalRounded />}
 
             </button>
-            <Logo className='mobile_logo' />
+            <img src={logo} alt="logo" className='mobile_logo' />
         </Style>
     )
 }

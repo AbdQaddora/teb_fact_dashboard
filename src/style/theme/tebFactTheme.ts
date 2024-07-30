@@ -1,58 +1,58 @@
 import { DefaultTheme } from 'styled-components';
-const defaultTheme: DefaultTheme = {
+const tebFactTheme: DefaultTheme = {
     colors: {
         logo: {
             colorA: {
-                light: "#F1525F",
+                light: "#db528e",
                 dark: "#c0487d",
             },
             colorB: {
-                light: "#646C85",
+                light: "#52d2db",
                 dark: "#48b8c0",
             },
         },
         danger: {
-            main: "#dc3545", // Assuming you want to keep these colors
+            main: "#dc3545",
             second: "#8c232d"
         },
         success: {
-            main: "#10B981", // Assuming you want to keep these colors
+            main: "#10B981",
             second: "#0c825b"
         },
         primary: {
-            main: "#F1525F", // Replaced with logo colorA
+            main: "#5048E5",
             contrast: "#FFFFFF",
-            dark: "#c0487d", // Replaced with logo colorA dark
-            light: "#FF7D8A", // New lighter shade based on logo colorA
+            dark: "#3832A0",
+            light: "#828DF8",
             states: {
-                p130: "#FF616E", // Assuming you want to keep these colors
+                p130: "#36309c",
                 p50: "rgba(80, 72, 229 , 0.5)",
                 p8: "rgba(80, 72, 229, 0.08)",
             }
         },
         text: {
-            primary: "#111827", // Assuming you want to keep these colors
+            primary: "#111827",
             secondary: "#6B7280",
             disabled: "rgba(55, 65, 81 , 0.5)",
             error: "#dc3545"
         },
         secondary: {
-            main: "#646C85", // Replaced with logo colorB
-            dark: "#48b8c0", // Replaced with logo colorB dark
+            main: "#db528e",
+            dark: "#93325C",
             contrast: "#FFFFFF",
             states: {
-                p130: "#db528e", // Assuming you want to keep these colors
+                p130: "#db528e",
                 p50: "rgba(16, 185, 129 , 0.5)",
                 p8: "rgba(16, 185, 129 , 0.08)",
             },
         },
         action: {
-            active: "#6B7280", // Assuming you want to keep these colors
+            active: "#6B7280",
             disabled: "rgba(55, 65, 81 , 0.25)",
             disabledBackground: "rgba(55, 65, 81 , 0.12)",
         },
         other: {
-            divider: "#D1D5DB" // Assuming you want to keep these colors
+            divider: "#D1D5DB"
         },
         background: {
             paper: "#FFFFFF",
@@ -61,7 +61,7 @@ const defaultTheme: DefaultTheme = {
             dark2: "rgba(255, 255, 255, 0.08);",
         },
         components: {
-            outlinedBorder: "#D1D5DB", // Assuming you want to keep these colors
+            outlinedBorder: "#D1D5DB",
             errorBorder: "#dc3545"
         },
         neutral: {
@@ -95,4 +95,4 @@ const defaultTheme: DefaultTheme = {
     }
 };
 
-export default defaultTheme;
+export default tebFactTheme;
