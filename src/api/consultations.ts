@@ -1,3 +1,4 @@
+import CONSULTATIONS_STATUS from "../constants/Consultations_status";
 import api from "./config/axiosConfig"
 
 const mapConsultations = (res: any) => {
@@ -9,7 +10,7 @@ const mapConsultations = (res: any) => {
             patient_avatar: el.patient.profile_image,
             patient_email: el.patient.email,
             patient_name: el.patient.full_name,
-            status: el.status === 0 ? "new" : el.status === 1 ? "open" :el.status === 2 ?  "closed" : "cancelled"
+            status: el.status === CONSULTATIONS_STATUS.NEW ? "new" : el.status === CONSULTATIONS_STATUS.OPEN ? "open" :el.status === CONSULTATIONS_STATUS.CLOSED ?  "closed" : "cancelled"
         };
         return consultation;
     })

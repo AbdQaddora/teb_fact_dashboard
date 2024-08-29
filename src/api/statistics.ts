@@ -7,7 +7,10 @@ const getInfo = async (start_date: Date, end_date: Date) => {
         if (data.data) {
             return {
                 status: true,
-                chart: data.data.data.chart,
+                chart: {
+                    ...data.data.data.chart,
+                    labels:data.data.data.chart.labels.reverse()
+                },
                 data: {
                     dermatologists: data.data.data.dermatologists,
                     consultations: data.data.data.consultations,

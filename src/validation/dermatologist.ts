@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const dermatologistSchema = yup.object({
-    profile_status: yup.number().oneOf([0, 1, 2]),
+    profile_status: yup.number().oneOf([0, 1, 2 , 3]),
     full_name: yup.string().required(),
     profile_image: yup.string().required(),
     rating: yup.number().min(0).max(5).notRequired(),
