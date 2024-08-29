@@ -8,6 +8,7 @@ interface IProps {
 const ConsultationTypeBadge = ({ type }: IProps) => {
     const { t } = useTranslation("", { keyPrefix: "components.consultation_type_badge" })
 
+    console.log('type :>> ', type);
     return (
         <Style className={type}>
             {t(type)}

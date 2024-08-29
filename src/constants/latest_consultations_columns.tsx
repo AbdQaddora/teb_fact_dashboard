@@ -30,7 +30,7 @@ const LATEST_CONSULTATIONS_COLUMNS: Column<IConsultation>[] = [
     },
     {
         Header: () => <Translate TranslateKey='tables.latest_consultations_columns.state' />,
-        accessor: "state",
+        accessor: "status",
         Cell: ({ cell: { value } }: CellProps<any>) => {
             return <ConsultationTypeBadge type={value} />
         },

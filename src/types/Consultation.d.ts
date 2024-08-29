@@ -5,5 +5,5 @@ interface IConsultation {
     patient_name: string,
     patient_avatar: string,
     patient_email: string;
-    state: ConsultationType;
+    status: ConsultationType;
 }
