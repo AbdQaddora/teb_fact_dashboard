@@ -28,7 +28,7 @@ const dermatologistSchema = yup.object({
     }),
     graduation_year: yup.number().min(1960).max(new Date().getFullYear()).required(),
     university_gpa: yup.number().min(75).max(100).required(),
-    maximum_no_of_open_consultations: yup.number().min(5).max(10).required(),
+    maximum_no_of_open_consultations: yup.number().min(5).max(50).required(),
     university_certificate_image: yup.string().notRequired()
 })
 
