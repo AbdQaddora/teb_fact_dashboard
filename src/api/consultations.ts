@@ -1,4 +1,4 @@
-import CONSULTATIONS_STATUS from "../constants/Consultations_status";
+import CONSULTATIONS_STATUS from "../constants/consultations_status";
 import api from "./config/axiosConfig"
 
 const mapConsultations = (res: any) => {
