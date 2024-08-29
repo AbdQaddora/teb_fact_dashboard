@@ -136,7 +136,7 @@
             "consultations_count": "consultations",
             "max_open_consultations": "max open Consultations",
             "graduation_year": "graduation year",
-            "graduation_GPA": "GPA",
+            "experience_years": "experience years",
             "rating": "rating",
             "actions": "actions"
         },
@@ -257,7 +257,7 @@
         "gender": "Gender",
         "date_of_birth": "Date Of Birth",
         "graduation_year": "Graduation Year",
-        "graduation_GPA": "Graduation GPA",
+        "experience_years": "experience years",
         "max_open_consultations": "Max Open Consultations",
         "activate": "Activate",
         "deactivate": "Deactivate",

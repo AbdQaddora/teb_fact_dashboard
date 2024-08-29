@@ -124,9 +124,9 @@ const DermatologistForm = () => {
 
                     <Input
                         onChange={onTextInputsChange}
-                        name="university_gpa"
-                        value={localDermatologistData.university_gpa}
-                        placeholder={t("graduation_GPA") || ""}
+                        name="experience_years"
+                        value={localDermatologistData.experience_years}
+                        placeholder={t("experience_years") || ""}
                         type='text'
                         fullWidth
                     />

@@ -22,7 +22,7 @@ const initialDermatologist: IDermatologist = {
     date_of_birth: "",
     email: "",
     gender: "male",
-    university_gpa: 90,
+    experience_years: 90,
     graduation_year: 2023,
     id: "",
     maximum_no_of_open_consultations: 5,

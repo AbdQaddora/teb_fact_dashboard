@@ -16,9 +16,8 @@ const Style = styled.div`
     .no_certificate , .certificate{
         margin-top: 2rem;
         width: 100%;
-        border-radius: 8px;
         min-height: 80dvh;
-        aspect-ratio: 16/9;
+        border-radius: 8px;
     }
 
     .certificate{

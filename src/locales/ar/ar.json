@@ -137,7 +137,7 @@
             "consultations_count": "الاستشارات المنجزة",
             "max_open_consultations": "الحد الأقصى للاستشارات",
             "graduation_year": "سنة التخرج",
-            "graduation_GPA": "معدل التخرج",
+            "experience_years": "عدد سنوات الخبرة",
             "rating": "التقييم",
             "actions": "افعال"
         },
@@ -258,7 +258,7 @@
         "gender": "الجنس",
         "date_of_birth": "تاريخ الميلاد",
         "graduation_year": "سنة التخرج",
-        "graduation_GPA": "معدل التخرج",
+        "experience_years": "عدد سنوات الخبرة",
         "max_open_consultations": "الحد الأقصى للاستشارات",
         "activate": "تفعيل",
         "deactivate": "تعطيل",

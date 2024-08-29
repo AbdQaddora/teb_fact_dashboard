@@ -12,6 +12,6 @@ export interface IDermatologist {
     rating: number;
     email: string;
     graduation_year: number;
-    university_gpa: number;
+    experience_years: number;
     university_certificate_image?: string;
 }
