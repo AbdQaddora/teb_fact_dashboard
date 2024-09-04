@@ -23,11 +23,7 @@ const DOCTORS_COLUMNS: Column<IDermatologistColumns>[] = [
     },
     {
         Header: () => <Translate TranslateKey='tables.dermatologists.rating' />,
-   /*     accessor: "rating",
-        disableGlobalFilter: true,
-        Cell: ({ value }) => <Rating rating={value} />,
-        minWidth: 130
-    },*/
+   
     {
         Header: () => <Translate TranslateKey='tables.dermatologists.consultations_count' />,
         accessor: "consultations_count",
