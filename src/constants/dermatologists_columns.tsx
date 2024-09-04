@@ -21,10 +21,7 @@ const DOCTORS_COLUMNS: Column<IDermatologistColumns>[] = [
             textOverflow: "ellipsis"
         }}>{value}</p>
     },
-    {
-        Header: () => <Translate TranslateKey='tables.dermatologists.rating' />,
-   
-    {
+{
         Header: () => <Translate TranslateKey='tables.dermatologists.consultations_count' />,
         accessor: "consultations_count",
         disableGlobalFilter: true,
