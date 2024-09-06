@@ -24,7 +24,7 @@ const DermatologistCard = () => {
             <img src={dermatologist.profile_image} alt="avatar" className="avatar" />
             <H5>{dermatologist.full_name}</H5>
             <div className='dermatologist_secondary_info'>
-                <Rating rating={dermatologist.rating} />
+                
             </div>
             <Button
                 onClick={handelActivateFlip}
